@@ -374,7 +374,6 @@ const Home = () => {
                     <h3 className="product-title">{product.name}</h3>
                     <div className="product-price">₹{product.price?.toLocaleString() || '0'}</div>
                     <p className="product-description">{product.description?.substring(0, 70)}...</p>
-                    <div className="product-features"><span>✓ 1 Year Warranty</span><span>✓ ISI Marked</span></div>
                     <div className="product-footer"><button className="view-details-btn">View Details →</button></div>
                   </div>
                 </div>
@@ -408,7 +407,6 @@ const Home = () => {
               <span className="product-category-tag">{getCategoryIcon(selectedProduct.category)} {getCategoryDisplayName(selectedProduct.category)}</span>
               <h2>{selectedProduct.name}</h2>
               <div className="price-tag">₹{selectedProduct.price?.toLocaleString() || '0'}</div>
-              <div className="delivery-info"><span>✓ Free Shipping</span><span>✓ 5+ Year Warranty*</span><span>✓ Bulk Discounts</span><span>✓ GST Invoice</span></div>
               <p className="full-description">{selectedProduct.description || 'Heavy-duty electrical switchgear designed for safety and long life. Comes with ISI marking and industry-leading quality.'}</p>
               <div className="contact-actions">
                 <a href={`tel:${phoneNumber1}`} className="call-now-btn">📞 Call for Best Price</a>

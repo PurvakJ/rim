@@ -220,12 +220,6 @@ function Products() {
           <div className="hero-icon">⚡</div>
           <h1>Our <span>Switchgear Collection</span></h1>
           <p>Discover premium quality electrical products for industrial and residential needs. ISI marked with 5+ year warranty.</p>
-          <div className="hero-features">
-            <span>✓ ISI Marked</span>
-            <span>✓ 5+ Year Warranty*</span>
-            <span>✓ Free Shipping</span>
-            <span>✓ Bulk Discounts</span>
-          </div>
         </div>
       </section>
 
@@ -337,10 +331,6 @@ function Products() {
                       <p className="product-description">
                         {renderProductDescription(product, 70)}
                       </p>
-                      <div className="product-features">
-                        <span>✓ ISI Marked</span>
-                        <span>✓ 5 Year Warranty</span>
-                      </div>
                       <div className="product-footer">
                         <button className="view-details-btn">View Details →</button>
                       </div>
@@ -414,12 +404,6 @@ function Products() {
               </span>
               <h2>{renderProductName(selectedProduct)}</h2>
               <div className="price-tag">₹{(selectedProduct.price || 0).toLocaleString()}</div>
-              <div className="delivery-info">
-                <span>✓ Free Shipping</span>
-                <span>✓ 5+ Year Warranty*</span>
-                <span>✓ GST Invoice</span>
-                <span>✓ Bulk Discounts</span>
-              </div>
               <p className="full-description">{renderProductDescription(selectedProduct, 500)}</p>
               <div className="contact-actions">
                 <a href={`tel:${phoneNumber1}`} className="call-now-btn">📞 Call for Best Price</a>
