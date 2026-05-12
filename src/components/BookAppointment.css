@@ -1,0 +1,691 @@
+/* BookAppointment.css - RIM Royal Industries Mansa */
+/* Dark Brown & Cream Industrial Palette */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.appointment-page {
+    font-family: 'Poppins', 'Playfair Display', serif;
+    overflow-x: hidden;
+    background: var(--rim-cream-light);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ==================== COLOR VARIABLES ==================== */
+:root {
+    --rim-dark: #211a12;
+    --rim-dark-light: #3a2f24;
+    --rim-dark-heavy: #1a140d;
+    --rim-cream: #ede6de;
+    --rim-cream-light: #f5f0ea;
+    --rim-cream-dark: #ddd4c8;
+    --rim-accent: #c9a03d;
+    --rim-accent-dark: #a0782e;
+    --rim-accent-light: #dbb956;
+    --rim-wa: #25D366;
+    --rim-industrial: #2d5a6e;
+    --rim-text-dark: #211a12;
+    --rim-text-light: #5a4f44;
+    --white: #FFFFFF;
+    --gold: #c9a03d;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* ==================== HERO SECTION ==================== */
+.appointment-hero {
+    background: linear-gradient(135deg, var(--rim-dark) 0%, var(--rim-dark-heavy) 100%);
+    color: var(--rim-cream);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.appointment-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&auto=format');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    z-index: 0;
+}
+
+.appointment-hero::after {
+    content: '⚡';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.03;
+    bottom: -60px;
+    right: -60px;
+    pointer-events: none;
+    z-index: 0;
+    transform: rotate(15deg);
+}
+
+.appointment-hero .container {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 0;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(201, 160, 61, 0.2);
+    border: 1px solid rgba(201, 160, 61, 0.4);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(4px);
+}
+
+.appointment-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.appointment-hero h1 span {
+    color: var(--rim-accent);
+}
+
+.appointment-hero p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    font-weight: 400;
+}
+
+.contact-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(4px);
+}
+
+.contact-badge a {
+    color: var(--rim-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-badge a:hover {
+    text-decoration: underline;
+}
+
+/* ==================== APPOINTMENT CONTAINER ==================== */
+.appointment-container {
+    padding: 5rem 2rem;
+}
+
+.appointment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+}
+
+/* ==================== INFO CARDS ==================== */
+.appointment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.info-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid rgba(33, 26, 18, 0.1);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--rim-accent);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    font-size: 1.3rem;
+    color: var(--rim-text-dark);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card ul li {
+    padding: 8px 0;
+    color: var(--rim-text-light);
+    font-size: 0.9rem;
+    border-bottom: 1px dashed var(--rim-cream-dark);
+}
+
+.info-card ul li:last-child {
+    border-bottom: none;
+}
+
+/* Experience Card */
+.experience-card {
+    background: linear-gradient(135deg, var(--rim-cream-light) 0%, var(--white) 100%);
+    border-left: 4px solid var(--rim-accent);
+}
+
+.address {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: var(--rim-text-light);
+}
+
+.hours {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: var(--rim-text-dark);
+    font-weight: 500;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rim-cream-dark);
+}
+
+.wa-direction-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem;
+    padding: 8px 16px;
+    background: var(--rim-wa);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.wa-direction-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* ==================== FORM WRAPPER ==================== */
+.appointment-form-wrapper {
+    background: var(--white);
+    border-radius: 32px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(33, 26, 18, 0.1);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-icon-wrapper {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rim-accent-light), var(--rim-accent));
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.form-icon {
+    font-size: 2rem;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    color: var(--rim-text-dark);
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.form-header p {
+    color: var(--rim-text-light);
+    font-size: 0.85rem;
+}
+
+/* ==================== FORM STYLES ==================== */
+.appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--rim-text-dark);
+    letter-spacing: 0.5px;
+}
+
+.form-group label span {
+    color: var(--rim-accent);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 2px solid var(--rim-cream-dark);
+    border-radius: 16px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--rim-accent);
+    box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.1);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--rim-accent-light);
+}
+
+/* Radio Group */
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 16px;
+    background: var(--rim-cream-light);
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+.radio-label:hover {
+    background: var(--rim-cream-dark);
+}
+
+.radio-label input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--rim-accent);
+}
+
+.radio-label span {
+    font-size: 0.85rem;
+    color: var(--rim-text-dark);
+}
+
+/* Form Note */
+.form-note {
+    background: var(--rim-cream-light);
+    padding: 12px 16px;
+    border-radius: 16px;
+    border-left: 4px solid var(--rim-accent);
+}
+
+.form-note p {
+    font-size: 0.8rem;
+    color: var(--rim-text-light);
+}
+
+/* Submit Button */
+.btn-submit {
+    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
+    color: var(--rim-dark);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(201, 160, 61, 0.3);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--rim-dark);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== SUCCESS PAGE ==================== */
+.appointment-success {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rim-cream-light) 0%, var(--rim-cream) 100%);
+    padding: 2rem;
+}
+
+.success-container {
+    background: var(--white);
+    border-radius: 48px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: var(--shadow-xl);
+    animation: fadeInUp 0.5s ease;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem;
+    color: var(--rim-dark);
+}
+
+.success-container h2 {
+    font-size: 1.8rem;
+    color: var(--rim-text-dark);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.success-container p {
+    color: var(--rim-text-light);
+    margin-bottom: 0.5rem;
+}
+
+.success-container strong {
+    color: var(--rim-accent-dark);
+}
+
+.success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
+    color: var(--rim-dark);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--rim-accent);
+    color: var(--rim-accent-dark);
+}
+
+.btn-secondary:hover {
+    background: var(--rim-accent);
+    color: var(--rim-dark);
+    transform: translateY(-2px);
+}
+
+/* ==================== TRUST SECTION ==================== */
+.trust-section {
+    padding: 3rem 2rem 5rem;
+    background: var(--white);
+    border-top: 1px solid var(--rim-cream-dark);
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--rim-cream-light);
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.trust-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.trust-icon {
+    font-size: 2rem;
+}
+
+.trust-item h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--rim-text-dark);
+    margin-bottom: 4px;
+}
+
+.trust-item p {
+    font-size: 0.7rem;
+    color: var(--rim-text-light);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1024px) {
+    .appointment-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .appointment-hero {
+        padding: 4rem 1rem 3rem;
+    }
+    
+    .appointment-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .appointment-hero p {
+        font-size: 0.9rem;
+    }
+    
+    .appointment-container {
+        padding: 3rem 1rem;
+    }
+    
+    .appointment-form-wrapper {
+        padding: 1.8rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .success-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .success-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .appointment-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-badge {
+        font-size: 9px;
+    }
+    
+    .contact-badge {
+        font-size: 0.75rem;
+        padding: 8px 16px;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .info-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .appointment-form-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .btn-submit {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,439 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { getProducts } from '../api';
+import './Products.css';
+
+function Products() {
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [category, setCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState('default');
+  const [categories, setCategories] = useState([{ value: 'all', label: 'All Products', icon: '⚡' }]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Updated Contact Numbers for RIM
+  const phoneNumber1 = '9815097851';
+  const whatsappNumber = '919815097851';
+
+  // Helper function to safely get product name as string
+  const getProductName = (product) => {
+    if (product && product.name !== undefined && product.name !== null) {
+      return String(product.name);
+    }
+    return '';
+  };
+
+  // Helper function to safely get product description as string
+  const getProductDescription = (product) => {
+    if (product && product.description !== undefined && product.description !== null) {
+      return String(product.description);
+    }
+    return '';
+  };
+
+  const getCategoryDisplayName = useCallback((categoryValue) => {
+    const displayNames = {
+      'changeover': 'Changeover Switches',
+      'mcb': 'MCB & Distribution Boxes',
+      'panel': 'Control Panels',
+      'motor-starters': 'Reverse/Forward & LT Control',
+      'busbar': 'Busbar Chambers',
+      'connectors': 'DMC Connectors & Thimbles',
+      'protective': 'Immersion Rods & Anti-Mosquito',
+      'wiring': 'Plugs, Sockets & Power Strips',
+      'capacitors': 'Power Capacitors',
+      'mccb': 'MCCB & Moulded Case Breakers',
+      'main-switch': 'Main Switches',
+      'submersible': 'Submersible Control Panels',
+      'multiplug': 'Multiplugs & Power Strips',
+      'kitkat': 'Kit-Kat Series (Copper/Brass)',
+      'kvr': 'KVR Heavy Duty Boxes',
+      'exhaust': 'Fan Exhaust Louvers',
+      'holder': 'Holders & Sockets'
+    };
+    if (!categoryValue) return 'Products';
+    return displayNames[categoryValue] || 
+           categoryValue?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }, []);
+
+  const getCategoryIcon = useCallback((category) => {
+    const icons = {
+      'changeover': '🔄',
+      'mcb': '⚡',
+      'panel': '📟',
+      'motor-starters': '⏪⏩',
+      'busbar': '〰️',
+      'connectors': '🔗',
+      'protective': '🛡️',
+      'wiring': '🔌',
+      'capacitors': '⚛️',
+      'mccb': '🔒',
+      'main-switch': '🔘',
+      'submersible': '💧',
+      'multiplug': '🔌',
+      'kitkat': '🥈',
+      'kvr': '📦',
+      'exhaust': '🌀',
+      'holder': '💡'
+    };
+    return icons[category] || '⚡';
+  }, []);
+
+  const loadProducts = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await getProducts();
+      const validProducts = data.filter(product => product && product.id);
+      
+      // Ensure all products have valid name strings
+      const sanitizedProducts = validProducts.map(product => ({
+        ...product,
+        name: getProductName(product),
+        description: getProductDescription(product)
+      }));
+      
+      setProducts(sanitizedProducts);
+      
+      const uniqueCategories = [...new Set(sanitizedProducts.map(product => product.category).filter(Boolean))];
+      const dynamicCategories = uniqueCategories.map(cat => ({
+        value: cat,
+        label: getCategoryDisplayName(cat),
+        icon: getCategoryIcon(cat)
+      }));
+      
+      setCategories([
+        { value: 'all', label: 'All Products', icon: '⚡' },
+        ...dynamicCategories
+      ]);
+    } catch (error) {
+      console.error('Error loading products:', error);
+      // Fallback products for RIM Switchgear
+      const fallbackProducts = [
+        { id: 1, name: "Auto Changeover Switch (63A/100A)", price: 3850, description: "Automatic transfer switch for generators & mains. Suitable for submersible pumps and home automation. ISI marked with silver alloy contacts.", images: ["https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format"], category: "changeover", featured: true },
+        { id: 2, name: "16 Way Single Door MCB Box", price: 1250, description: "Modular distribution box with transparent window. Accepts all standard MCBs. Double insulation with IP40 protection.", images: ["https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format"], category: "mcb", featured: true },
+        { id: 3, name: "Submersible Control Panel (7.5 HP)", price: 6250, description: "Auto start/stop with dry run protection and overload relay. Heavy duty contactor with thermal overload protection.", images: ["https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format"], category: "submersible", featured: true },
+        { id: 4, name: "Three Phase MCCB (100A-800A)", price: 2850, description: "Moulded case circuit breaker with adjustable thermal magnetic trip unit. 50kA breaking capacity.", images: ["https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format"], category: "mccb", featured: false },
+        { id: 5, name: "Copper Busbar Chamber (400A)", price: 4250, description: "High conductivity copper busbars with silver-plated contacts. Complete with insulated supports.", images: ["https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format"], category: "busbar", featured: false },
+        { id: 6, name: "Reverse/Forward Starter (7.5 HP)", price: 4850, description: "Industrial grade motor starter for reverse/forward operation. Complete with overload protection.", images: ["https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format"], category: "motor-starters", featured: true }
+      ];
+      setProducts(fallbackProducts);
+      
+      const uniqueCategories = [...new Set(fallbackProducts.map(product => product.category))];
+      const dynamicCategories = uniqueCategories.map(cat => ({
+        value: cat,
+        label: getCategoryDisplayName(cat),
+        icon: getCategoryIcon(cat)
+      }));
+      
+      setCategories([
+        { value: 'all', label: 'All Products', icon: '⚡' },
+        ...dynamicCategories
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }, [getCategoryDisplayName, getCategoryIcon]);
+
+  const filterAndSortProducts = useCallback(() => {
+    let filtered = products.filter(product => {
+      const matchesCategory = category === 'all' || product.category === category;
+      const productName = getProductName(product);
+      const productDescription = getProductDescription(product);
+      const matchesSearch = productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           productDescription.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+
+    switch(sortBy) {
+      case 'price-low':
+        filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+        break;
+      case 'price-high':
+        filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+        break;
+      case 'name':
+        filtered.sort((a, b) => getProductName(a).localeCompare(getProductName(b)));
+        break;
+      default:
+        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    }
+
+    setFilteredProducts(filtered);
+  }, [products, category, searchTerm, sortBy]);
+
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
+
+  useEffect(() => {
+    filterAndSortProducts();
+  }, [filterAndSortProducts]);
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [selectedProduct]);
+
+  const getCategoryName = useCallback((category) => {
+    return getCategoryDisplayName(category);
+  }, [getCategoryDisplayName]);
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    if (selectedProduct && selectedProduct.images && selectedProduct.images.length > 0) {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProduct.images.length);
+    }
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    if (selectedProduct && selectedProduct.images && selectedProduct.images.length > 0) {
+      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedProduct.images.length) % selectedProduct.images.length);
+    }
+  };
+
+  const openWhatsApp = (productName) => {
+    const safeProductName = productName ? String(productName) : 'this product';
+    const message = encodeURIComponent(`Hello RIM, I'm interested in the "${safeProductName}" switchgear product. Could you please share more details and the best price for bulk/retail?`);
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+  };
+
+  // Safe render of product name
+  const renderProductName = (product) => {
+    const name = getProductName(product);
+    return name || 'Product';
+  };
+
+  // Safe render of product description
+  const renderProductDescription = (product, maxLength = 70) => {
+    const desc = getProductDescription(product);
+    if (!desc) return 'Premium quality electrical switchgear for reliable performance';
+    return desc.length > maxLength ? `${desc.substring(0, maxLength)}...` : desc;
+  };
+
+  return (
+    <div className="products-page">
+      <section className="products-hero">
+        <div className="container">
+          <div className="hero-badge">RIM - Royal Industries Mansa</div>
+          <div className="hero-icon">⚡</div>
+          <h1>Our <span>Switchgear Collection</span></h1>
+          <p>Discover premium quality electrical products for industrial and residential needs. ISI marked with 5+ year warranty.</p>
+          <div className="hero-features">
+            <span>✓ ISI Marked</span>
+            <span>✓ 5+ Year Warranty*</span>
+            <span>✓ Free Shipping</span>
+            <span>✓ Bulk Discounts</span>
+          </div>
+        </div>
+      </section>
+
+      <div className="products-container">
+        <div className="filters-section">
+          <div className="filter-group">
+            <label>Category:</label>
+            <select 
+              value={category} 
+              onChange={(e) => setCategory(e.target.value)}
+              className="filter-select"
+            >
+              {categories.map(cat => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.icon} {cat.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          
+          <div className="filter-group">
+            <label>Sort by:</label>
+            <select 
+              value={sortBy} 
+              onChange={(e) => setSortBy(e.target.value)}
+              className="filter-select"
+            >
+              <option value="default">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </div>
+          
+          <div className="filter-group search-group">
+            <label>Search:</label>
+            <input
+              type="text"
+              placeholder="Search products (MCB, Changeover, Panel...)"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
+        </div>
+
+        <div className="results-count">
+          Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+        </div>
+
+        {loading ? (
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <p>Loading our premium switchgear collection...</p>
+          </div>
+        ) : (
+          <>
+            {filteredProducts.length === 0 ? (
+              <div className="no-products">
+                <div className="no-products-icon">⚡</div>
+                <h3>No products found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+                <button 
+                  className="btn-reset"
+                  onClick={() => {
+                    setCategory('all');
+                    setSearchTerm('');
+                    setSortBy('default');
+                  }}
+                >
+                  Reset Filters
+                </button>
+              </div>
+            ) : (
+              <div className="products-grid">
+                {filteredProducts.map(product => (
+                  <div key={product.id} className="product-card" onClick={() => setSelectedProduct(product)}>
+                    <div className="product-image-container">
+                      {product.images && product.images[0] ? (
+                        <img 
+                          src={product.images[0]} 
+                          alt={renderProductName(product)} 
+                          className="product-image"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.target.src = 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format';
+                          }}
+                        />
+                      ) : (
+                        <div className="image-placeholder">
+                          <span>⚡</span>
+                        </div>
+                      )}
+                      {product.featured && (
+                        <div className="product-badge">Bestseller</div>
+                      )}
+                      {product.images && product.images.length > 1 && (
+                        <div className="image-count-badge">
+                          +{product.images.length - 1}
+                        </div>
+                      )}
+                    </div>
+                    <div className="product-info">
+                      <span className="product-category">
+                        {getCategoryIcon(product.category)} {getCategoryName(product.category)}
+                      </span>
+                      <h3 className="product-title">{renderProductName(product)}</h3>
+                      <div className="product-price">₹{(product.price || 0).toLocaleString()}</div>
+                      <p className="product-description">
+                        {renderProductDescription(product, 70)}
+                      </p>
+                      <div className="product-features">
+                        <span>✓ ISI Marked</span>
+                        <span>✓ 5 Year Warranty</span>
+                      </div>
+                      <div className="product-footer">
+                        <button className="view-details-btn">View Details →</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* Product Modal with Image Slider */}
+      {selectedProduct && (
+        <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
+          <div className="modal-content product-detail-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal" onClick={() => setSelectedProduct(null)}>×</button>
+            
+            <div className="product-detail-gallery">
+              {selectedProduct.images && selectedProduct.images.length > 0 ? (
+                <div className="image-slider-container">
+                  <div className="main-slider-image">
+                    <img 
+                      src={selectedProduct.images[currentImageIndex]} 
+                      alt={`${renderProductName(selectedProduct)} - ${currentImageIndex + 1}`}
+                    />
+                    {selectedProduct.images.length > 1 && (
+                      <>
+                        <button className="slider-nav prev-nav" onClick={prevImage}>❮</button>
+                        <button className="slider-nav next-nav" onClick={nextImage}>❯</button>
+                      </>
+                    )}
+                  </div>
+                  <div className="slider-dots">
+                    {selectedProduct.images.map((_, idx) => (
+                      <button
+                        key={idx}
+                        className={`slider-dot ${currentImageIndex === idx ? 'active' : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(idx);
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div className="thumbnail-strip">
+                    {selectedProduct.images.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className={`thumbnail ${currentImageIndex === idx ? 'active' : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(idx);
+                        }}
+                      >
+                        <img src={img} alt={`Thumbnail ${idx + 1}`} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="gallery-placeholder">
+                  <span>⚡</span>
+                </div>
+              )}
+            </div>
+            
+            <div className="product-detail-info">
+              <span className="product-category-tag">
+                {getCategoryIcon(selectedProduct.category)} {getCategoryName(selectedProduct.category)}
+              </span>
+              <h2>{renderProductName(selectedProduct)}</h2>
+              <div className="price-tag">₹{(selectedProduct.price || 0).toLocaleString()}</div>
+              <div className="delivery-info">
+                <span>✓ Free Shipping</span>
+                <span>✓ 5+ Year Warranty*</span>
+                <span>✓ GST Invoice</span>
+                <span>✓ Bulk Discounts</span>
+              </div>
+              <p className="full-description">{renderProductDescription(selectedProduct, 500)}</p>
+              <div className="contact-actions">
+                <a href={`tel:${phoneNumber1}`} className="call-now-btn">📞 Call for Best Price</a>
+                <button onClick={() => openWhatsApp(renderProductName(selectedProduct))} className="wa-consult-btn">
+                  💬 Chat on WhatsApp
+                </button>
+                <a href="/contact" className="consult-btn">Request a Quote →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Products;
