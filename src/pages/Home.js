@@ -22,40 +22,39 @@ const Home = () => {
   // Updated Contact Numbers & Social Links
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
-  const whatsappNumber = '919815097851'; // Format for WhatsApp API
+  const whatsappNumber = '919815097851';
   const whatsappMessage = encodeURIComponent("Hello RIM, I'm interested in your electrical switchgear products. I need industrial-grade solutions for changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   
   const instagramLink = "https://www.instagram.com/rimmansa/";
   const facebookLink = "https://www.facebook.com/steelk001/";
   const justdialLink = "https://www.justdial.com/Mansa/Royal-Industries-Mansa-Kot-Lallu/9999P1652-1652-171230152122-Z2M7_BZDET";
-  // Removed unused indiamartLink
 
   // Updated Carousel for Electrical Switchgear Industry
   const carouselImages = [
     {
-      url: "https://i.postimg.cc/hj9pHW40/close-up-circuit-breakers-wire-control-panel.jpg", // Industrial Electrical Panel
+      url: "https://i.postimg.cc/hj9pHW40/close-up-circuit-breakers-wire-control-panel.jpg",
       title: "Heavy Duty Switchgears",
       subtitle: "Precision Engineering for Industrial Safety"
     },
     {
-      url: "https://i.postimg.cc/SsVvtbxs/woman-turning-off-light-switch.jpg", // Circuit Breakers & MCBs
+      url: "https://i.postimg.cc/SsVvtbxs/woman-turning-off-light-switch.jpg",
       title: "Quality Control Panels",
       subtitle: "Reveres Forward & LT Control Solutions"
     },
     {
-      url: "https://i.postimg.cc/66jPrKPr/concrete-wall-with-meters-pipes.jpg", // Busbar & Wiring
+      url: "https://i.postimg.cc/66jPrKPr/concrete-wall-with-meters-pipes.jpg",
       title: "Complete Switchgear Solutions",
       subtitle: "From Busbar Chambers to Submersible Controllers"
     },
     {
-      url: "https://i.postimg.cc/Bbmc0Jrc/electrical-panel-electric-meter-circuit-breakers-electric-frequency-converter-motor-speed-controller.jpg", // Industrial Connectors
+      url: "https://i.postimg.cc/Bbmc0Jrc/electrical-panel-electric-meter-circuit-breakers-electric-frequency-converter-motor-speed-controller.jpg",
       title: "Trusted Since Decades",
       subtitle: "ISI Marked & Premium Quality Components"
     }
   ];
 
-  // Helper Functions (Updated for Switchgear)
+  // Helper Functions
   const getCategoryDisplayName = useCallback((categoryValue) => {
     const displayNames = {
       'changeover': 'Changeover Switches',
@@ -93,8 +92,17 @@ const Home = () => {
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
 
-  const nextImage = (e) => { e.stopPropagation(); if (selectedProduct?.images?.length) setCurrentImageIndex((prev) => (prev + 1) % selectedProduct.images.length); };
-  const prevImage = (e) => { e.stopPropagation(); if (selectedProduct?.images?.length) setCurrentImageIndex((prev) => (prev - 1 + selectedProduct.images.length) % selectedProduct.images.length); };
+  const nextImage = (e) => { 
+    e.stopPropagation(); 
+    if (selectedProduct?.images?.length) 
+      setCurrentImageIndex((prev) => (prev + 1) % selectedProduct.images.length); 
+  };
+  
+  const prevImage = (e) => { 
+    e.stopPropagation(); 
+    if (selectedProduct?.images?.length) 
+      setCurrentImageIndex((prev) => (prev - 1 + selectedProduct.images.length) % selectedProduct.images.length); 
+  };
 
   // Gallery Items (Switchgear Themed)
   const galleryItems = [
@@ -104,14 +112,14 @@ const Home = () => {
     { id: 4, image: "https://www.energy.gov/sites/default/files/styles/full_article_width/public/Powerstrip.jpeg?itok=6eTAyAc_", title: "P O W E R  S T R I P S", fullTitle: "POWER STRIPS", description: "To Power Up Your Devices" }
   ];
 
-  // Features Data (Switchgear Specific)
+  // Features Data
   const RimFeatures = [
     { icon: "⚡", title: "ISI Marked Quality", description: "All MCBs, Changeovers, and Panels meet BIS standards for complete electrical safety." },
     { icon: "🔧", title: "Heavy Duty Build", description: "Industrial-grade components designed for high current loads and continuous operation." },
     { icon: "🛡️", title: "15+ Year Experience", description: "Comprehensive warranty on MCB boxes, MCCB, and Kit-Kat series products." }
   ];
 
-  // Product Categories (Updated as per your list)
+  // Product Categories
   const categories = [
     { name: "Changeover Switches", icon: "🔄", link: "/products?category=changeover", description: "Manual & Auto Changeovers" },
     { name: "MCB & Distribution", icon: "⚡", link: "/products?category=mcb", description: "Single/Double Door Boxes & MCBs" },
@@ -119,21 +127,84 @@ const Home = () => {
     { name: "Busbar Chambers", icon: "〰️", link: "/products?category=busbar", description: "Copper & Aluminium Busbars" }
   ];
 
-  // Load Products (Using your API logic, replace with actual product data)
+
+  // Alternative: Even more random - picks from different segments
+  const getRandomFeaturedProductsV2 = (allProducts) => {
+    if (!allProducts || allProducts.length === 0) return [];
+    
+    const totalProducts = allProducts.length;
+    
+    if (totalProducts < 3) return allProducts;
+    
+    // Define segment sizes (dividing products into 3 segments logically)
+    const segmentSize = Math.floor(totalProducts / 3);
+    
+    const segments = {
+      segment1: allProducts.slice(0, segmentSize),
+      segment2: allProducts.slice(segmentSize, 2 * segmentSize),
+      segment3: allProducts.slice(2 * segmentSize, totalProducts)
+    };
+    
+    const selectedProducts = [];
+    
+    // Pick random product from segment 1 (first 1/3)
+    if (segments.segment1.length > 0) {
+      const idx1 = Math.floor(Math.random() * segments.segment1.length);
+      selectedProducts.push(segments.segment1[idx1]);
+    }
+    
+    // Pick random product from segment 2 (middle 1/3)
+    if (segments.segment2.length > 0) {
+      const idx2 = Math.floor(Math.random() * segments.segment2.length);
+      selectedProducts.push(segments.segment2[idx2]);
+    }
+    
+    // Pick random product from segment 3 (last 1/3)
+    if (segments.segment3.length > 0) {
+      const idx3 = Math.floor(Math.random() * segments.segment3.length);
+      selectedProducts.push(segments.segment3[idx3]);
+    }
+    
+    return selectedProducts;
+  };
+
+  // Load Products with truly random selection
   const loadProducts = useCallback(async () => {
     try {
       const data = await getProducts();
+      
+      // Filter valid products
       const validProducts = data.filter(product => product && product.id);
-      let featured = validProducts.filter(p => p.featured === true);
-      let productsToShow = featured.length >= 3 ? featured.slice(0, 3) : validProducts.slice(0, 3);
+      const totalCount = validProducts.length;
+      
+      console.log(`Total products available: ${totalCount}`);
+      
+      let productsToShow = [];
+      
+      if (validProducts.length >= 3) {
+        // Method 1: Use the segment-based random pick
+        productsToShow = getRandomFeaturedProductsV2(validProducts);
+        
+        // Optional: Shuffle the selected products for order randomness
+        for (let i = productsToShow.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [productsToShow[i], productsToShow[j]] = [productsToShow[j], productsToShow[i]];
+        }
+      } else {
+        productsToShow = validProducts;
+      }
+      
       setFeaturedProducts(productsToShow);
+      
+      console.log("Selected featured products (from different ranges):", productsToShow.map(p => ({ id: p.id, name: p.name })));
+      
     } catch (error) {
       console.error('Error loading products:', error);
-      // Fallback products for Electrical Switchgear
+      // Fallback products with varied indices to simulate randomness
       const fallbackProducts = [
         { id: 1, name: "Auto Changeover Switch (63A/100A)", price: 3850, description: "Automatic transfer switch for generators & mains. Suitable for submersible pumps and home automation.", images: ["https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format"], category: "changeover", featured: true },
-        { id: 2, name: "16 Way Single Door MCB Box", price: 1250, description: "Modular distribution box with transparent window. Accepts all standard MCBs.", images: ["https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format"], category: "mcb", featured: true },
-        { id: 3, name: "Submersible Control Panel (7.5 HP)", price: 6250, description: "Auto start/stop with dry run protection and overload relay.", images: ["https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format"], category: "panel", featured: true }
+        { id: 67, name: "Double Door MCB Box (24 Way)", price: 2850, description: "Industrial grade distribution box with heavy duty build.", images: ["https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format"], category: "mcb", featured: true },
+        { id: 189, name: "Reverse Forward Control Panel (15 HP)", price: 12500, description: "Complete motor starter with overload protection.", images: ["https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format"], category: "panel", featured: true }
       ];
       setFeaturedProducts(fallbackProducts);
     }
@@ -164,13 +235,12 @@ const Home = () => {
     setCurrentImageIndex(0);
   }, [selectedProduct]);
 
-  // Fixed: Added carouselImages.length to dependency array
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [carouselImages.length]); // Added missing dependency
+  }, [carouselImages.length]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
@@ -228,7 +298,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Welcome Section - Updated for RIM */}
+      {/* Welcome Section */}
       <section className="welcome-section">
         <div className="container">
           <div className="welcome-badge">Powering Industries & Homes Since Decades</div>
@@ -258,7 +328,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Parallax Section - Industrial Theme */}
+      {/* Parallax Section */}
       <section className="parallax-section">
         <div className="parallax-overlay"></div>
         <div className="container">
@@ -297,7 +367,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Featured Products Section - Now truly random */}
       <section className="featured-products">
         <div className="container">
           <div className="section-badge">Best Sellers</div>
@@ -331,7 +401,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Product Modal - Same structure as original */}
+      {/* Product Modal - Same structure */}
       {selectedProduct && (
         <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
           <div className="modal-content product-detail-modal" onClick={(e) => e.stopPropagation()}>
@@ -385,8 +455,7 @@ const Home = () => {
         ))}
       </div>
 
-
-      {/* Reviews Section - Same as original structure */}
+      {/* Reviews Section */}
       <section className="reviews-section">
         <div className="container">
           <div className="section-badge">Testimonials</div>
@@ -428,7 +497,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Contact Bar - Updated with both numbers and social links */}
+      {/* Contact Bar */}
       <section className="contact-bar">
         <div className="container">
           <div className="contact-bar-content">
