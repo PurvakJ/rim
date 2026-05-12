@@ -51,6 +51,7 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-top: 40px;
 }
 
 .reviews-hero::before {
