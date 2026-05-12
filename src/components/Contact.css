@@ -675,3 +675,386 @@ form {
         font-size: 0.9rem;
     }
 }
+
+/* ==================== RESPONSIVE DESIGN - UPDATED ==================== */
+@media (max-width: 1024px) {
+    .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .contact-form-container {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .contact-hero {
+        padding: 3rem 1rem 2.5rem;
+    }
+    
+    .contact-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .hero-call-btn, .hero-wa-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .contact-info-section,
+    .contact-form-section,
+    .map-section,
+    .contact-trust {
+        padding: 2.5rem 1rem;
+    }
+    
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .info-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .info-card p {
+        font-size: 0.85rem;
+    }
+    
+    /* Form Section Mobile Fixes */
+    .contact-form-container {
+        margin: 0;
+        border-radius: 24px;
+    }
+    
+    .form-info {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-info h2 {
+        font-size: 1.6rem;
+    }
+    
+    .form-info > p {
+        font-size: 0.85rem;
+    }
+    
+    .benefits-list ul li {
+        font-size: 0.8rem;
+        padding: 5px 0;
+    }
+    
+    .trust-badge {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+    
+    .trust-badge span {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .form-wrapper {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border-radius: 14px;
+    }
+    
+    .form-group label {
+        font-size: 0.75rem;
+    }
+    
+    .success-message {
+        padding: 0.875rem;
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+    
+    .btn-submit {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+    
+    .form-footer-note p {
+        font-size: 0.7rem;
+    }
+    
+    /* Map Section Mobile Fixes */
+    .map-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .map-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .map-container {
+        border-radius: 20px;
+    }
+    
+    .map-container iframe {
+        height: 280px;
+    }
+    
+    .map-directions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .directions-btn, .wa-directions-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
+    /* Trust Section Mobile Fixes */
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .trust-item {
+        padding: 0.875rem;
+    }
+    
+    .trust-icon {
+        font-size: 1.8rem;
+    }
+    
+    .trust-item h4 {
+        font-size: 0.85rem;
+    }
+    
+    .trust-item p {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .contact-hero {
+        padding: 2.5rem 1rem 2rem;
+    }
+    
+    .contact-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-icon {
+        font-size: 2.5rem;
+    }
+    
+    .hero-badge {
+        font-size: 9px;
+        padding: 4px 14px;
+        margin-bottom: 20px;
+    }
+    
+    .contact-hero p {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .info-card {
+        padding: 1.25rem;
+    }
+    
+    .info-icon {
+        font-size: 2rem;
+    }
+    
+    .form-info {
+        padding: 1.75rem 1.25rem;
+    }
+    
+    .form-info h2 {
+        font-size: 1.4rem;
+    }
+    
+    .form-wrapper {
+        padding: 1.75rem 1.25rem;
+    }
+    
+    .map-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .map-container iframe {
+        height: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero-call-btn, .hero-wa-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .form-info h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-info-badge {
+        font-size: 9px;
+        padding: 3px 12px;
+    }
+    
+    .benefits-list ul li {
+        font-size: 0.75rem;
+    }
+    
+    .trust-badge span {
+        font-size: 0.7rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 9px 12px;
+        font-size: 0.8rem;
+        border-radius: 12px;
+    }
+    
+    .btn-submit {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .success-message {
+        font-size: 0.75rem;
+        padding: 0.75rem;
+    }
+    
+    .map-container iframe {
+        height: 200px;
+    }
+    
+    .directions-btn, .wa-directions-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .contact-hero h1 {
+        font-size: 1.4rem;
+    }
+    
+    .hero-badge {
+        font-size: 8px;
+        padding: 3px 12px;
+    }
+    
+    .form-info h2 {
+        font-size: 1.2rem;
+    }
+    
+    .info-card h3 {
+        font-size: 1rem;
+    }
+    
+    .info-card p {
+        font-size: 0.8rem;
+    }
+    
+    .btn-submit {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Additional Fixes for Better Mobile Experience */
+@media (max-width: 768px) {
+    /* Fix for form elements on mobile */
+    select, 
+    input, 
+    textarea,
+    button {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+    
+    /* Better touch targets */
+    .hero-call-btn,
+    .hero-wa-btn,
+    .directions-btn,
+    .wa-directions-btn,
+    .btn-submit,
+    .info-card a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Improve spacing for stacked content */
+    .contact-info-grid,
+    .trust-grid {
+        gap: 1.25rem;
+    }
+    
+    /* Ensure images and media are responsive */
+    .map-container iframe {
+        max-width: 100%;
+        height: auto;
+        min-height: 250px;
+    }
+    
+    /* Fix for form row on mobile */
+    .form-row {
+        margin-bottom: 0;
+    }
+    
+    /* Improve readability on mobile */
+    .form-info,
+    .form-wrapper {
+        word-wrap: break-word;
+    }
+    
+    .benefits-list ul {
+        padding-left: 0;
+    }
+}

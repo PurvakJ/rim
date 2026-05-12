@@ -119,14 +119,6 @@ const Home = () => {
     { icon: "🛡️", title: "15+ Year Experience", description: "Comprehensive warranty on MCB boxes, MCCB, and Kit-Kat series products." }
   ];
 
-  // Product Categories
-  const categories = [
-    { name: "Changeover Switches", icon: "🔄", link: "/products?category=changeover", description: "Manual & Auto Changeovers" },
-    { name: "MCB & Distribution", icon: "⚡", link: "/products?category=mcb", description: "Single/Double Door Boxes & MCBs" },
-    { name: "Connectors & Lugs", icon: "🔗", link: "/products?category=connectors", description: "DMC Terminals & Thimbles" },
-    { name: "Busbar Chambers", icon: "〰️", link: "/products?category=busbar", description: "Copper & Aluminium Busbars" }
-  ];
-
 
   // Alternative: Even more random - picks from different segments
   const getRandomFeaturedProductsV2 = (allProducts) => {
@@ -298,18 +290,33 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Welcome Section */}
-      <section className="welcome-section">
-        <div className="container">
-          <div className="welcome-badge">Powering Industries & Homes Since Decades</div>
-          <h1>Welcome to <span>RIM</span> <span style={{ fontSize: '1.8rem', display: 'block' }}>Royal Industries Mansa</span></h1>
-          <p>Your trusted partner for high-quality electrical switchgear solutions. We manufacture a complete range of Changeovers, Main Switches, Busbar Chambers, Control Panels, MCB Boxes, and Industrial Safety Components that meet stringent BIS standards.</p>
-          <div className="welcome-buttons">
-            <Link to="/products" className="btn-primary">Browse Products</Link>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-secondary">WhatsApp Inquiry</a>
-          </div>
+{/* Welcome Section */}
+<section className="welcome-section">
+  <div className="container">
+    <div className="welcome-grid">
+      <div className="welcome-image">
+        <img 
+          src="https://i.postimg.cc/4x9t8vxv/voltage-distributor-with-automatic-switches-electrical-background.jpg" 
+          alt="RIM Electrical Switchgear Manufacturing" 
+          className="welcome-img"
+        />
+        <div className="welcome-image-badge">
+          <span>⚡</span>
+          <p>ISI Certified Products</p>
         </div>
-      </section>
+      </div>
+      <div className="welcome-content">
+        <div className="welcome-badge">Powering Industries & Homes Since Decades</div>
+        <h1>Welcome to <span>RIM</span> <span style={{ fontSize: '1.8rem', display: 'block' }}>Royal Industries Mansa</span></h1>
+        <p>Your trusted partner for high-quality electrical switchgear solutions. We manufacture a complete range of Changeovers, Main Switches, Busbar Chambers, Control Panels, MCB Boxes, and Industrial Safety Components that meet stringent BIS standards.</p>
+        <div className="welcome-buttons">
+          <Link to="/products" className="btn-primary">Browse Products</Link>
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-secondary">WhatsApp Inquiry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Features Section */}
       <section className="features-section">
@@ -342,27 +349,6 @@ const Home = () => {
               <div className="parallax-feature"><span>✓</span><p>DMC Connectors & Thimbles</p></div>
             </div>
             <Link to="/products" className="btn-parallax">Get Catalog →</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="categories-section">
-        <div className="container">
-          <div className="section-badge">Our Product Range</div>
-          <h2>Everything under <span>One Roof</span></h2>
-          <div className="categories-grid">
-            {categories.map((category, index) => (
-              <Link to={category.link} key={index} className="category-card">
-                <div className="category-icon">{category.icon}</div>
-                <h3>{category.name}</h3>
-                <p>{category.description}</p>
-                <span className="category-arrow">→</span>
-              </Link>
-            ))}
-          </div>
-          <div className="text-center" style={{ marginTop: '2rem', textAlign: 'center' }}>
-            <p className="additional-products"><strong>Also Available:</strong> Immersion Rods, Anti-Mosquito Racquets, Fan Exhaust Louvers, Kit-Kat Copper/Brass Series, KVR Heavy Duty Boxes, Capacitors, and all Spare Parts.</p>
           </div>
         </div>
       </section>
