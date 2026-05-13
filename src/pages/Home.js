@@ -30,7 +30,7 @@ const Home = () => {
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
   const whatsappNumber = '919815097851';
-  const whatsappMessage = encodeURIComponent("Hello RIM, I'm interested in your electrical switchgear products. I need industrial-grade solutions for changeovers, MCB boxes, and control panels.");
+  const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I need industrial-grade solutions for changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   
   const instagramLink = "https://www.instagram.com/rimmansa/";
@@ -95,7 +95,7 @@ const Home = () => {
   }, []);
 
   const openWhatsApp = (productName) => {
-    const message = encodeURIComponent(`Hello RIM, I'm interested in the "${productName}" for my electrical project. Could you please share technical details and best price?`);
+    const message = encodeURIComponent(`Hello RiM, I'm interested in the "${productName}" for my electrical project. Could you please share technical details and best price?`);
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
 
@@ -367,7 +367,7 @@ const Home = () => {
                   <img src={image.url} alt={image.title} className="carousel-image" loading={index === 0 ? "eager" : "lazy"} />
                   <div className="carousel-overlay">
                     <div className="carousel-content">
-                      <span className="carousel-badge lazy-fade-in" ref={el => addToLazyRefs(el)}>RIM - Royal Industries Mansa</span>
+                      <span className="carousel-badge lazy-fade-in" ref={el => addToLazyRefs(el)}>RiM - Royal Industries Mansa</span>
                       <h2 className="lazy-fade-in" ref={el => addToLazyRefs(el)}>{image.title}</h2>
                       <p className="lazy-fade-in" ref={el => addToLazyRefs(el)}>{image.subtitle}</p>
                       <Link to="/products" className="btn-primary lazy-fade-in" ref={el => addToLazyRefs(el)}>Explore Switchgear →</Link>
@@ -394,7 +394,7 @@ const Home = () => {
             <div className="welcome-image lazy-slide-left" ref={el => addToLazyRefs(el, 'lazy-slide-left')}>
               <img 
                 src="https://i.postimg.cc/28XF98dG/electrical-panel-electric-meter-circuit-breakers-electric-frequency-converter-motor-speed-controller.jpg" 
-                alt="RIM Electrical Switchgear Manufacturing" 
+                alt="RiM Electrical Switchgear Manufacturing" 
                 className="welcome-img"
               />
               <div className="welcome-image-badge">
@@ -404,7 +404,7 @@ const Home = () => {
             </div>
             <div className="welcome-content lazy-slide-right" ref={el => addToLazyRefs(el, 'lazy-slide-right')}>
               <div className="welcome-badge">Powering Industries & Homes Since Decades</div>
-              <h1>Welcome to <span>RIM</span> <span style={{ fontSize: '1.8rem', display: 'block' }}>Royal Industries Mansa</span></h1>
+              <h1>Welcome to <span>RiM</span> <span style={{ fontSize: '1.8rem', display: 'block' }}>Royal Industries Mansa</span></h1>
               <p>Your trusted partner for high-quality electrical switchgear solutions. We manufacture a complete range of Changeovers, Main Switches, Busbar Chambers, Control Panels, MCB Boxes, and Industrial Safety Components that meet stringent BIS standards.</p>
               <div className="welcome-buttons">
                 <Link to="/products" className="btn-primary">Browse Products</Link>
@@ -419,7 +419,7 @@ const Home = () => {
       <section className="features-section">
         <div className="container">
           <div className="section-header lazy-fade-in" ref={el => addToLazyRefs(el)}>
-            <div className="section-badge">Why Choose RIM</div>
+            <div className="section-badge">Why Choose RiM</div>
             <h2>The Royal <span>Advantage</span></h2>
             <p className="section-subtitle">Quality, Reliability, and Innovation Since Decades</p>
           </div>
@@ -442,7 +442,7 @@ const Home = () => {
           <div className="parallax-content lazy-fade-in" ref={el => addToLazyRefs(el)}>
             <span className="parallax-badge">Industrial Grade Quality</span>
             <h2>Premium <span>Switchgear Solutions</span></h2>
-            <p>From heavy-duty Changeover switches and MCCBs to precision-engineered Busbar chambers and Submersible Control Panels, every RIM product is crafted for safety, durability, and peak performance.</p>
+            <p>From heavy-duty Changeover switches and MCCBs to precision-engineered Busbar chambers and Submersible Control Panels, every RiM product is crafted for safety, durability, and peak performance.</p>
             <div className="parallax-features">
               <div className="parallax-feature"><span>✓</span><p>Full Range of MCB Boxes</p></div>
               <div className="parallax-feature"><span>✓</span><p>Reverse/Forward & LT Panels</p></div>
@@ -535,7 +535,7 @@ const Home = () => {
           </div>
           <div className="review-form-wrapper">
             {!showReviewForm ? (<button className="btn-write-review lazy-fade-in" ref={el => addToLazyRefs(el)} onClick={() => setShowReviewForm(true)}>✍️ Write a Review</button>) : (
-              <div className="review-form-container"><h3>Share Your Experience with RIM Products</h3>
+              <div className="review-form-container"><h3>Share Your Experience with RiM Products</h3>
                 <form onSubmit={handleReviewSubmit}>
                   <div className="form-group"><input type="text" placeholder="Your Name *" value={reviewFormData.name} onChange={(e) => setReviewFormData({ ...reviewFormData, name: e.target.value })} required /></div>
                   <div className="form-group"><div className="rating-input">{[...Array(5)].map((_, i) => (<button key={i} type="button" className={`star-btn ${i+1 <= reviewFormData.rating ? 'active' : ''}`} onClick={() => setReviewFormData({ ...reviewFormData, rating: i+1 })}>★</button>))}</div></div>
@@ -607,7 +607,7 @@ const Home = () => {
       <div className="contact-item">
         <span className="contact-icon location-icon">📍</span>
         <div>
-          <h4>RIM - Royal Industries</h4>
+          <h4>RiM - Royal Industries</h4>
           <p>Mansa, Punjab (Village Chakerian Road, Mansa, Punjab)</p>
         </div>
       </div>

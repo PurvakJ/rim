@@ -14,11 +14,11 @@ function Reviews() {
     comment: ''
   });
 
-  // Updated Contact Numbers for RIM
+  // Updated Contact Numbers for RiM
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
   const whatsappNumber = '919815097851';
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello RIM, I'd like to share my experience with your electrical switchgear products. Here's my review:")}`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello RiM, I'd like to share my experience with your electrical switchgear products. Here's my review:")}`;
 
   useEffect(() => {
     loadReviews();
@@ -97,7 +97,7 @@ function Reviews() {
           <div className="hero-badge">Customer Stories</div>
           <div className="hero-icon">⚡</div>
           <h1>What Our <span>Customers Say</span></h1>
-          <p>Real experiences from 500+ industrial clients and electricians who trust RIM switchgear products</p>
+          <p>Real experiences from 500+ industrial clients and electricians who trust RiM switchgear products</p>
           <div className="hero-contact">
             <a href={`tel:${phoneNumber1}`} className="hero-phone">📞 {phoneNumber1} | {phoneNumber2}</a>
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hero-wa">💬 Share on WhatsApp</a>
@@ -145,7 +145,7 @@ function Reviews() {
               <div className="form-header">
                 <div className="form-icon">✨</div>
                 <h2>Share Your Experience</h2>
-                <p>Tell us how RIM products performed for your electrical needs</p>
+                <p>Tell us how RiM products performed for your electrical needs</p>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -192,7 +192,7 @@ function Reviews() {
                     onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                     rows="5"
                     required
-                    placeholder="Share your experience with RIM switchgear products - quality, durability, performance, service support, etc."
+                    placeholder="Share your experience with RiM switchgear products - quality, durability, performance, service support, etc."
                   />
                 </div>
 
@@ -222,7 +222,7 @@ function Reviews() {
         <div className="container">
           <div className="section-badge">Testimonials</div>
           <h2>What Our Customers Say</h2>
-          <p className="section-subtitle">Real stories from electricians, contractors, and industrial clients who trust RIM</p>
+          <p className="section-subtitle">Real stories from electricians, contractors, and industrial clients who trust RiM</p>
           <div className="reviews-grid">
             {reviews.length > 0 ? (
               reviews.map((review) => (
@@ -252,7 +252,7 @@ function Reviews() {
                   </div>
                   <p className="review-comment">"{review.comment}"</p>
                   <div className="review-footer">
-                    <span className="verified-badge">✓ Verified RIM Customer</span>
+                    <span className="verified-badge">✓ Verified RiM Customer</span>
                     {review.rating >= 4 && <span className="quality-badge">⚡ Quality Assured</span>}
                   </div>
                 </div>
@@ -261,7 +261,7 @@ function Reviews() {
               <div className="no-reviews">
                 <div className="no-reviews-icon">⚡</div>
                 <h3>No Reviews Yet</h3>
-                <p>Be the first to share your experience with RIM switchgear products!</p>
+                <p>Be the first to share your experience with RiM switchgear products!</p>
                 <button className="btn-be-first" onClick={() => setShowForm(true)}>
                   Write Your Review
                 </button>

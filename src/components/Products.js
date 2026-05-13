@@ -13,7 +13,7 @@ function Products() {
   const [categories, setCategories] = useState([{ value: 'all', label: 'All Products', icon: '⚡' }]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Updated Contact Numbers for RIM
+  // Updated Contact Numbers for RiM
   const phoneNumber1 = '9815097851';
   const whatsappNumber = '919815097851';
 
@@ -109,7 +109,7 @@ function Products() {
       ]);
     } catch (error) {
       console.error('Error loading products:', error);
-      // Fallback products for RIM Switchgear
+      // Fallback products for RiM Switchgear
       const fallbackProducts = [
         { id: 1, name: "Auto Changeover Switch (63A/100A)", price: 3850, description: "Automatic transfer switch for generators & mains. Suitable for submersible pumps and home automation. ISI marked with silver alloy contacts.", images: ["https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format"], category: "changeover", featured: true },
         { id: 2, name: "16 Way Single Door MCB Box", price: 1250, description: "Modular distribution box with transparent window. Accepts all standard MCBs. Double insulation with IP40 protection.", images: ["https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format"], category: "mcb", featured: true },
@@ -195,7 +195,7 @@ function Products() {
 
   const openWhatsApp = (productName) => {
     const safeProductName = productName ? String(productName) : 'this product';
-    const message = encodeURIComponent(`Hello RIM, I'm interested in the "${safeProductName}" switchgear product. Could you please share more details and the best price for bulk/retail?`);
+    const message = encodeURIComponent(`Hello RiM, I'm interested in the "${safeProductName}" switchgear product. Could you please share more details and the best price for bulk/retail?`);
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
 
@@ -216,7 +216,7 @@ function Products() {
     <div className="products-page">
       <section className="products-hero">
         <div className="container">
-          <div className="hero-badge">RIM - Royal Industries Mansa</div>
+          <div className="hero-badge">RiM - Royal Industries Mansa</div>
           <div className="hero-icon">⚡</div>
           <h1>Our <span>Switchgear Collection</span></h1>
           <p>Discover premium quality electrical products for industrial and residential needs. ISI marked with 5+ year warranty.</p>

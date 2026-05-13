@@ -43,11 +43,11 @@ function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Updated Contact Numbers for RIM
+  // Updated Contact Numbers for RiM
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
   const whatsappNumber = '919815097851';
-  const whatsappMessage = encodeURIComponent("Hello RIM, I'm interested in your electrical switchgear products. I would like to know more about your changeovers, MCB boxes, control panels, and bulk pricing.");
+  const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I would like to know more about your changeovers, MCB boxes, control panels, and bulk pricing.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
@@ -55,9 +55,9 @@ function Contact() {
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="container">
-          <div className="hero-badge">RIM - Royal Industries Mansa</div>
+          <div className="hero-badge">RiM - Royal Industries Mansa</div>
           <div className="hero-icon">⚡</div>
-          <h1>Contact <span>RIM</span></h1>
+          <h1>Contact <span>RiM</span></h1>
           <p>Premium quality electrical switchgear solutions for industrial and residential needs</p>
           <div className="hero-buttons">
             <a href={`tel:${phoneNumber1}`} className="hero-call-btn">
@@ -118,7 +118,7 @@ function Contact() {
               <h2>Request <span>Price & Details</span></h2>
               <p>Get the best pricing for bulk orders, technical specifications, and delivery information for our complete range of electrical switchgear products.</p>
               <div className="benefits-list">
-                <h4>Why choose RIM products:</h4>
+                <h4>Why choose RiM products:</h4>
                 <ul>
                   <li>✓ ISI Marked Quality Products</li>
                   <li>✓ 5+ Year Warranty on Select Items*</li>
@@ -276,7 +276,7 @@ function Contact() {
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              title="RIM - Royal Industries Mansa Location"
+              title="RiM - Royal Industries Mansa Location"
             ></iframe>
           </div>
           <div className="map-directions">
@@ -286,7 +286,7 @@ function Contact() {
               rel="noopener noreferrer"
               className="directions-btn"
             >
-              🗺️ Get Directions to RIM →
+              🗺️ Get Directions to RiM →
             </a>
             <a 
               href={whatsappLink}

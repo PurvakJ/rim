@@ -367,7 +367,7 @@ const Catalog = () => {
   return (
     <div className="catalog-container">
       <div className="catalog-header">
-        <h1>RIM - Product Catalog 2025</h1>
+        <h1>RiM - Product Catalog 2025</h1>
         <p className="catalog-subtitle">
           Complete Electrical Switchgear Solutions
         </p>
@@ -452,7 +452,7 @@ const Catalog = () => {
             <span>Download Complete Product Catalog (PDF)</span>
             <span className="download-icon">📄</span>
           </button>
-          <p className="download-info">RIM Electrical Switchgear Catalog 2025 • Complete product range with technical specifications</p>
+          <p className="download-info">RiM Electrical Switchgear Catalog 2025 • Complete product range with technical specifications</p>
           <p className="download-contact">📞 For bulk orders & custom requirements: <a href="tel:9815097851">98150-97851</a> | <a href="tel:7986295488">79862-95488</a></p>
         </div>
       </div>

@@ -5,11 +5,11 @@ import './Footer.css';
 function Footer() {
   const currentYear = new Date().getFullYear();
   
-  // Updated Contact Numbers for RIM
+  // Updated Contact Numbers for RiM
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
   const whatsappNumber = '919815097851';
-  const whatsappMessage = encodeURIComponent("Hello RIM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, control panels, and bulk pricing.");
+  const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, control panels, and bulk pricing.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   // Social Media Links
@@ -25,10 +25,10 @@ function Footer() {
             <div className="logo-icon">
               <img 
                 src="https://i.postimg.cc/qByxbLtZ/images-removebg-preview.png" 
-                alt="RIM Logo" 
+                alt="RiM Logo" 
               />
             </div>
-            <h3>RIM</h3>
+            <h3>RiM</h3>
           </div>
           <p className="brand-tagline">Royal Industries Mansa | Since 2005</p>
           <p className="brand-description">Leading manufacturer of premium electrical switchgear products including Changeover Switches, MCB Boxes, Control Panels, Busbar Chambers, and complete industrial electrical solutions. ISI marked with 5+ year warranty.</p>
@@ -78,7 +78,7 @@ function Footer() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">All Products</Link></li>
-            <li><Link to="/about">About RIM</Link></li>
+            <li><Link to="/about">About RiM</Link></li>
             <li><Link to="/catalog">Product Catalog</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
             <li><Link to="/reviews">Customer Reviews</Link></li>
@@ -131,7 +131,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <div className="footer-bottom-content">
-          <p>&copy; {currentYear} RIM - Royal Industries Mansa. All rights reserved.</p>
+          <p>&copy; {currentYear} RiM - Royal Industries Mansa. All rights reserved.</p>
           <p className="footer-tagline">⚡ Quality Switchgear Solutions | ISI Marked | Industrial & Residential ⚡</p>
           <div className="footer-social-links">
             <a href={whatsappLink} className="footer-social-link" target="_blank" rel="noopener noreferrer">

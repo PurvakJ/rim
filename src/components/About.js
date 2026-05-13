@@ -12,7 +12,7 @@ function About() {
       <section className="about-hero">
         <div className="container">
           <div className="hero-badge">EST. 2005</div>
-          <h1>RIM</h1>
+          <h1>RiM</h1>
           <div className="hero-tagline">Royal Industries Mansa</div>
           <p>Powering Industries • Protecting Homes • Precision Switchgear Solutions</p>
           <div className="hero-cta">
@@ -41,8 +41,8 @@ function About() {
         <div className="container">
           <div className="story-content">
             <div className="section-badge">Our Journey</div>
-            <h2>The <span>RIM</span> Story</h2>
-            <p><strong>Royal Industries Mansa (RIM)</strong> was established with a vision to provide high-quality, reliable, and affordable electrical switchgear solutions to industries and households across India. From humble beginnings in Mansa, Punjab, we've grown into a trusted name in the electrical industry.</p>
+            <h2>The <span>RiM</span> Story</h2>
+            <p><strong>Royal Industries Mansa (RiM)</strong> was established with a vision to provide high-quality, reliable, and affordable electrical switchgear solutions to industries and households across India. From humble beginnings in Mansa, Punjab, we've grown into a trusted name in the electrical industry.</p>
             <p>Our product range includes <strong>Changeover Switches, Main Switches, Busbar Chambers, Reverse/Forward & LT Control Panels, Submersible Controllers, MCBs, Distribution Boxes, Power Strips, Industrial Sockets, DMC Connectors, MCCBs, Kit-Kat Series (Copper/Brass), Capacitors, KVR Heavy Duty Boxes, Thimbles, Immersion Rods, Anti-Mosquito Racquets, Fan Exhaust Louvers, and all related spare parts.</strong></p>
             <div className="story-highlight">
               <div className="highlight-icon">🇮🇳</div>
@@ -100,7 +100,7 @@ function About() {
       <section className="about-features">
         <div className="container">
           <div className="section-badge center">Why Choose Us</div>
-          <h2>RIM Stands Apart</h2>
+          <h2>RiM Stands Apart</h2>
           <p className="section-subtitle">
             Engineered with precision. Built for safety. Designed for durability.
           </p>
@@ -187,7 +187,7 @@ function About() {
           <div className="testimonials-grid">
             <div className="testimonial-card">
               <div className="quote-icon">“</div>
-              <p>RIM's changeover switches and control panels have been excellent for our industrial needs. The quality is top-notch and after-sales support is great!</p>
+              <p>RiM's changeover switches and control panels have been excellent for our industrial needs. The quality is top-notch and after-sales support is great!</p>
               <div className="customer-info">
                 <div className="customer-avatar">RK</div>
                 <div className="customer-details">
@@ -199,7 +199,7 @@ function About() {
             </div>
             <div className="testimonial-card">
               <div className="quote-icon">“</div>
-              <p>We've been using RIM's MCB boxes and distribution panels for our housing projects. The quality and pricing are very competitive.</p>
+              <p>We've been using RiM's MCB boxes and distribution panels for our housing projects. The quality and pricing are very competitive.</p>
               <div className="customer-info">
                 <div className="customer-avatar">SP</div>
                 <div className="customer-details">
@@ -211,7 +211,7 @@ function About() {
             </div>
             <div className="testimonial-card">
               <div className="quote-icon">“</div>
-              <p>The DMC connectors and terminal blocks from RIM are excellent quality. Their Kit-Kat series is our go-to choice for residential work.</p>
+              <p>The DMC connectors and terminal blocks from RiM are excellent quality. Their Kit-Kat series is our go-to choice for residential work.</p>
               <div className="customer-info">
                 <div className="customer-avatar">AM</div>
                 <div className="customer-details">

@@ -16,11 +16,11 @@ function BookAppointment() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Updated Contact Numbers for RIM
+  // Updated Contact Numbers for RiM
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
   const whatsappNumber = '919815097851';
-  const whatsappMessage = encodeURIComponent("Hello RIM, I'm interested in visiting your factory to discuss electrical switchgear requirements. Please share more details.");
+  const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in visiting your factory to discuss electrical switchgear requirements. Please share more details.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   const handleSubmit = async (e) => {
@@ -52,7 +52,7 @@ function BookAppointment() {
         <div className="success-container">
           <div className="success-icon">✓</div>
           <h2>Consultation Request Sent!</h2>
-          <p>Thank you for your interest in RIM - Royal Industries Mansa.</p>
+          <p>Thank you for your interest in RiM - Royal Industries Mansa.</p>
           <p>Our sales team will contact you shortly at <strong>{formData.phone}</strong> to discuss your requirements and confirm the appointment.</p>
           <div className="success-actions">
             <button className="btn-primary" onClick={() => setSubmitted(false)}>
@@ -72,7 +72,7 @@ function BookAppointment() {
       {/* Hero Section */}
       <section className="appointment-hero">
         <div className="container">
-          <div className="hero-badge">RIM - Royal Industries Mansa</div>
+          <div className="hero-badge">RiM - Royal Industries Mansa</div>
           <h1>Schedule a <span>Product Consultation</span></h1>
           <p>Visit our manufacturing facility or request a technical meeting to discuss your electrical switchgear requirements</p>
           <div className="contact-badge">
@@ -116,7 +116,7 @@ function BookAppointment() {
               <div className="info-card experience-card">
                 <div className="card-icon">🏭</div>
                 <h3>Manufacturing Facility</h3>
-                <p>Visit our factory to experience RIM quality firsthand</p>
+                <p>Visit our factory to experience RiM quality firsthand</p>
                 <div className="address">
                   <span>📍 Royal Industries Mansa</span>
                   <span>Near Ganga Oil Mill, J.K. Road</span>
@@ -292,7 +292,7 @@ function BookAppointment() {
             <div className="trust-item">
               <span className="trust-icon">🛡️</span>
               <div>
-                <h4>5+ Year Warranty*</h4>
+                <h4>15+ Year Experience*</h4>
                 <p>On select products</p>
               </div>
             </div>

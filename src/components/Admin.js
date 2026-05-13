@@ -48,7 +48,7 @@ function Admin() {
   const CLOUDINARY_CLOUD_NAME = "dm9gg8yss";
   const CLOUDINARY_UPLOAD_PRESET = "images";
 
-  // RIM Admin Credentials
+  // RiM Admin Credentials
   const ADMIN_CREDENTIALS = {
     username: 'rimadmin',
     password: 'RIM@2025'
@@ -465,7 +465,7 @@ function Admin() {
         <div className="admin-header-content">
           <div className="admin-title">
             <span className="admin-icon">⚡</span>
-            <h1>RIM Admin Dashboard</h1>
+            <h1>RiM Admin Dashboard</h1>
             <span className="admin-badge">Royal Industries Mansa</span>
           </div>
           <div className="admin-contact-info">
@@ -676,7 +676,7 @@ function Admin() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  placeholder="e.g., RIM Heavy Duty Changeover Switch 63A"
+                  placeholder="e.g., RiM Heavy Duty Changeover Switch 63A"
                 />
               </div>
               
