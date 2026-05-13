@@ -27,13 +27,13 @@ function ScrollToTop() {
   return null;
 }
 
-// Loading Screen Component - Updated for RIM
+// Loading Screen Component - Updated for RiM
 function LoadingScreen({ onLoad }) {
   const [fadeOut, setFadeOut] = useState(false);
   const [currentLetterIndex, setCurrentLetterIndex] = useState(-1);
 
   useEffect(() => {
-    // Show letters one by one (RIM has 3 letters)
+    // Show letters one by one (RiM has 3 letters)
     let index = 0;
     const letterInterval = setInterval(() => {
       if (index < 3) {
@@ -63,8 +63,8 @@ function LoadingScreen({ onLoad }) {
     };
   }, [onLoad]);
 
-  // Letters for RIM and full brand name
-  const rimLetters = ['R', 'I', 'M'];
+  // Letters for RiM and full brand name
+  const rimLetters = ['R', 'i', 'M'];
 
   return (
     <div className={`loader-container ${fadeOut ? 'fade-out' : ''}`}>
@@ -89,7 +89,7 @@ function LoadingScreen({ onLoad }) {
           <div className="loader-logo">
             <img 
               src="https://i.postimg.cc/qByxbLtZ/images-removebg-preview.png" 
-              alt="RIM Logo" 
+              alt="RiM Logo" 
             />
           </div>
           <div className="logo-ring"></div>
