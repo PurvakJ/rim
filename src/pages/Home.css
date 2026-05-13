@@ -3384,3 +3384,137 @@
         gap: 12px;
     }
 }
+
+/* Add these new styles to your Home.css file */
+
+/* ==================== IMAGE STRIP SECTION ==================== */
+.image-strip-section {
+    padding: 5rem 2rem;
+    background: var(--white);
+    text-align: center;
+}
+
+.image-strip-section .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.image-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.strip-item {
+    background: var(--rim-light-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    padding-top: 75%; /* 4:3 Aspect Ratio */
+    overflow: hidden;
+}
+
+.strip-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.strip-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.strip-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments for the new strip */
+@media (max-width: 768px) {
+    .image-strip-section {
+        padding: 3rem 1rem;
+    }
+    
+    .image-strip-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .image-strip-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-strip-section {
+        padding: 2rem 0.75rem;
+    }
+    
+    .image-strip-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.5rem;
+    }
+}
+
+/* Image Strip Item with Hover Overlay */
+.strip-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .strip-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  
+  .strip-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    text-align: center;
+  }
+  
+  .strip-item:hover .strip-overlay {
+    transform: translateY(0);
+  }
+  
+  .strip-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  .product-name {
+    color: var(--rim-cream);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    background: rgba(255,102,0,0.8);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+  }
