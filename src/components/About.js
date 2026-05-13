@@ -21,12 +21,12 @@ function About() {
           </div>
           <div className="hero-stats">
             <div className="hero-stat">
-              <span className="stat-number">500+</span>
+              <span className="stat-number">5000+</span>
               <span className="stat-label">Projects Supplied</span>
             </div>
             <div className="hero-stat">
-              <span className="stat-number">5+</span>
-              <span className="stat-label">Years Warranty*</span>
+              <span className="stat-number">15+</span>
+              <span className="stat-label">Years Experience*</span>
             </div>
             <div className="hero-stat">
               <span className="stat-number">100%</span>
@@ -171,7 +171,7 @@ function About() {
               <div className="stat-desc">Quality assured</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">50<span>+</span></div>
+              <div className="stat-number">30<span>+</span></div>
               <div className="stat-label">Product Categories</div>
               <div className="stat-desc">Complete range</div>
             </div>

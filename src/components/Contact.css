@@ -1,5 +1,5 @@
-/* Contact.css - RIM Royal Industries Mansa */
-/* Dark Brown & Cream Industrial Palette */
+/* Contact.css - Updated Color Scheme */
+/* Primary: #ff6600 | Backgrounds: #f5f7fa, #f5f0ea */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -26,18 +26,18 @@
     --rim-dark: #211a12;
     --rim-dark-light: #3a2f24;
     --rim-dark-heavy: #1a140d;
-    --rim-cream: #ede6de;
+    --rim-cream: #f5f0ea;
     --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #ddd4c8;
-    --rim-accent: #c9a03d;
-    --rim-accent-dark: #a0782e;
-    --rim-accent-light: #dbb956;
+    --rim-cream-dark: #e6dfd6;
+    --rim-accent: #ff6600;
+    --rim-accent-dark: #e05a00;
+    --rim-accent-light: #ff8533;
     --rim-wa: #25D366;
     --rim-industrial: #2d5a6e;
     --rim-text-dark: #211a12;
     --rim-text-light: #5a4f44;
-    --white: #FFFFFF;
-    --gold: #c9a03d;
+    --white: #f5f7fa;
+    --gold: #ff6600;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
@@ -90,8 +90,8 @@
 
 .hero-badge {
     display: inline-block;
-    background: rgba(201, 160, 61, 0.2);
-    border: 1px solid rgba(201, 160, 61, 0.4);
+    background: rgba(255, 102, 0, 0.2);
+    border: 1px solid rgba(255, 102, 0, 0.4);
     padding: 6px 20px;
     border-radius: 50px;
     font-size: 11px;
@@ -150,7 +150,7 @@
 
 .hero-call-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(201, 160, 61, 0.3);
+    box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
 }
 
 .hero-wa-btn {
@@ -250,8 +250,8 @@
 
 .form-info-badge {
     display: inline-block;
-    background: rgba(201, 160, 61, 0.2);
-    border: 1px solid rgba(201, 160, 61, 0.4);
+    background: rgba(255, 102, 0, 0.2);
+    border: 1px solid rgba(255, 102, 0, 0.4);
     padding: 4px 16px;
     border-radius: 50px;
     font-size: 10px;
@@ -316,7 +316,7 @@
 }
 
 .success-message {
-    background: rgba(201, 160, 61, 0.15);
+    background: rgba(255, 102, 0, 0.15);
     border-left: 4px solid var(--rim-accent);
     padding: 1rem;
     border-radius: 16px;
@@ -379,7 +379,7 @@ form {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
 }
 
 .btn-submit {
@@ -401,7 +401,7 @@ form {
 
 .btn-submit:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(201, 160, 61, 0.3);
+    box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
 }
 
 .btn-submit:disabled {

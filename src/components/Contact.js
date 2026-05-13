@@ -101,7 +101,7 @@ function Contact() {
               <div className="info-icon">📍</div>
               <h3>Visit Our Factory</h3>
               <p><strong>Royal Industries Mansa</strong><br />
-              Near Ganga Oil Mill, J.K. Road<br />
+              Village Chakerian Road,<br />
               Mansa, Punjab - 151505</p>
               <small>Showroom open for walk-in customers</small>
             </div>
@@ -321,7 +321,7 @@ function Contact() {
             <div className="trust-item">
               <span className="trust-icon">🛡️</span>
               <div>
-                <h4>5+ Year Warranty*</h4>
+                <h4>15+ Year Experience*</h4>
                 <p>On select products</p>
               </div>
             </div>

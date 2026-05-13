@@ -1,5 +1,5 @@
-/* Footer.css - RIM Royal Industries Mansa */
-/* Dark Brown & Cream Industrial Palette */
+/* Footer.css - Updated Color Scheme */
+/* Primary: #ff6600 | Backgrounds: #f5f7fa, #f5f0ea */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -15,15 +15,15 @@
     --rim-dark: #211a12;
     --rim-dark-light: #3a2f24;
     --rim-dark-heavy: #1a140d;
-    --rim-cream: #ede6de;
+    --rim-cream: #f5f0ea;
     --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #ddd4c8;
-    --rim-accent: #c9a03d;
-    --rim-accent-dark: #a0782e;
-    --rim-accent-light: #dbb956;
+    --rim-cream-dark: #e6dfd6;
+    --rim-accent: #ff6600;
+    --rim-accent-dark: #e05a00;
+    --rim-accent-light: #ff8533;
     --rim-wa: #25D366;
     --rim-industrial: #2d5a6e;
-    --white: #FFFFFF;
+    --white: #f5f7fa;
     --transition: all 0.3s ease;
 }
 
@@ -95,10 +95,10 @@
 
 .trust-badges span {
     font-size: 0.7rem;
-    background: rgba(201, 160, 61, 0.15);
+    background: rgba(255, 102, 0, 0.15);
     padding: 4px 12px;
     border-radius: 50px;
-    border: 1px solid rgba(201, 160, 61, 0.3);
+    border: 1px solid rgba(255, 102, 0, 0.3);
 }
 
 /* Footer Section Headings */
@@ -190,7 +190,7 @@
 
 /* Footer Bottom */
 .footer-bottom {
-    border-top: 1px solid rgba(237, 230, 222, 0.1);
+    border-top: 1px solid rgba(245, 240, 234, 0.1);
     padding: 1.5rem 2rem;
     text-align: center;
 }
@@ -311,5 +311,139 @@
     
     .footer-bottom-content p {
         font-size: 0.7rem;
+    }
+}
+
+/* Footer.css - Add these styles to your existing Footer.css */
+
+/* Social Media Section in Footer */
+.footer-social-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social-section h4 {
+    font-size: 0.85rem;
+    color: var(--rim-cream);
+    opacity: 0.8;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.social-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium);
+    text-decoration: none;
+    color: white;
+}
+
+/* Individual Social Icon Colors */
+.social-icon.whatsapp {
+    background: #25D366;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(135deg, #833AB4, #E1306C, #F56040);
+}
+
+.social-icon.facebook {
+    background: #1877F2;
+}
+
+.social-icon.justdial {
+    background: #2D2E83;
+}
+
+.social-icon.indiamart {
+    background: #FF5722;
+}
+
+.social-icon.youtube {
+    background: #FF0000;
+}
+
+.social-icon.linkedin {
+    background: #0077B5;
+}
+
+.social-icon.twitter {
+    background: #1DA1F2;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Footer Bottom Social Links */
+.footer-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--rim-cream);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: var(--transition-medium);
+    opacity: 0.8;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.footer-social-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+.footer-social-link:hover {
+    color: var(--rim-accent);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .social-icons-container {
+        justify-content: center;
+    }
+    
+    .footer-social-links {
+        gap: 12px;
+    }
+    
+    .footer-social-link {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .footer-social-links {
+        flex-wrap: wrap;
+        gap: 8px;
     }
 }

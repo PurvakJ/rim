@@ -1,30 +1,43 @@
 /* Catalog.css - RIM Royal Industries Mansa */
-/* Dark Brown & Cream Industrial Palette */
+/* Updated Color Scheme: #ff6600 (Orange Accent), #f5f7fa (Light Bg), #f5f0ea (Warm Cream) */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
-    --rim-dark: #211a12;
-    --rim-dark-light: #3a2f24;
-    --rim-cream: #ede6de;
+    --rim-primary: #2c3e2f;
+    --rim-primary-dark: #1e2d20;
+    --rim-primary-light: #3d5a42;
+    --rim-primary-heavy: #162018;
+    
+    --rim-accent: #ff6600;
+    --rim-accent-dark: #e55a00;
+    --rim-accent-light: #ff8533;
+    --rim-accent-glow: rgba(255, 102, 0, 0.15);
+    
+    --rim-cream: #f5f0ea;
     --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #ddd4c8;
-    --rim-accent: #c9a03d;
-    --rim-accent-dark: #a0782e;
-    --rim-accent-light: #dbb956;
-    --rim-text-dark: #211a12;
-    --rim-text-light: #5a4f44;
+    --rim-cream-dark: #e8e0d6;
+    
+    --rim-light-bg: #f5f7fa;
+    
+    --rim-text-dark: #1a2e28;
+    --rim-text-light: #4a5b55;
+    --rim-text-muted: #7a8a83;
+    
     --white: #FFFFFF;
+    --black: #000000;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-orange: 0 10px 20px rgba(255, 102, 0, 0.3);
+    --shadow-orange-lg: 0 15px 30px rgba(255, 102, 0, 0.4);
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .catalog-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--rim-cream-light) 0%, var(--white) 100%);
+    background: linear-gradient(135deg, var(--rim-light-bg) 0%, var(--white) 100%);
     font-family: 'Inter', sans-serif;
     padding: 40px 20px;
 }
@@ -38,7 +51,7 @@
 .catalog-header h1 {
     font-size: 36px;
     font-weight: 600;
-    color: var(--rim-dark);
+    color: var(--rim-text-dark);
     font-family: 'Playfair Display', serif;
     margin-bottom: 10px;
     position: relative;
@@ -99,7 +112,7 @@
     border-radius: 20px;
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(201, 160, 61, 0.2);
+        0 0 0 1px rgba(255, 102, 0, 0.2);
     position: relative;
     transform: rotateX(2deg);
 }
@@ -114,7 +127,7 @@
     height: 100%;
     background: linear-gradient(90deg, 
         rgba(0,0,0,0.02) 0%,
-        rgba(201,160,61,0.08) 50%,
+        rgba(255, 102, 0, 0.08) 50%,
         rgba(0,0,0,0.02) 100%
     );
     z-index: 10;
@@ -128,7 +141,7 @@
     left: 20px;
     right: 20px;
     bottom: 20px;
-    border: 1px solid rgba(201, 160, 61, 0.15);
+    border: 1px solid rgba(255, 102, 0, 0.15);
     border-radius: 10px;
     pointer-events: none;
     z-index: 5;
@@ -153,13 +166,13 @@
 
 .left-page {
     transform-origin: right center;
-    border-right: 2px solid rgba(201, 160, 61, 0.2);
+    border-right: 2px solid rgba(255, 102, 0, 0.2);
     border-radius: 4px 0 0 4px;
 }
 
 .right-page {
     transform-origin: left center;
-    border-left: 2px solid rgba(201, 160, 61, 0.2);
+    border-left: 2px solid rgba(255, 102, 0, 0.2);
     border-radius: 0 4px 4px 0;
 }
 
@@ -275,9 +288,9 @@
 
 .nav-button:hover:not(:disabled) {
     background-color: var(--rim-accent);
-    color: var(--rim-dark);
+    color: var(--white);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(201, 160, 61, 0.3);
+    box-shadow: var(--shadow-orange);
 }
 
 .nav-button:disabled {
@@ -328,19 +341,19 @@
     padding: 18px 40px;
     background: linear-gradient(135deg, var(--rim-accent) 0%, var(--rim-accent-dark) 100%);
     border: none;
-    color: var(--rim-dark);
+    color: var(--white);
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 50px;
     letter-spacing: 0.5px;
-    box-shadow: 0 10px 20px rgba(201, 160, 61, 0.3);
+    box-shadow: var(--shadow-orange);
 }
 
 .download-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(201, 160, 61, 0.4);
+    box-shadow: var(--shadow-orange-lg);
 }
 
 .download-icon {
@@ -410,12 +423,12 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    border: 1px solid rgba(201, 160, 61, 0.15);
+    border: 1px solid rgba(255, 102, 0, 0.15);
 }
 
 .mobile-page-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(201, 160, 61, 0.15);
+    box-shadow: 0 15px 40px rgba(255, 102, 0, 0.15);
     border-color: var(--rim-accent);
 }
 
@@ -431,7 +444,7 @@
     position: absolute;
     bottom: 15px;
     right: 15px;
-    background: rgba(33, 26, 18, 0.85);
+    background: rgba(26, 46, 40, 0.85);
     backdrop-filter: blur(5px);
     color: var(--rim-cream);
     padding: 5px 12px;
@@ -467,7 +480,7 @@
 
 .load-more-button {
     background: linear-gradient(135deg, var(--rim-accent) 0%, var(--rim-accent-dark) 100%);
-    color: var(--rim-dark);
+    color: var(--white);
     border: none;
     padding: 15px 30px;
     border-radius: 30px;
@@ -475,12 +488,12 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(201, 160, 61, 0.3);
+    box-shadow: var(--shadow-orange);
 }
 
 .load-more-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(201, 160, 61, 0.4);
+    box-shadow: var(--shadow-orange-lg);
 }
 
 .loading-indicator {
@@ -498,7 +511,7 @@
 .loader {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(201, 160, 61, 0.2);
+    border: 3px solid rgba(255, 102, 0, 0.2);
     border-top: 3px solid var(--rim-accent);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -740,7 +753,7 @@
 @media (max-width: 768px) {
     .mobile-page-item {
         cursor: pointer;
-        -webkit-tap-highlight-color: rgba(201, 160, 61, 0.2);
+        -webkit-tap-highlight-color: rgba(255, 102, 0, 0.2);
     }
     
     .mobile-page-number {
@@ -759,7 +772,7 @@
     width: 100%;
     height: auto;
     display: block;
-    background-color: #f5f5f5;
+    background-color: var(--rim-light-bg);
 }
 
 /* Print Styles */

@@ -1,5 +1,5 @@
 /* Admin.css - RIM Royal Industries Mansa Admin Panel */
-/* Dark Brown & Cream Industrial Palette */
+/* Updated Color Scheme: #ff6600 (Orange Accent), #f5f7fa (Light Bg), #f5f0ea (Warm Cream) */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -10,21 +10,30 @@
 }
 
 :root {
-    --rim-dark: #211a12;
-    --rim-dark-light: #3a2f24;
-    --rim-dark-heavy: #1a140d;
-    --rim-cream: #ede6de;
+    --rim-primary: #2c3e2f;
+    --rim-primary-dark: #1e2d20;
+    --rim-primary-light: #3d5a42;
+    --rim-primary-heavy: #162018;
+    
+    --rim-accent: #ff6600;
+    --rim-accent-dark: #e55a00;
+    --rim-accent-light: #ff8533;
+    --rim-accent-glow: rgba(255, 102, 0, 0.15);
+    
+    --rim-cream: #f5f0ea;
     --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #ddd4c8;
-    --rim-accent: #c9a03d;
-    --rim-accent-dark: #a0782e;
-    --rim-accent-light: #dbb956;
-    --rim-industrial: #2d5a6e;
-    --rim-text-dark: #211a12;
-    --rim-text-light: #5a4f44;
+    --rim-cream-dark: #e8e0d6;
+    
+    --rim-light-bg: #f5f7fa;
+    
+    --rim-text-dark: #1a2e28;
+    --rim-text-light: #4a5b55;
+    --rim-text-muted: #7a8a83;
+    
     --white: #FFFFFF;
-    --gold: #c9a03d;
-    --gold-light: #dbb956;
+    --black: #000000;
+    --gold: #ff6600;
+    --gold-light: #ff8533;
     --red: #E74C3C;
     --red-light: #FF6B6B;
     --green: #27AE60;
@@ -34,6 +43,8 @@
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-orange: 0 8px 20px rgba(255, 102, 0, 0.3);
+    --shadow-orange-sm: 0 10px 25px rgba(255, 102, 0, 0.3);
     --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
@@ -43,7 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, var(--rim-cream) 0%, var(--rim-cream-light) 50%, var(--rim-cream) 100%);
+    background: linear-gradient(135deg, var(--rim-light-bg) 0%, var(--rim-cream-light) 50%, var(--rim-light-bg) 100%);
     padding: 20px;
 }
 
@@ -55,7 +66,7 @@
     width: 100%;
     box-shadow: var(--shadow-xl);
     animation: fadeInUp 0.6s ease;
-    border: 1px solid rgba(201, 160, 61, 0.2);
+    border: 1px solid rgba(255, 102, 0, 0.15);
     position: relative;
     overflow: hidden;
 }
@@ -111,7 +122,7 @@
 .login-header .tagline {
     display: inline-block;
     background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--rim-dark);
+    color: var(--white);
     padding: 6px 16px;
     border-radius: 50px;
     font-size: 11px;
@@ -146,7 +157,7 @@
 .login-form input:focus {
     outline: none;
     border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.1);
+    box-shadow: 0 0 0 3px var(--rim-accent-glow);
 }
 
 .login-error {
@@ -164,7 +175,7 @@
     width: 100%;
     padding: 14px;
     background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--rim-dark);
+    color: var(--white);
     border: none;
     border-radius: 50px;
     font-size: 14px;
@@ -177,7 +188,7 @@
 
 .login-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(201, 160, 61, 0.3);
+    box-shadow: var(--shadow-orange-sm);
 }
 
 .login-footer {
@@ -196,12 +207,12 @@
 /* ==================== MAIN ADMIN CONTAINER ==================== */
 .admin-container {
     min-height: 100vh;
-    background: var(--rim-cream-light);
+    background: var(--rim-light-bg);
 }
 
 /* Header */
 .admin-header {
-    background: linear-gradient(135deg, var(--rim-dark) 0%, var(--rim-dark-heavy) 100%);
+    background: linear-gradient(135deg, #1a2e28 0%, #0f1e1a 100%);
     color: var(--rim-cream);
     padding: 20px 32px;
     position: sticky;
@@ -239,13 +250,14 @@
 }
 
 .admin-badge {
-    background: rgba(201, 160, 61, 0.2);
+    background: rgba(255, 102, 0, 0.15);
     padding: 6px 14px;
     border-radius: 50px;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 1px;
-    border: 1px solid rgba(201, 160, 61, 0.3);
+    border: 1px solid rgba(255, 102, 0, 0.3);
+    color: var(--rim-accent-light);
 }
 
 .admin-contact-info {
@@ -283,7 +295,7 @@
     padding: 20px 32px 0 32px;
     max-width: 1400px;
     margin: 0 auto;
-    background: var(--rim-cream-light);
+    background: var(--rim-light-bg);
 }
 
 .tab-btn {
@@ -336,7 +348,7 @@
 
 .btn-add {
     background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--rim-dark);
+    color: var(--white);
     border: none;
     padding: 12px 28px;
     border-radius: 50px;
@@ -352,7 +364,7 @@
 
 .btn-add:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(201, 160, 61, 0.3);
+    box-shadow: var(--shadow-orange);
 }
 
 /* Table */
@@ -373,7 +385,7 @@
 .admin-table th {
     text-align: left;
     padding: 16px 20px;
-    background: var(--rim-cream-light);
+    background: var(--rim-light-bg);
     font-weight: 600;
     font-size: 12px;
     letter-spacing: 1px;
@@ -389,7 +401,7 @@
 }
 
 .admin-table tr:hover {
-    background: var(--rim-cream-light);
+    background: var(--rim-light-bg);
 }
 
 /* Image Cell */
@@ -415,7 +427,7 @@
 .more-indicator {
     font-size: 11px;
     color: var(--rim-text-light);
-    background: var(--rim-cream);
+    background: var(--rim-light-bg);
     padding: 4px 8px;
     border-radius: 20px;
 }
@@ -425,7 +437,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--rim-cream-light);
+    background: var(--rim-light-bg);
     padding: 6px 12px;
     border-radius: 50px;
     font-size: 12px;
@@ -443,12 +455,12 @@
 }
 
 .featured-badge.yes {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--rim-dark);
+    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
+    color: var(--white);
 }
 
 .featured-badge.no {
-    background: var(--rim-cream);
+    background: var(--rim-light-bg);
     color: var(--rim-text-light);
 }
 
@@ -477,7 +489,7 @@
 
 .btn-edit {
     background: var(--rim-accent);
-    color: var(--rim-dark);
+    color: var(--white);
 }
 
 .btn-edit:hover {
@@ -546,7 +558,7 @@
 
 .featured-btn.active {
     background: var(--gold);
-    color: var(--rim-dark);
+    color: var(--white);
 }
 
 .featured-btn:hover {
@@ -568,7 +580,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(33, 26, 18, 0.8);
+    background: rgba(26, 46, 40, 0.8);
     backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
@@ -659,7 +671,7 @@
 .form-group select:focus {
     outline: none;
     border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.1);
+    box-shadow: 0 0 0 3px var(--rim-accent-glow);
 }
 
 .form-row {
@@ -695,7 +707,7 @@
 .btn-add-category {
     padding: 0 16px;
     background: var(--rim-accent);
-    color: var(--rim-dark);
+    color: var(--white);
     border: none;
     border-radius: 16px;
     cursor: pointer;
@@ -802,7 +814,7 @@
 .file-input-label {
     display: inline-block;
     background: var(--rim-accent-light);
-    color: var(--rim-dark);
+    color: var(--white);
     padding: 12px 24px;
     border-radius: 50px;
     cursor: pointer;
@@ -813,7 +825,6 @@
 
 .file-input-label:hover {
     background: var(--rim-accent);
-    color: var(--rim-dark);
 }
 
 .helper-text {
@@ -863,7 +874,7 @@
     gap: 12px;
     margin-top: 16px;
     padding: 12px;
-    background: var(--rim-cream-light);
+    background: var(--rim-light-bg);
     border-radius: 12px;
 }
 
@@ -895,12 +906,12 @@
 
 .btn-submit-product {
     background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--rim-dark);
+    color: var(--white);
 }
 
 .btn-submit-product:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(201, 160, 61, 0.3);
+    box-shadow: var(--shadow-orange);
 }
 
 .btn-submit-product:disabled {

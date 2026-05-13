@@ -6,11 +6,11 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Updated Contact Numbers for RIM
+  // Updated Contact Numbers for RiM
   const phoneNumber1 = '9815097851';
   const phoneNumber2 = '7986295488';
   const whatsappNumber = '919815097851';
-  const whatsappMessage = encodeURIComponent("Hello RIM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, and control panels.");
+  const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   const toggleMenu = () => {
@@ -52,11 +52,11 @@ function Navbar() {
           <div className="logo-icon">
             <img 
               src="https://i.postimg.cc/qByxbLtZ/images-removebg-preview.png" 
-              alt="RIM Logo" 
+              alt="RiM Logo" 
             />
           </div>
           <div className="logo-text">
-            <span className="logo-main">RIM</span>
+            <span className="logo-main">RiM</span>
             <span className="logo-sub">Royal Industries Mansa</span>
           </div>
         </Link>

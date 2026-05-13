@@ -1,5 +1,5 @@
 /* App.css - Updated Loading Screen for RIM */
-/* Dark Brown & Cream Industrial Palette */
+/* Primary: #ff6600 | Backgrounds: #f5f7fa, #f5f0ea */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -8,16 +8,16 @@
     --rim-dark: #211a12;
     --rim-dark-light: #3a2f24;
     --rim-dark-heavy: #1a140d;
-    --rim-cream: #ede6de;
+    --rim-cream: #f5f0ea;
     --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #ddd4c8;
-    --rim-accent: #c9a03d;
-    --rim-accent-dark: #a0782e;
-    --rim-accent-light: #dbb956;
+    --rim-cream-dark: #e6dfd6;
+    --rim-accent: #ff6600;
+    --rim-accent-dark: #e05a00;
+    --rim-accent-light: #ff8533;
     --rim-industrial: #2d5a6e;
     --rim-text-dark: #211a12;
     --rim-text-light: #5a4f44;
-    --white: #FFFFFF;
+    --white: #f5f7fa;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
@@ -31,7 +31,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #f5f0ea;
+    background: var(--rim-cream-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,7 @@
     transform: translate(-50%, -50%);
     width: 130px;
     height: 130px;
-    border: 2px solid rgba(201, 160, 61, 0.3);
+    border: 2px solid rgba(255, 102, 0, 0.3);
     border-radius: 50%;
     animation: ringPulse 2s ease-in-out infinite;
     z-index: 1;
@@ -100,7 +100,7 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    border: 1px solid rgba(201, 160, 61, 0.2);
+    border: 1px solid rgba(255, 102, 0, 0.2);
     border-radius: 50%;
     animation: ringPulse 2s ease-in-out infinite 0.3s;
 }
@@ -112,7 +112,7 @@
     transform: translate(-50%, -50%);
     width: 160px;
     height: 160px;
-    border: 2px dashed rgba(201, 160, 61, 0.4);
+    border: 2px dashed rgba(255, 102, 0, 0.4);
     border-radius: 50%;
     animation: spin 12s linear infinite;
     z-index: 1;
@@ -125,7 +125,7 @@
     left: -8px;
     right: -8px;
     bottom: -8px;
-    border: 1px dotted rgba(201, 160, 61, 0.2);
+    border: 1px dotted rgba(255, 102, 0, 0.2);
     border-radius: 50%;
     animation: spin 8s linear infinite reverse;
 }
@@ -211,7 +211,7 @@
 .brand-full {
     font-size: 14px;
     letter-spacing: 3px;
-    color: #1a140d;
+    color: var(--rim-dark);
     opacity: 0.8;
     font-weight: 500;
     text-transform: uppercase;
@@ -263,7 +263,7 @@
     }
 }
 
-/* Loading Bar - Enhanced */
+/* ==================== ENHANCED SPINNER SECTION ==================== */
 .loading-bar-container {
     margin-top: 50px;
     opacity: 0;
@@ -276,10 +276,155 @@
     }
 }
 
+/* Modern Multi-Layer Spinner */
+.spinner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Premium Spinner Design */
+.premium-spinner {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.spinner-ring-1 {
+    border: 3px solid transparent;
+    border-top-color: var(--rim-accent);
+    border-right-color: var(--rim-accent-light);
+    animation: spinnerRotate 1s linear infinite;
+}
+
+.spinner-ring-2 {
+    border: 3px solid transparent;
+    border-bottom-color: var(--rim-accent);
+    border-left-color: var(--rim-accent-light);
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    animation: spinnerRotateReverse 0.8s linear infinite;
+}
+
+.spinner-ring-3 {
+    border: 2px solid transparent;
+    border-top-color: var(--rim-accent-dark);
+    border-right-color: var(--rim-accent-dark);
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    animation: spinnerRotate 0.6s linear infinite;
+}
+
+.spinner-center {
+    position: absolute;
+    width: 15%;
+    height: 15%;
+    background: var(--rim-accent);
+    border-radius: 50%;
+    top: 42.5%;
+    left: 42.5%;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
+    animation: centerPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes spinnerRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinnerRotateReverse {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes centerPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 102, 0, 0.8);
+    }
+}
+
+/* Alternative Spinner Style (Pulsing Dots) */
+.alternative-spinner {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--rim-accent);
+    border-radius: 50%;
+    animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.spinner-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.spinner-dot:nth-child(2) {
+    animation-delay: 0.2s;
+    background: var(--rim-accent-light);
+}
+
+.spinner-dot:nth-child(3) {
+    animation-delay: 0.4s;
+    background: var(--rim-accent-dark);
+}
+
+.spinner-dot:nth-child(4) {
+    animation-delay: 0.6s;
+    background: var(--rim-accent-light);
+}
+
+.spinner-dot:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Loading Bar (Kept for compatibility) */
 .loading-bar {
     width: 320px;
     height: 3px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.08);
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -300,7 +445,7 @@
         var(--rim-accent) 100%);
     animation: loadingProgress 1.8s ease-in-out infinite;
     border-radius: 10px;
-    box-shadow: 0 0 8px rgba(201, 160, 61, 0.5);
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
 }
 
 @keyframes loadingProgress {
@@ -313,6 +458,17 @@
     100% {
         transform: translateX(100%);
     }
+}
+
+/* Loading Percentage Text */
+.loading-percentage {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--rim-accent);
+    font-family: 'Poppins', monospace;
+    letter-spacing: 1px;
+    opacity: 0.8;
 }
 
 /* Background Decoration - Enhanced */
@@ -330,7 +486,7 @@
 .loader-background span {
     position: absolute;
     font-size: 60px;
-    color: rgba(201, 160, 61, 0.04);
+    color: rgba(255, 102, 0, 0.04);
     font-weight: 700;
     font-family: 'Playfair Display', serif;
     white-space: nowrap;
@@ -462,6 +618,11 @@
         width: 260px;
     }
 
+    .premium-spinner {
+        width: 60px;
+        height: 60px;
+    }
+
     .floating-icon {
         font-size: 25px;
         opacity: 0.08;
@@ -516,6 +677,11 @@
         width: 220px;
     }
 
+    .premium-spinner {
+        width: 50px;
+        height: 50px;
+    }
+    
     .floating-icon {
         font-size: 20px;
         opacity: 0.06;
