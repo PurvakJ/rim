@@ -1,5 +1,5 @@
 /* Admin.css - RIM Royal Industries Mansa Admin Panel */
-/* Updated Color Scheme: #ff6600 (Orange Accent), #f5f7fa (Light Bg), #f5f0ea (Warm Cream) */
+/* Updated Color Scheme: Orthiva Sage Green (#9BB875) & Cream Palette */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -10,41 +10,30 @@
 }
 
 :root {
-    --rim-primary: #2c3e2f;
-    --rim-primary-dark: #1e2d20;
-    --rim-primary-light: #3d5a42;
-    --rim-primary-heavy: #162018;
-    
-    --rim-accent: #ff6600;
-    --rim-accent-dark: #e55a00;
-    --rim-accent-light: #ff8533;
-    --rim-accent-glow: rgba(255, 102, 0, 0.15);
-    
-    --rim-cream: #f5f0ea;
-    --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #e8e0d6;
-    
-    --rim-light-bg: #f5f7fa;
-    
-    --rim-text-dark: #1a2e28;
-    --rim-text-light: #4a5b55;
-    --rim-text-muted: #7a8a83;
-    
+    --orthiva-sage: #9BB875;
+    --orthiva-sage-light: #C2DF8E;
+    --orthiva-sage-dark: #7A9B58;
+    --orthiva-cream: #F2EDE4;
+    --orthiva-cream-light: #F9F7F2;
+    --orthiva-cream-dark: #E0D8CA;
+    --orthiva-navy: #1A2C3C;
+    --orthiva-text-dark: #2C3E2F;
+    --orthiva-text-light: #6B7B6B;
     --white: #FFFFFF;
-    --black: #000000;
-    --gold: #ff6600;
-    --gold-light: #ff8533;
+    --gold: #D4AF37;
+    --gold-light: #E8C84A;
     --red: #E74C3C;
     --red-light: #FF6B6B;
     --green: #27AE60;
     --green-light: #58D68D;
     --orange: #F39C12;
+    
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-    --shadow-orange: 0 8px 20px rgba(255, 102, 0, 0.3);
-    --shadow-orange-sm: 0 10px 25px rgba(255, 102, 0, 0.3);
+    --shadow-sage: 0 8px 20px rgba(155, 184, 117, 0.3);
+    --shadow-sage-sm: 0 10px 25px rgba(155, 184, 117, 0.25);
     --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
@@ -54,7 +43,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, var(--rim-light-bg) 0%, var(--rim-cream-light) 50%, var(--rim-light-bg) 100%);
+    background: linear-gradient(135deg, var(--orthiva-cream-light) 0%, var(--orthiva-cream) 50%, var(--orthiva-cream-light) 100%);
     padding: 20px;
 }
 
@@ -66,13 +55,13 @@
     width: 100%;
     box-shadow: var(--shadow-xl);
     animation: fadeInUp 0.6s ease;
-    border: 1px solid rgba(255, 102, 0, 0.15);
+    border: 1px solid rgba(155, 184, 117, 0.2);
     position: relative;
     overflow: hidden;
 }
 
 .admin-login-box::before {
-    content: '⚡';
+    content: '🛏️';
     position: absolute;
     font-size: 180px;
     opacity: 0.03;
@@ -89,7 +78,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, var(--rim-accent), var(--gold), var(--rim-accent));
+    background: linear-gradient(90deg, var(--orthiva-sage), var(--gold), var(--orthiva-sage));
 }
 
 .login-header {
@@ -108,21 +97,21 @@
     font-family: 'Playfair Display', serif;
     font-size: 28px;
     font-weight: 700;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     letter-spacing: 2px;
     margin-bottom: 8px;
 }
 
 .login-header p {
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     font-size: 14px;
     margin-bottom: 12px;
 }
 
 .login-header .tagline {
     display: inline-block;
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     padding: 6px 16px;
     border-radius: 50px;
     font-size: 11px;
@@ -138,7 +127,7 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     font-size: 13px;
     letter-spacing: 1px;
 }
@@ -146,7 +135,7 @@
 .login-form input {
     width: 100%;
     padding: 14px 16px;
-    border: 2px solid var(--rim-cream-dark);
+    border: 2px solid var(--orthiva-cream-dark);
     border-radius: 16px;
     font-size: 14px;
     transition: var(--transition);
@@ -156,8 +145,8 @@
 
 .login-form input:focus {
     outline: none;
-    border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px var(--rim-accent-glow);
+    border-color: var(--orthiva-sage);
+    box-shadow: 0 0 0 3px rgba(155, 184, 117, 0.15);
 }
 
 .login-error {
@@ -174,8 +163,8 @@
 .login-btn {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
     border-radius: 50px;
     font-size: 14px;
@@ -188,32 +177,33 @@
 
 .login-btn:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange-sm);
+    box-shadow: var(--shadow-sage-sm);
+    color: var(--white);
 }
 
 .login-footer {
     margin-top: 32px;
     padding-top: 24px;
-    border-top: 1px solid var(--rim-cream-dark);
+    border-top: 1px solid var(--orthiva-cream-dark);
     text-align: center;
 }
 
 .login-footer p {
     font-size: 12px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin: 4px 0;
 }
 
 /* ==================== MAIN ADMIN CONTAINER ==================== */
 .admin-container {
     min-height: 100vh;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
 }
 
 /* Header */
 .admin-header {
-    background: linear-gradient(135deg, #1a2e28 0%, #0f1e1a 100%);
-    color: var(--rim-cream);
+    background: linear-gradient(135deg, var(--orthiva-navy) 0%, #0F1E2A 100%);
+    color: var(--orthiva-cream);
     padding: 20px 32px;
     position: sticky;
     top: 0;
@@ -250,14 +240,14 @@
 }
 
 .admin-badge {
-    background: rgba(255, 102, 0, 0.15);
+    background: rgba(155, 184, 117, 0.2);
     padding: 6px 14px;
     border-radius: 50px;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 1px;
-    border: 1px solid rgba(255, 102, 0, 0.3);
-    color: var(--rim-accent-light);
+    border: 1px solid rgba(155, 184, 117, 0.3);
+    color: var(--orthiva-sage-light);
 }
 
 .admin-contact-info {
@@ -274,7 +264,7 @@
 .logout-btn {
     background: rgba(255, 255, 255, 0.1);
     border: none;
-    color: var(--rim-cream);
+    color: var(--orthiva-cream);
     padding: 8px 20px;
     border-radius: 50px;
     cursor: pointer;
@@ -295,7 +285,7 @@
     padding: 20px 32px 0 32px;
     max-width: 1400px;
     margin: 0 auto;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
 }
 
 .tab-btn {
@@ -304,7 +294,7 @@
     border: none;
     font-size: 14px;
     font-weight: 600;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     cursor: pointer;
     transition: var(--transition);
     border-radius: 50px 50px 0 0;
@@ -313,11 +303,11 @@
 }
 
 .tab-btn:hover {
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
 }
 
 .tab-btn.active {
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
     background: var(--white);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -329,7 +319,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, var(--rim-accent), var(--gold));
+    background: linear-gradient(90deg, var(--orthiva-sage), var(--gold));
     border-radius: 3px;
 }
 
@@ -347,8 +337,8 @@
 }
 
 .btn-add {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
     padding: 12px 28px;
     border-radius: 50px;
@@ -364,7 +354,8 @@
 
 .btn-add:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
+    color: var(--white);
 }
 
 /* Table */
@@ -373,7 +364,7 @@
     border-radius: 24px;
     overflow-x: auto;
     box-shadow: var(--shadow-md);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(155, 184, 117, 0.15);
 }
 
 .admin-table {
@@ -385,23 +376,23 @@
 .admin-table th {
     text-align: left;
     padding: 16px 20px;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
     font-weight: 600;
     font-size: 12px;
     letter-spacing: 1px;
-    color: var(--rim-text-dark);
-    border-bottom: 2px solid var(--rim-cream-dark);
+    color: var(--orthiva-text-dark);
+    border-bottom: 2px solid var(--orthiva-cream-dark);
 }
 
 .admin-table td {
     padding: 16px 20px;
-    border-bottom: 1px solid var(--rim-cream);
+    border-bottom: 1px solid var(--orthiva-cream);
     font-size: 13px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 .admin-table tr:hover {
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
 }
 
 /* Image Cell */
@@ -421,13 +412,13 @@
     height: 40px;
     border-radius: 8px;
     object-fit: cover;
-    border: 1px solid var(--rim-cream-dark);
+    border: 1px solid var(--orthiva-cream-dark);
 }
 
 .more-indicator {
     font-size: 11px;
-    color: var(--rim-text-light);
-    background: var(--rim-light-bg);
+    color: var(--orthiva-text-light);
+    background: var(--orthiva-cream-light);
     padding: 4px 8px;
     border-radius: 20px;
 }
@@ -437,12 +428,12 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
     padding: 6px 12px;
     border-radius: 50px;
     font-size: 12px;
     font-weight: 500;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
 }
 
 /* Featured Badge */
@@ -455,19 +446,19 @@
 }
 
 .featured-badge.yes {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
 }
 
 .featured-badge.no {
-    background: var(--rim-light-bg);
-    color: var(--rim-text-light);
+    background: var(--orthiva-cream-light);
+    color: var(--orthiva-text-light);
 }
 
 /* Price Cell */
 .price-cell {
     font-weight: 600;
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
     font-size: 14px;
 }
 
@@ -488,13 +479,14 @@
 }
 
 .btn-edit {
-    background: var(--rim-accent);
-    color: var(--white);
+    background: var(--orthiva-sage);
+    color: var(--orthiva-text-dark);
 }
 
 .btn-edit:hover {
-    background: var(--rim-accent-dark);
+    background: var(--orthiva-sage-dark);
     transform: scale(1.02);
+    color: var(--white);
 }
 
 .btn-delete {
@@ -558,7 +550,7 @@
 
 .featured-btn.active {
     background: var(--gold);
-    color: var(--white);
+    color: var(--orthiva-text-dark);
 }
 
 .featured-btn:hover {
@@ -609,7 +601,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 24px 28px;
-    border-bottom: 1px solid var(--rim-cream);
+    border-bottom: 1px solid var(--orthiva-cream);
     position: sticky;
     top: 0;
     background: var(--white);
@@ -619,7 +611,7 @@
 .modal-header h2 {
     font-family: 'Playfair Display', serif;
     font-size: 22px;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
 }
 
 .close-modal {
@@ -627,7 +619,7 @@
     border: none;
     font-size: 32px;
     cursor: pointer;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     transition: var(--transition);
     line-height: 1;
 }
@@ -650,7 +642,7 @@
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 13px;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     letter-spacing: 0.5px;
 }
 
@@ -659,7 +651,7 @@
 .form-group select {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid var(--rim-cream);
+    border: 2px solid var(--orthiva-cream);
     border-radius: 16px;
     font-size: 13px;
     transition: var(--transition);
@@ -670,8 +662,8 @@
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px var(--rim-accent-glow);
+    border-color: var(--orthiva-sage);
+    box-shadow: 0 0 0 3px rgba(155, 184, 117, 0.15);
 }
 
 .form-row {
@@ -706,14 +698,19 @@
 
 .btn-add-category {
     padding: 0 16px;
-    background: var(--rim-accent);
-    color: var(--white);
+    background: var(--orthiva-sage);
+    color: var(--orthiva-text-dark);
     border: none;
     border-radius: 16px;
     cursor: pointer;
     font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
+}
+
+.btn-add-category:hover {
+    background: var(--orthiva-sage-dark);
+    color: var(--white);
 }
 
 .new-category-input {
@@ -725,7 +722,7 @@
 .category-input {
     flex: 1;
     padding: 10px 14px;
-    border: 2px solid var(--rim-cream);
+    border: 2px solid var(--orthiva-cream);
     border-radius: 12px;
     font-size: 13px;
 }
@@ -746,8 +743,8 @@
 }
 
 .btn-cancel-category {
-    background: var(--rim-cream);
-    color: var(--rim-text-light);
+    background: var(--orthiva-cream);
+    color: var(--orthiva-text-light);
 }
 
 /* Image Upload Section */
@@ -778,7 +775,7 @@
     height: 100%;
     border-radius: 12px;
     object-fit: cover;
-    border: 2px solid var(--rim-cream);
+    border: 2px solid var(--orthiva-cream);
 }
 
 .remove-image-btn {
@@ -813,8 +810,8 @@
 
 .file-input-label {
     display: inline-block;
-    background: var(--rim-accent-light);
-    color: var(--white);
+    background: var(--orthiva-sage-light);
+    color: var(--orthiva-text-dark);
     padding: 12px 24px;
     border-radius: 50px;
     cursor: pointer;
@@ -824,12 +821,13 @@
 }
 
 .file-input-label:hover {
-    background: var(--rim-accent);
+    background: var(--orthiva-sage);
+    color: var(--white);
 }
 
 .helper-text {
     font-size: 11px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-top: 8px;
 }
 
@@ -874,13 +872,13 @@
     gap: 12px;
     margin-top: 16px;
     padding: 12px;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
     border-radius: 12px;
 }
 
 .uploading-indicator p {
     font-size: 13px;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
 }
 
 /* Modal Actions */
@@ -890,7 +888,7 @@
     justify-content: flex-end;
     margin-top: 28px;
     padding-top: 20px;
-    border-top: 1px solid var(--rim-cream);
+    border-top: 1px solid var(--orthiva-cream);
 }
 
 .btn-submit-product,
@@ -905,13 +903,14 @@
 }
 
 .btn-submit-product {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
 }
 
 .btn-submit-product:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
+    color: var(--white);
 }
 
 .btn-submit-product:disabled {
@@ -920,12 +919,12 @@
 }
 
 .btn-cancel-modal {
-    background: var(--rim-cream);
-    color: var(--rim-text-dark);
+    background: var(--orthiva-cream);
+    color: var(--orthiva-text-dark);
 }
 
 .btn-cancel-modal:hover:not(:disabled) {
-    background: var(--rim-cream-dark);
+    background: var(--orthiva-cream-dark);
 }
 
 /* ==================== ANIMATIONS ==================== */
@@ -987,12 +986,12 @@
         text-align: center;
         border-radius: 60px !important;
         background: var(--white);
-        border: 1px solid var(--rim-cream-dark);
+        border: 1px solid var(--orthiva-cream-dark);
     }
     
     .tab-btn.active {
-        background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-        color: white;
+        background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+        color: var(--white);
         border-color: transparent;
     }
     

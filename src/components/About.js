@@ -30,7 +30,7 @@ function About() {
             </div>
             <div className="hero-stat">
               <span className="stat-number">100%</span>
-              <span className="stat-label">ISI Marked</span>
+              <span className="stat-label"></span>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ function About() {
               <div className="highlight-icon">🇮🇳</div>
               <div className="highlight-text">
                 <strong>Proudly Made in India - Mansa, Punjab</strong>
-                <span>Manufactured in state-of-the-art facilities with ISI marked quality components</span>
+                <span>Manufactured in state-of-the-art facilities with  quality components</span>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ function About() {
             <div className="mission-card">
               <div className="mission-icon">🎯</div>
               <h3>Our Vision</h3>
-              <p>To become India's most trusted electrical switchgear brand, recognized for ISI marked quality, innovation, and commitment to electrical safety.</p>
+              <p>To become India's most trusted electrical switchgear brand, recognized for  quality, innovation, and commitment to electrical safety.</p>
               <div className="mission-stats">
                 <div>✓ #1 Switchgear Brand in Region</div>
                 <div>✓ 500+ Cities Served</div>
@@ -88,8 +88,6 @@ function About() {
               <h3>Core Values</h3>
               <p>Quality First • Safety Always • Customer Trust • Innovation • Made in India</p>
               <div className="mission-stats">
-                <div>✓ ISI Certified</div>
-                <div>✓ ISO 9001:2015</div>
               </div>
             </div>
           </div>
@@ -108,7 +106,7 @@ function About() {
           <div className="features-grid">
             <div className="feature-box">
               <div className="feature-icon">⚡</div>
-              <h3>ISI Marked Quality</h3>
+              <h3> Quality</h3>
               <p>All our products meet BIS standards for complete electrical safety and performance assurance.</p>
               <div className="feature-tag">ISI Certified</div>
             </div>
@@ -167,7 +165,7 @@ function About() {
             </div>
             <div className="stat-item">
               <div className="stat-number">100<span>%</span></div>
-              <div className="stat-label">ISI Marked</div>
+              <div className="stat-label"></div>
               <div className="stat-desc">Quality assured</div>
             </div>
             <div className="stat-item">

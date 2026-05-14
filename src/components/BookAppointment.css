@@ -1,5 +1,5 @@
-/* BookAppointment.css - Updated Color Scheme */
-/* Primary: #ff6600 | Backgrounds: #f5f7fa, #f5f0ea */
+/* BookAppointment.css - Orthiva Premium Mattress Brand */
+/* Updated Color Scheme: Elegant Sage Green & Cream Palette */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -12,7 +12,7 @@
 .appointment-page {
     font-family: 'Poppins', 'Playfair Display', serif;
     overflow-x: hidden;
-    background: var(--rim-cream-light);
+    background: var(--orthiva-cream-light);
 }
 
 .container {
@@ -21,34 +21,40 @@
     padding: 0 24px;
 }
 
-/* ==================== COLOR VARIABLES ==================== */
+/* ==================== COLOR VARIABLES - ORTHIVA THEME ==================== */
 :root {
-    --rim-dark: #211a12;
-    --rim-dark-light: #3a2f24;
-    --rim-dark-heavy: #1a140d;
-    --rim-cream: #f5f0ea;
-    --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #e6dfd6;
-    --rim-accent: #ff6600;
-    --rim-accent-dark: #e05a00;
-    --rim-accent-light: #ff8533;
-    --rim-wa: #25D366;
-    --rim-industrial: #2d5a6e;
-    --rim-text-dark: #211a12;
-    --rim-text-light: #5a4f44;
-    --white: #f5f7fa;
-    --gold: #ff6600;
+    --orthiva-sage: #9BB875;
+    --orthiva-sage-light: #C2DF8E;
+    --orthiva-sage-dark: #7A9B58;
+    --orthiva-cream: #F2EDE4;
+    --orthiva-cream-light: #F9F7F2;
+    --orthiva-cream-dark: #E0D8CA;
+    --orthiva-blue: #3A7BD5;
+    --orthiva-wa: #25D366;
+    --orthiva-navy: #1A2C3C;
+    --orthiva-navy-light: #2A4054;
+    --orthiva-text-dark: #2C3E2F;
+    --orthiva-text-light: #6B7B6B;
+    --orthiva-text-muted: #8A9A8A;
+    --white: #FFFFFF;
+    --black: #000000;
+    --gold: #D4AF37;
+    --gold-light: #E8C84A;
+    --red: #E74C3C;
+    --green: #27AE60;
+    
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-sage: 0 10px 25px rgba(155, 184, 117, 0.3);
     --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 /* ==================== HERO SECTION ==================== */
 .appointment-hero {
-    background: linear-gradient(135deg, var(--rim-dark) 0%, var(--rim-dark-heavy) 100%);
-    color: var(--rim-cream);
+    background: linear-gradient(135deg, var(--orthiva-navy) 0%, #0F1E2A 100%);
+    color: var(--orthiva-cream);
     padding: 5rem 2rem 4rem;
     text-align: center;
     position: relative;
@@ -89,8 +95,8 @@
 
 .hero-badge {
     display: inline-block;
-    background: rgba(255, 102, 0, 0.2);
-    border: 1px solid rgba(255, 102, 0, 0.4);
+    background: rgba(155, 184, 117, 0.2);
+    border: 1px solid rgba(155, 184, 117, 0.4);
     padding: 6px 20px;
     border-radius: 50px;
     font-size: 11px;
@@ -108,7 +114,7 @@
 }
 
 .appointment-hero h1 span {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
 }
 
 .appointment-hero p {
@@ -129,7 +135,7 @@
 }
 
 .contact-badge a {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     text-decoration: none;
     font-weight: 600;
 }
@@ -162,13 +168,13 @@
     padding: 2rem;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
-    border: 1px solid rgba(33, 26, 18, 0.1);
+    border: 1px solid rgba(155, 184, 117, 0.15);
 }
 
 .info-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
-    border-color: var(--rim-accent);
+    border-color: var(--orthiva-sage);
 }
 
 .card-icon {
@@ -178,7 +184,7 @@
 
 .info-card h3 {
     font-size: 1.3rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 1.2rem;
     font-weight: 600;
     font-family: 'Playfair Display', serif;
@@ -191,9 +197,9 @@
 
 .info-card ul li {
     padding: 8px 0;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     font-size: 0.9rem;
-    border-bottom: 1px dashed var(--rim-cream-dark);
+    border-bottom: 1px dashed var(--orthiva-cream-dark);
 }
 
 .info-card ul li:last-child {
@@ -202,8 +208,8 @@
 
 /* Experience Card */
 .experience-card {
-    background: linear-gradient(135deg, var(--rim-cream-light) 0%, var(--white) 100%);
-    border-left: 4px solid var(--rim-accent);
+    background: linear-gradient(135deg, var(--orthiva-cream-light) 0%, var(--white) 100%);
+    border-left: 4px solid var(--orthiva-sage);
 }
 
 .address {
@@ -212,7 +218,7 @@
     flex-direction: column;
     gap: 5px;
     font-size: 0.85rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 .hours {
@@ -220,11 +226,11 @@
     flex-direction: column;
     gap: 5px;
     font-size: 0.85rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     font-weight: 500;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--rim-cream-dark);
+    border-top: 1px solid var(--orthiva-cream-dark);
 }
 
 .wa-direction-link {
@@ -233,7 +239,7 @@
     gap: 8px;
     margin-top: 1rem;
     padding: 8px 16px;
-    background: var(--rim-wa);
+    background: var(--orthiva-wa);
     color: white;
     text-decoration: none;
     border-radius: 50px;
@@ -253,7 +259,7 @@
     border-radius: 32px;
     padding: 2.5rem;
     box-shadow: var(--shadow-xl);
-    border: 1px solid rgba(33, 26, 18, 0.1);
+    border: 1px solid rgba(155, 184, 117, 0.15);
 }
 
 .form-header {
@@ -263,7 +269,7 @@
 
 .form-icon-wrapper {
     display: inline-block;
-    background: linear-gradient(135deg, var(--rim-accent-light), var(--rim-accent));
+    background: linear-gradient(135deg, var(--orthiva-sage-light), var(--orthiva-sage));
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -279,13 +285,13 @@
 
 .form-header h2 {
     font-size: 1.8rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 0.5rem;
     font-family: 'Playfair Display', serif;
 }
 
 .form-header p {
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     font-size: 0.85rem;
 }
 
@@ -311,19 +317,19 @@
 .form-group label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     letter-spacing: 0.5px;
 }
 
 .form-group label span {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     padding: 12px 16px;
-    border: 2px solid var(--rim-cream-dark);
+    border: 2px solid var(--orthiva-cream-dark);
     border-radius: 16px;
     font-size: 0.9rem;
     font-family: 'Poppins', sans-serif;
@@ -335,14 +341,14 @@
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+    border-color: var(--orthiva-sage);
+    box-shadow: 0 0 0 3px rgba(155, 184, 117, 0.1);
 }
 
 .form-group input:hover,
 .form-group select:hover,
 .form-group textarea:hover {
-    border-color: var(--rim-accent-light);
+    border-color: var(--orthiva-sage-light);
 }
 
 /* Radio Group */
@@ -358,44 +364,44 @@
     gap: 8px;
     cursor: pointer;
     padding: 8px 16px;
-    background: var(--rim-cream-light);
+    background: var(--orthiva-cream-light);
     border-radius: 50px;
     transition: var(--transition);
 }
 
 .radio-label:hover {
-    background: var(--rim-cream-dark);
+    background: var(--orthiva-cream-dark);
 }
 
 .radio-label input {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: var(--rim-accent);
+    accent-color: var(--orthiva-sage);
 }
 
 .radio-label span {
     font-size: 0.85rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
 }
 
 /* Form Note */
 .form-note {
-    background: var(--rim-cream-light);
+    background: var(--orthiva-cream-light);
     padding: 12px 16px;
     border-radius: 16px;
-    border-left: 4px solid var(--rim-accent);
+    border-left: 4px solid var(--orthiva-sage);
 }
 
 .form-note p {
     font-size: 0.8rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 /* Submit Button */
 .btn-submit {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--rim-dark);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
     padding: 14px 28px;
     border-radius: 50px;
@@ -412,7 +418,7 @@
 
 .btn-submit:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
+    box-shadow: var(--shadow-sage);
 }
 
 .btn-submit:disabled {
@@ -423,7 +429,7 @@
 .spinner {
     width: 18px;
     height: 18px;
-    border: 2px solid var(--rim-dark);
+    border: 2px solid var(--orthiva-text-dark);
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -442,7 +448,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--rim-cream-light) 0%, var(--rim-cream) 100%);
+    background: linear-gradient(135deg, var(--orthiva-cream-light) 0%, var(--orthiva-cream) 100%);
     padding: 2rem;
 }
 
@@ -460,30 +466,30 @@
 .success-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
     font-size: 2.5rem;
-    color: var(--rim-dark);
+    color: var(--orthiva-text-dark);
 }
 
 .success-container h2 {
     font-size: 1.8rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
 }
 
 .success-container p {
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-bottom: 0.5rem;
 }
 
 .success-container strong {
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
 }
 
 .success-actions {
@@ -506,8 +512,8 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--rim-dark);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
 }
 
@@ -518,13 +524,13 @@
 
 .btn-secondary {
     background: transparent;
-    border: 2px solid var(--rim-accent);
-    color: var(--rim-accent-dark);
+    border: 2px solid var(--orthiva-sage);
+    color: var(--orthiva-sage-dark);
 }
 
 .btn-secondary:hover {
-    background: var(--rim-accent);
-    color: var(--rim-dark);
+    background: var(--orthiva-sage);
+    color: var(--orthiva-text-dark);
     transform: translateY(-2px);
 }
 
@@ -532,7 +538,7 @@
 .trust-section {
     padding: 3rem 2rem 5rem;
     background: var(--white);
-    border-top: 1px solid var(--rim-cream-dark);
+    border-top: 1px solid var(--orthiva-cream-dark);
 }
 
 .trust-grid {
@@ -546,7 +552,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--rim-cream-light);
+    background: var(--orthiva-cream-light);
     border-radius: 20px;
     transition: var(--transition);
 }
@@ -563,13 +569,13 @@
 .trust-item h4 {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 4px;
 }
 
 .trust-item p {
     font-size: 0.7rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 /* ==================== ANIMATIONS ==================== */

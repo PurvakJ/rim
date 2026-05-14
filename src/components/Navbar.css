@@ -1,5 +1,5 @@
-/* Navbar.css - RIM Royal Industries Mansa */
-/* Updated Color Scheme: #ff6600 (Orange Accent), #f5f7fa (Light Bg), #f5f0ea (Warm Cream) */
+/* Navbar.css - Orthiva Premium Mattress Brand */
+/* Updated Color Scheme: Elegant Sage Green & Cream Palette */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -9,36 +9,32 @@
     box-sizing: border-box;
 }
 
-/* ==================== COLOR VARIABLES - NEW THEME ==================== */
+/* ==================== COLOR VARIABLES - ORTHIVA THEME ==================== */
 :root {
-    --rim-primary: #2c3e2f;
-    --rim-primary-dark: #1e2d20;
-    --rim-primary-light: #3d5a42;
-    --rim-primary-heavy: #162018;
-    
-    --rim-accent: #ff6600;
-    --rim-accent-dark: #e55a00;
-    --rim-accent-light: #ff8533;
-    --rim-accent-glow: rgba(255, 102, 0, 0.15);
-    
-    --rim-cream: #f5f0ea;
-    --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #e8e0d6;
-    
-    --rim-light-bg: #f5f7fa;
-    
-    --rim-text-dark: #1a2e28;
-    --rim-text-light: #4a5b55;
-    --rim-text-muted: #7a8a83;
-    
-    --rim-wa: #25D366;
+    --orthiva-sage: #9BB875;
+    --orthiva-sage-light: #C2DF8E;
+    --orthiva-sage-dark: #7A9B58;
+    --orthiva-cream: #F2EDE4;
+    --orthiva-cream-light: #F9F7F2;
+    --orthiva-cream-dark: #E0D8CA;
+    --orthiva-blue: #3A7BD5;
+    --orthiva-wa: #25D366;
+    --orthiva-navy: #1A2C3C;
+    --orthiva-navy-light: #2A4054;
+    --orthiva-text-dark: #2C3E2F;
+    --orthiva-text-light: #6B7B6B;
+    --orthiva-text-muted: #8A9A8A;
     --white: #FFFFFF;
     --black: #000000;
+    --gold: #D4AF37;
+    --gold-light: #E8C84A;
+    --red: #E74C3C;
+    --green: #27AE60;
     
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
-    --shadow-orange: 0 5px 15px rgba(255, 102, 0, 0.3);
+    --shadow-sage: 0 5px 15px rgba(155, 184, 117, 0.3);
     --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
@@ -108,14 +104,14 @@
     font-size: 1.5rem;
     font-weight: 800;
     font-family: 'Playfair Display', serif;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     letter-spacing: 2px;
 }
 
 .logo-sub {
     font-size: 0.65rem;
     font-weight: 500;
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
     letter-spacing: 1px;
 }
 
@@ -130,7 +126,7 @@
 
 .nav-links li a {
     text-decoration: none;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     font-weight: 500;
     font-size: 0.9rem;
     transition: var(--transition);
@@ -145,7 +141,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--rim-accent);
+    background: var(--orthiva-sage);
     transition: var(--transition);
 }
 
@@ -156,7 +152,7 @@
 
 .nav-links li a:hover,
 .nav-links li a.active {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
 }
 
 /* Desktop Contact Buttons */
@@ -167,8 +163,8 @@
 }
 
 .phone-btn {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     padding: 8px 20px;
     border-radius: 50px;
     text-decoration: none;
@@ -181,11 +177,11 @@
 
 .phone-btn:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
 }
 
 .wa-btn {
-    background: var(--rim-wa);
+    background: var(--orthiva-wa);
     color: white;
     width: 38px;
     height: 38px;
@@ -220,7 +216,7 @@
 .menu-toggle span {
     width: 100%;
     height: 2px;
-    background: var(--rim-text-dark);
+    background: var(--orthiva-text-dark);
     transition: var(--transition);
 }
 
@@ -274,7 +270,7 @@
         right: -100%;
         width: 100%;
         height: 100vh;
-        background: linear-gradient(135deg, #1a2e28 0%, #0f1e1a 100%);
+        background: linear-gradient(135deg, var(--orthiva-navy) 0%, #0F1E2A 100%);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -290,18 +286,18 @@
     }
     
     .nav-links li a {
-        color: var(--rim-cream);
+        color: var(--orthiva-cream);
         font-size: 1.2rem;
         font-weight: 500;
     }
     
     .nav-links li a::after {
-        background: var(--rim-accent);
+        background: var(--orthiva-sage);
     }
     
     .nav-links li a:hover,
     .nav-links li a.active {
-        color: var(--rim-accent);
+        color: var(--orthiva-sage);
     }
     
     .nav-contact {
@@ -335,12 +331,12 @@
     }
     
     .mobile-phone-btn {
-        background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-        color: var(--white);
+        background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+        color: var(--orthiva-text-dark);
     }
     
     .mobile-wa-btn {
-        background: var(--rim-wa);
+        background: var(--orthiva-wa);
         color: white;
     }
     

@@ -1,43 +1,39 @@
-/* Catalog.css - RIM Royal Industries Mansa */
-/* Updated Color Scheme: #ff6600 (Orange Accent), #f5f7fa (Light Bg), #f5f0ea (Warm Cream) */
+/* Catalog.css - Orthiva Premium Mattress Brand */
+/* Updated Color Scheme: Elegant Sage Green & Cream Palette */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
-    --rim-primary: #2c3e2f;
-    --rim-primary-dark: #1e2d20;
-    --rim-primary-light: #3d5a42;
-    --rim-primary-heavy: #162018;
-    
-    --rim-accent: #ff6600;
-    --rim-accent-dark: #e55a00;
-    --rim-accent-light: #ff8533;
-    --rim-accent-glow: rgba(255, 102, 0, 0.15);
-    
-    --rim-cream: #f5f0ea;
-    --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #e8e0d6;
-    
-    --rim-light-bg: #f5f7fa;
-    
-    --rim-text-dark: #1a2e28;
-    --rim-text-light: #4a5b55;
-    --rim-text-muted: #7a8a83;
-    
+    --orthiva-sage: #9BB875;
+    --orthiva-sage-light: #C2DF8E;
+    --orthiva-sage-dark: #7A9B58;
+    --orthiva-cream: #F2EDE4;
+    --orthiva-cream-light: #F9F7F2;
+    --orthiva-cream-dark: #E0D8CA;
+    --orthiva-blue: #3A7BD5;
+    --orthiva-wa: #25D366;
+    --orthiva-navy: #1A2C3C;
+    --orthiva-navy-light: #2A4054;
+    --orthiva-text-dark: #2C3E2F;
+    --orthiva-text-light: #6B7B6B;
+    --orthiva-text-muted: #8A9A8A;
     --white: #FFFFFF;
     --black: #000000;
+    --gold: #D4AF37;
+    --gold-light: #E8C84A;
+    
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-    --shadow-orange: 0 10px 20px rgba(255, 102, 0, 0.3);
-    --shadow-orange-lg: 0 15px 30px rgba(255, 102, 0, 0.4);
+    --shadow-sage: 0 10px 20px rgba(155, 184, 117, 0.3);
+    --shadow-sage-lg: 0 15px 30px rgba(155, 184, 117, 0.4);
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .catalog-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--rim-light-bg) 0%, var(--white) 100%);
+    background: linear-gradient(135deg, var(--orthiva-cream-light) 0%, var(--white) 100%);
     font-family: 'Inter', sans-serif;
     padding: 40px 20px;
 }
@@ -51,7 +47,7 @@
 .catalog-header h1 {
     font-size: 36px;
     font-weight: 600;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     font-family: 'Playfair Display', serif;
     margin-bottom: 10px;
     position: relative;
@@ -66,12 +62,12 @@
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background-color: var(--rim-accent);
+    background-color: var(--orthiva-sage);
 }
 
 .catalog-subtitle {
     font-size: 16px;
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     margin-top: 20px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -79,7 +75,7 @@
 
 .catalog-description {
     font-size: 14px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-top: 10px;
     font-weight: 400;
 }
@@ -107,12 +103,12 @@
 /* Desktop Book View */
 .book-spread:not(.mobile-view) {
     gap: 0;
-    background: var(--rim-cream-dark);
+    background: var(--orthiva-cream-dark);
     padding: 30px;
     border-radius: 20px;
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(255, 102, 0, 0.2);
+        0 0 0 1px rgba(155, 184, 117, 0.2);
     position: relative;
     transform: rotateX(2deg);
 }
@@ -127,7 +123,7 @@
     height: 100%;
     background: linear-gradient(90deg, 
         rgba(0,0,0,0.02) 0%,
-        rgba(255, 102, 0, 0.08) 50%,
+        rgba(155, 184, 117, 0.08) 50%,
         rgba(0,0,0,0.02) 100%
     );
     z-index: 10;
@@ -141,7 +137,7 @@
     left: 20px;
     right: 20px;
     bottom: 20px;
-    border: 1px solid rgba(255, 102, 0, 0.15);
+    border: 1px solid rgba(155, 184, 117, 0.15);
     border-radius: 10px;
     pointer-events: none;
     z-index: 5;
@@ -166,13 +162,13 @@
 
 .left-page {
     transform-origin: right center;
-    border-right: 2px solid rgba(255, 102, 0, 0.2);
+    border-right: 2px solid rgba(155, 184, 117, 0.2);
     border-radius: 4px 0 0 4px;
 }
 
 .right-page {
     transform-origin: left center;
-    border-left: 2px solid rgba(255, 102, 0, 0.2);
+    border-left: 2px solid rgba(155, 184, 117, 0.2);
     border-radius: 0 4px 4px 0;
 }
 
@@ -276,8 +272,8 @@
     gap: 10px;
     padding: 12px 24px;
     background: var(--white);
-    border: 1px solid var(--rim-accent);
-    color: var(--rim-accent-dark);
+    border: 1px solid var(--orthiva-sage);
+    color: var(--orthiva-sage-dark);
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -287,10 +283,10 @@
 }
 
 .nav-button:hover:not(:disabled) {
-    background-color: var(--rim-accent);
-    color: var(--white);
+    background-color: var(--orthiva-sage);
+    color: var(--orthiva-text-dark);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
 }
 
 .nav-button:disabled {
@@ -309,22 +305,22 @@
     align-items: center;
     gap: 8px;
     font-size: 18px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 .current-page {
     font-weight: 600;
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     font-size: 24px;
 }
 
 .separator {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     font-size: 20px;
 }
 
 .total-pages {
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     font-size: 18px;
 }
 
@@ -339,21 +335,21 @@
     align-items: center;
     gap: 15px;
     padding: 18px 40px;
-    background: linear-gradient(135deg, var(--rim-accent) 0%, var(--rim-accent-dark) 100%);
+    background: linear-gradient(135deg, var(--orthiva-sage) 0%, var(--orthiva-sage-dark) 100%);
     border: none;
-    color: var(--white);
+    color: var(--orthiva-text-dark);
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 50px;
     letter-spacing: 0.5px;
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
 }
 
 .download-button:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-orange-lg);
+    box-shadow: var(--shadow-sage-lg);
 }
 
 .download-icon {
@@ -373,18 +369,18 @@
 .download-info {
     margin-top: 15px;
     font-size: 14px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     letter-spacing: 0.5px;
 }
 
 .download-contact {
     margin-top: 10px;
     font-size: 13px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 .download-contact a {
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
     text-decoration: none;
     font-weight: 600;
 }
@@ -397,7 +393,7 @@
 .keyboard-hint {
     text-align: center;
     font-size: 14px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-top: 20px;
@@ -423,13 +419,13 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    border: 1px solid rgba(255, 102, 0, 0.15);
+    border: 1px solid rgba(155, 184, 117, 0.15);
 }
 
 .mobile-page-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255, 102, 0, 0.15);
-    border-color: var(--rim-accent);
+    box-shadow: 0 15px 40px rgba(155, 184, 117, 0.15);
+    border-color: var(--orthiva-sage);
 }
 
 .mobile-page-image {
@@ -444,9 +440,9 @@
     position: absolute;
     bottom: 15px;
     right: 15px;
-    background: rgba(26, 46, 40, 0.85);
+    background: rgba(26, 44, 60, 0.85);
     backdrop-filter: blur(5px);
-    color: var(--rim-cream);
+    color: var(--orthiva-cream);
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -479,8 +475,8 @@
 }
 
 .load-more-button {
-    background: linear-gradient(135deg, var(--rim-accent) 0%, var(--rim-accent-dark) 100%);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage) 0%, var(--orthiva-sage-dark) 100%);
+    color: var(--orthiva-text-dark);
     border: none;
     padding: 15px 30px;
     border-radius: 30px;
@@ -488,18 +484,18 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
 }
 
 .load-more-button:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange-lg);
+    box-shadow: var(--shadow-sage-lg);
 }
 
 .loading-indicator {
     text-align: center;
     padding: 30px 20px;
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     font-size: 14px;
     font-weight: 500;
     display: flex;
@@ -511,8 +507,8 @@
 .loader {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 102, 0, 0.2);
-    border-top: 3px solid var(--rim-accent);
+    border: 3px solid rgba(155, 184, 117, 0.2);
+    border-top: 3px solid var(--orthiva-sage);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -525,14 +521,14 @@
 .end-of-catalog {
     text-align: center;
     padding: 40px 20px;
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     font-size: 16px;
     font-weight: 500;
 }
 
 .total-pages-count {
     font-size: 12px;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-top: 8px;
 }
 
@@ -694,6 +690,10 @@
         font-size: 20px;
     }
     
+    .catalog-header {
+        margin-top: 80px;
+    }
+    
     .mobile-scroll-view {
         gap: 15px;
     }
@@ -753,7 +753,7 @@
 @media (max-width: 768px) {
     .mobile-page-item {
         cursor: pointer;
-        -webkit-tap-highlight-color: rgba(255, 102, 0, 0.2);
+        -webkit-tap-highlight-color: rgba(155, 184, 117, 0.2);
     }
     
     .mobile-page-number {
@@ -772,7 +772,7 @@
     width: 100%;
     height: auto;
     display: block;
-    background-color: var(--rim-light-bg);
+    background-color: var(--orthiva-cream-light);
 }
 
 /* Print Styles */

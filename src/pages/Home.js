@@ -392,7 +392,6 @@ const Home = () => {
               />
               <div className="welcome-image-badge">
                 <span>⚡</span>
-                <p>ISI Certified Products</p>
               </div>
             </div>
             <div className="welcome-content lazy-slide-right" ref={el => addToLazyRefs(el, 'lazy-slide-right')}>

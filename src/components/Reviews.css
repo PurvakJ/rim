@@ -1,5 +1,5 @@
 /* Reviews Page Styles - RIM Royal Industries Mansa */
-/* Updated Color Scheme: #ff6600 (Orange Accent), #f5f7fa (Light Bg), #f5f0ea (Warm Cream) */
+/* Updated Color Scheme: Orthiva Sage Green (#9BB875) & Cream Palette */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -14,48 +14,36 @@
     padding: 0 24px;
 }
 
-/* Color Variables - New Theme: Orange Accent, Light Bg, Warm Cream */
+/* Color Variables - Orthiva Sage & Cream Theme */
 :root {
-    --rim-primary: #2c3e2f;
-    --rim-primary-dark: #1e2d20;
-    --rim-primary-light: #3d5a42;
-    --rim-primary-heavy: #162018;
-    
-    --rim-accent: #ff6600;
-    --rim-accent-dark: #e55a00;
-    --rim-accent-light: #ff8533;
-    --rim-accent-glow: rgba(255, 102, 0, 0.15);
-    
-    --rim-cream: #f5f0ea;
-    --rim-cream-light: #f5f0ea;
-    --rim-cream-dark: #e8e0d6;
-    
-    --rim-light-bg: #f5f7fa;
-    
-    --rim-text-dark: #1a2e28;
-    --rim-text-light: #4a5b55;
-    --rim-text-muted: #7a8a83;
-    
+    --orthiva-sage: #9BB875;
+    --orthiva-sage-light: #C2DF8E;
+    --orthiva-sage-dark: #7A9B58;
+    --orthiva-cream: #F2EDE4;
+    --orthiva-cream-light: #F9F7F2;
+    --orthiva-cream-dark: #E0D8CA;
+    --orthiva-navy: #1A2C3C;
+    --orthiva-text-dark: #2C3E2F;
+    --orthiva-text-light: #6B7B6B;
+    --orthiva-wa: #25D366;
     --white: #FFFFFF;
-    --black: #000000;
-    --gold: #ff6600;
-    --gold-light: #ff8533;
+    --gold: #D4AF37;
+    --gold-light: #E8C84A;
     --green: #27AE60;
     --green-light: #58D68D;
-    --rim-wa: #25D366;
     
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-    --shadow-orange: 0 10px 25px rgba(255, 102, 0, 0.25);
+    --shadow-sage: 0 10px 25px rgba(155, 184, 117, 0.25);
     --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 /* ==================== HERO SECTION ==================== */
 .reviews-hero {
     min-height: 60vh;
-    background: linear-gradient(135deg, #1a2e28 0%, #0f1e1a 100%);
+    background: linear-gradient(135deg, var(--orthiva-navy) 0%, #0F1E2A 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,14 +76,14 @@
 
 .hero-badge {
     display: inline-block;
-    background: rgba(255, 102, 0, 0.15);
-    border: 1px solid rgba(255, 102, 0, 0.4);
+    background: rgba(155, 184, 117, 0.2);
+    border: 1px solid rgba(155, 184, 117, 0.4);
     backdrop-filter: blur(4px);
     padding: 6px 18px;
     border-radius: 50px;
     font-size: 11px;
     letter-spacing: 2px;
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
     margin-bottom: 1.5rem;
 }
 
@@ -114,7 +102,7 @@
 }
 
 .reviews-hero h1 span {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
 }
 
 .reviews-hero p {
@@ -150,8 +138,8 @@
 }
 
 .hero-phone:hover {
-    background: var(--rim-accent);
-    color: var(--white);
+    background: var(--orthiva-sage);
+    color: var(--orthiva-text-dark);
     transform: translateY(-2px);
 }
 
@@ -169,7 +157,7 @@
 .reviews-stats {
     padding: 4rem 0;
     background: var(--white);
-    border-bottom: 1px solid var(--rim-cream-dark);
+    border-bottom: 1px solid var(--orthiva-cream-dark);
 }
 
 .stats-container {
@@ -182,14 +170,15 @@
 .rating-summary {
     text-align: center;
     padding: 1.5rem;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
     border-radius: 30px;
+    border: 1px solid rgba(155, 184, 117, 0.15);
 }
 
 .average-rating {
     font-size: 4rem;
     font-weight: 700;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     font-family: 'Playfair Display', serif;
     line-height: 1;
 }
@@ -203,20 +192,20 @@
 
 .total-reviews {
     font-size: 0.85rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-bottom: 1rem;
 }
 
 .trust-badge {
     display: inline-block;
-    background: rgba(255, 102, 0, 0.1);
+    background: rgba(155, 184, 117, 0.15);
     padding: 6px 12px;
     border-radius: 20px;
 }
 
 .trust-badge span {
     font-size: 0.75rem;
-    color: var(--rim-accent-dark);
+    color: var(--orthiva-sage-dark);
     font-weight: 500;
 }
 
@@ -235,20 +224,20 @@
     width: 45px;
     font-size: 0.85rem;
     font-weight: 500;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
 }
 
 .bar-container {
     flex: 1;
     height: 8px;
-    background: var(--rim-cream-dark);
+    background: var(--orthiva-cream-dark);
     border-radius: 10px;
     overflow: hidden;
 }
 
 .bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--rim-accent), var(--rim-accent-dark));
+    background: linear-gradient(90deg, var(--orthiva-sage), var(--orthiva-sage-dark));
     border-radius: 10px;
     transition: width 0.5s ease;
 }
@@ -256,13 +245,13 @@
 .count-label {
     width: 35px;
     font-size: 0.8rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     text-align: right;
 }
 
 .btn-write-review {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
     padding: 14px 28px;
     border-radius: 50px;
@@ -271,19 +260,19 @@
     cursor: pointer;
     transition: var(--transition);
     white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .btn-write-review:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
-    color: var(--white);
+    box-shadow: var(--shadow-sage);
+    color: var(--orthiva-text-dark);
 }
 
 /* ==================== REVIEW FORM SECTION ==================== */
 .review-form-section {
     padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--rim-light-bg) 0%, var(--white) 100%);
+    background: linear-gradient(135deg, var(--orthiva-cream-light) 0%, var(--white) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -314,7 +303,7 @@
     border-radius: 32px;
     padding: 3rem;
     box-shadow: var(--shadow-xl);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(155, 184, 117, 0.15);
     transition: var(--transition);
 }
 
@@ -335,14 +324,14 @@
 .form-header h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 0.5rem;
     font-family: 'Playfair Display', serif;
 }
 
 .form-header p {
     font-size: 0.9rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 /* Form Groups */
@@ -356,18 +345,18 @@
 .review-form-container .form-group label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     letter-spacing: 0.5px;
 }
 
 .review-form-container .form-group label span {
-    color: var(--rim-accent);
+    color: var(--orthiva-sage);
 }
 
 .review-form-container .form-group input,
 .review-form-container .form-group textarea {
     padding: 12px 16px;
-    border: 2px solid var(--rim-cream-dark);
+    border: 2px solid var(--orthiva-cream-dark);
     border-radius: 16px;
     font-size: 0.9rem;
     font-family: 'Poppins', sans-serif;
@@ -379,8 +368,8 @@
 .review-form-container .form-group input:focus,
 .review-form-container .form-group textarea:focus {
     outline: none;
-    border-color: var(--rim-accent);
-    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+    border-color: var(--orthiva-sage);
+    box-shadow: 0 0 0 3px rgba(155, 184, 117, 0.1);
 }
 
 /* Rating Select Styles */
@@ -402,28 +391,28 @@
     font-size: 2rem;
     cursor: pointer;
     padding: 4px;
-    color: var(--rim-cream-dark);
+    color: var(--orthiva-cream-dark);
     transition: var(--transition);
 }
 
 .rating-star.active {
-    color: var(--rim-accent);
+    color: var(--gold);
 }
 
 .rating-star:hover {
     transform: scale(1.1);
-    color: var(--rim-accent);
+    color: var(--gold);
 }
 
 .rating-help-text {
     font-size: 0.8rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 /* Submit Button */
 .review-form-container .btn-submit {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
     padding: 14px 32px;
     border-radius: 50px;
@@ -434,12 +423,12 @@
     width: 100%;
     font-family: 'Poppins', sans-serif;
     margin-top: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .review-form-container .btn-submit:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-orange);
+    box-shadow: var(--shadow-sage);
 }
 
 .review-form-container .btn-submit:disabled {
@@ -450,16 +439,16 @@
 .form-note {
     text-align: center;
     font-size: 0.75rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--rim-cream-dark);
+    border-top: 1px solid var(--orthiva-cream-dark);
 }
 
 /* Success Message */
 .success-message {
-    background: rgba(255, 102, 0, 0.1);
-    border-left: 4px solid var(--rim-accent);
+    background: rgba(155, 184, 117, 0.15);
+    border-left: 4px solid var(--orthiva-sage);
     padding: 1rem;
     border-radius: 16px;
     margin-bottom: 2rem;
@@ -467,7 +456,7 @@
     align-items: center;
     gap: 12px;
     font-size: 0.85rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     animation: slideIn 0.3s ease;
 }
 
@@ -494,8 +483,8 @@
 
 .section-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--rim-accent-light), var(--rim-accent));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage-light), var(--orthiva-sage));
+    color: var(--orthiva-text-dark);
     padding: 6px 18px;
     border-radius: 50px;
     font-size: 11px;
@@ -508,7 +497,7 @@
 .reviews-list-section h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
     text-align: center;
@@ -516,7 +505,7 @@
 
 .section-subtitle {
     text-align: center;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-bottom: 3rem;
     font-size: 1rem;
 }
@@ -528,26 +517,26 @@
 }
 
 .review-card {
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
     border-radius: 24px;
     padding: 1.8rem;
     transition: var(--transition);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(155, 184, 117, 0.15);
     position: relative;
 }
 
 .review-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
-    border-color: var(--rim-accent);
+    border-color: var(--orthiva-sage);
 }
 
 .featured-ribbon {
     position: absolute;
     top: -10px;
     right: 20px;
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.7rem;
@@ -572,36 +561,36 @@
 .reviewer-avatar {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     font-size: 1.2rem;
-    color: var(--white);
+    color: var(--orthiva-text-dark);
 }
 
 .reviewer-info h3 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin: 0 0 4px 0;
 }
 
 .rating-stars {
     font-size: 0.7rem;
     letter-spacing: 2px;
-    color: var(--rim-accent);
+    color: var(--gold);
 }
 
 .review-date {
     font-size: 0.7rem;
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
 }
 
 .review-comment {
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     line-height: 1.7;
     font-size: 0.85rem;
     margin-bottom: 1.2rem;
@@ -628,8 +617,8 @@
 }
 
 .quality-badge {
-    background: rgba(255, 102, 0, 0.1);
-    color: var(--rim-accent-dark);
+    background: rgba(155, 184, 117, 0.15);
+    color: var(--orthiva-sage-dark);
 }
 
 /* No Reviews State */
@@ -637,8 +626,9 @@
     grid-column: 1 / -1;
     text-align: center;
     padding: 4rem;
-    background: var(--rim-light-bg);
+    background: var(--orthiva-cream-light);
     border-radius: 30px;
+    border: 1px solid rgba(155, 184, 117, 0.15);
 }
 
 .no-reviews-icon {
@@ -648,37 +638,37 @@
 
 .no-reviews h3 {
     font-size: 1.5rem;
-    color: var(--rim-text-dark);
+    color: var(--orthiva-text-dark);
     margin-bottom: 0.5rem;
 }
 
 .no-reviews p {
-    color: var(--rim-text-light);
+    color: var(--orthiva-text-light);
     margin-bottom: 1.5rem;
 }
 
 .btn-be-first {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
     border: none;
     padding: 12px 28px;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .btn-be-first:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
-    color: var(--white);
+    box-shadow: var(--shadow-sage);
+    color: var(--orthiva-text-dark);
 }
 
 /* ==================== CONTACT CTA SECTION ==================== */
 .contact-cta {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #1a2e28 0%, #0f1e1a 100%);
+    background: linear-gradient(135deg, var(--orthiva-navy) 0%, #0F1E2A 100%);
 }
 
 .cta-content {
@@ -731,8 +721,8 @@
 }
 
 .cta-phone:hover {
-    background: var(--rim-accent);
-    color: var(--white);
+    background: var(--orthiva-sage);
+    color: var(--orthiva-text-dark);
     transform: translateY(-2px);
 }
 
@@ -747,14 +737,14 @@
 }
 
 .cta-consult {
-    background: linear-gradient(135deg, var(--rim-accent), var(--rim-accent-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--orthiva-sage), var(--orthiva-sage-dark));
+    color: var(--orthiva-text-dark);
 }
 
 .cta-consult:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-orange);
-    color: var(--white);
+    box-shadow: var(--shadow-sage);
+    color: var(--orthiva-text-dark);
 }
 
 /* ==================== ANIMATIONS ==================== */
