@@ -7,9 +7,9 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '9815097851';
+  const phoneNumber1 = '7973417773';
   const phoneNumber2 = '7986295488';
-  const whatsappNumber = '919815097851';
+  const whatsappNumber = '917973417773';
   const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -50,10 +50,7 @@ function Navbar() {
       <div className="nav-container">
         <Link to="/" className="logo" onClick={closeMenu}>
           <div className="logo-icon">
-            <img 
-              src="https://i.postimg.cc/qByxbLtZ/images-removebg-preview.png" 
-              alt="RiM Logo" 
-            />
+
           </div>
           <div className="logo-text">
             <span className="logo-main">RiM</span>

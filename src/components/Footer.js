@@ -6,9 +6,9 @@ function Footer() {
   const currentYear = new Date().getFullYear();
   
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '9815097851';
+  const phoneNumber1 = '7973417773';
   const phoneNumber2 = '7986295488';
-  const whatsappNumber = '919815097851';
+  const whatsappNumber = '917973417773';
   const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, control panels, and bulk pricing.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -28,7 +28,6 @@ function Footer() {
                 alt="RiM Logo" 
               />
             </div>
-            <h3>RiM</h3>
           </div>
           <p className="brand-tagline">Royal Industries Mansa | Since 2005</p>
           <p className="brand-description">Leading manufacturer of premium electrical switchgear products including Changeover Switches, MCB Boxes, Control Panels, Busbar Chambers, and complete industrial electrical solutions. ISI marked with 5+ year warranty.</p>
@@ -113,6 +112,8 @@ function Footer() {
                 <a href={`tel:${phoneNumber1}`}>{phoneNumber1}</a>
                 <br />
                 <a href={`tel:${phoneNumber2}`}>{phoneNumber2}</a>
+                <br></br>
+                <p>rimswitchgear@gmail.com</p>
               </span>
             </li>
             <li>

@@ -30,7 +30,7 @@ function About() {
             </div>
             <div className="hero-stat">
               <span className="stat-number">100%</span>
-              <span className="stat-label"></span>
+              <span className="stat-label">Authentic Product</span>
             </div>
           </div>
         </div>

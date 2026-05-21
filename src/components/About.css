@@ -90,11 +90,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&auto=format');
+    background-image: url('https://i.postimg.cc/tRtJrSbk/SP4-2.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    opacity: 0.15;
+    opacity: 0.40;
     pointer-events: none;
 }
 
@@ -272,7 +272,7 @@
     background: linear-gradient(135deg, var(--orthiva-sage-light), var(--orthiva-sage));
     border-radius: 30px;
     height: 400px;
-    background-image: url('https://media.istockphoto.com/id/876660936/photo/double-exposure-of-engineer-or-technician-man-pointing-finger-control-switch-gear-electrical.jpg?s=612x612&w=0&k=20&c=nfxU_3WuiuemGmSvSVLjOv3Mzxb_G2nuRd1s9ytFuUQ=');
+    background-image: url('https://i.postimg.cc/mD9z2BKm/DD28-1.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

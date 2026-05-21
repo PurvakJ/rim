@@ -94,7 +94,7 @@ function Reviews() {
     <div className="reviews-page">
       <section className="reviews-hero">
         <div className="container">
-          <div className="hero-badge">Customer Stories</div>
+          <div className="hero-badge" style={{ color: 'white' }}>Customer Stories</div>
           <div className="hero-icon">⚡</div>
           <h1>What Our <span>Customers Say</span></h1>
           <p>Real experiences from 500+ industrial clients and electricians who trust RiM switchgear products</p>

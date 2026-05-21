@@ -97,11 +97,15 @@ function Products() {
       setProducts(sanitizedProducts);
       
       const uniqueCategories = [...new Set(sanitizedProducts.map(product => product.category).filter(Boolean))];
-      const dynamicCategories = uniqueCategories.map(cat => ({
-        value: cat,
-        label: getCategoryDisplayName(cat),
-        icon: getCategoryIcon(cat)
-      }));
+      
+      // Sort categories alphabetically by their display name
+      const dynamicCategories = uniqueCategories
+        .map(cat => ({
+          value: cat,
+          label: getCategoryDisplayName(cat),
+          icon: getCategoryIcon(cat)
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)); // Sort A to Z by label
       
       setCategories([
         { value: 'all', label: 'All Products', icon: '⚡' },
@@ -121,11 +125,15 @@ function Products() {
       setProducts(fallbackProducts);
       
       const uniqueCategories = [...new Set(fallbackProducts.map(product => product.category))];
-      const dynamicCategories = uniqueCategories.map(cat => ({
-        value: cat,
-        label: getCategoryDisplayName(cat),
-        icon: getCategoryIcon(cat)
-      }));
+      
+      // Sort categories alphabetically by their display name
+      const dynamicCategories = uniqueCategories
+        .map(cat => ({
+          value: cat,
+          label: getCategoryDisplayName(cat),
+          icon: getCategoryIcon(cat)
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)); // Sort A to Z by label
       
       setCategories([
         { value: 'all', label: 'All Products', icon: '⚡' },
@@ -153,15 +161,32 @@ function Products() {
       case 'price-high':
         filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
         break;
-      case 'name':
+      case 'name-asc':
         filtered.sort((a, b) => getProductName(a).localeCompare(getProductName(b)));
+        break;
+      case 'name-desc':
+        filtered.sort((a, b) => getProductName(b).localeCompare(getProductName(a)));
+        break;
+      case 'category-asc':
+        filtered.sort((a, b) => {
+          const categoryA = getCategoryDisplayName(a.category) || '';
+          const categoryB = getCategoryDisplayName(b.category) || '';
+          return categoryA.localeCompare(categoryB);
+        });
+        break;
+      case 'category-desc':
+        filtered.sort((a, b) => {
+          const categoryA = getCategoryDisplayName(a.category) || '';
+          const categoryB = getCategoryDisplayName(b.category) || '';
+          return categoryB.localeCompare(categoryA);
+        });
         break;
       default:
         filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     }
 
     setFilteredProducts(filtered);
-  }, [products, category, searchTerm, sortBy]);
+  }, [products, category, searchTerm, sortBy, getCategoryDisplayName]);
 
   useEffect(() => {
     loadProducts();
@@ -216,7 +241,7 @@ function Products() {
     <div className="products-page">
       <section className="products-hero">
         <div className="container">
-          <div className="hero-badge">RiM - Royal Industries Mansa</div>
+        <div className="hero-badge" style={{ color: 'white' }}>RiM - Royal Industries Mansa</div>
           <div className="hero-icon">⚡</div>
           <h1>Our <span>Switchgear Collection</span></h1>
           <p>Discover premium quality electrical products for industrial and residential needs. ISI marked with 5+ year warranty.</p>
@@ -239,20 +264,7 @@ function Products() {
               ))}
             </select>
           </div>
-          
-          <div className="filter-group">
-            <label>Sort by:</label>
-            <select 
-              value={sortBy} 
-              onChange={(e) => setSortBy(e.target.value)}
-              className="filter-select"
-            >
-              <option value="default">Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="name">Name: A to Z</option>
-            </select>
-          </div>
+        
           
           <div className="filter-group search-group">
             <label>Search:</label>
@@ -313,9 +325,6 @@ function Products() {
                           <span>⚡</span>
                         </div>
                       )}
-                      {product.featured && (
-                        <div className="product-badge">Bestseller</div>
-                      )}
                       {product.images && product.images.length > 1 && (
                         <div className="image-count-badge">
                           +{product.images.length - 1}
@@ -326,10 +335,19 @@ function Products() {
                       <span className="product-category">
                         {getCategoryIcon(product.category)} {getCategoryName(product.category)}
                       </span>
-                      <h3 className="product-title">{renderProductName(product)}</h3>
-                      <div className="product-price">₹{(product.price || 0).toLocaleString()}</div>
+                      <h3 className="product-title" style={{
+  fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
+  fontSize: 'clamp(0.9rem, 2vw, 1.3rem)',
+  fontWeight: '600',
+  lineHeight: '1.4',
+  color: '#1f2937',
+  marginBottom: '0.5rem',
+  letterSpacing: '-0.01em'
+}}>
+  {renderProductDescription(product)}
+</h3>
                       <p className="product-description">
-                        {renderProductDescription(product, 70)}
+                        Code - {renderProductName(product, 70)} 
                       </p>
                       <div className="product-footer">
                         <button className="view-details-btn">View Details →</button>
@@ -402,9 +420,20 @@ function Products() {
               <span className="product-category-tag">
                 {getCategoryIcon(selectedProduct.category)} {getCategoryName(selectedProduct.category)}
               </span>
-              <h2>{renderProductName(selectedProduct)}</h2>
-              <div className="price-tag">₹{(selectedProduct.price || 0).toLocaleString()}</div>
-              <p className="full-description">{renderProductDescription(selectedProduct, 500)}</p>
+              <h2 style={{
+  fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
+  fontSize: 'clamp(1.2rem, 4vw, 1.8rem)',
+  fontWeight: '600',
+  lineHeight: '1.3',
+  color: '#1e293b',
+  marginBottom: '1rem',
+  letterSpacing: '-0.02em'
+}}>
+  {renderProductDescription(selectedProduct)}
+</h2>
+              <p className="full-description">
+                Code - {renderProductName(selectedProduct, 500)} 
+              </p>
               <div className="contact-actions">
                 <a href={`tel:${phoneNumber1}`} className="call-now-btn">📞 Call for Best Price</a>
                 <button onClick={() => openWhatsApp(renderProductName(selectedProduct))} className="wa-consult-btn">

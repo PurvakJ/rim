@@ -1,11 +1,11 @@
-// pages/Home.js - Updated with 6 featured products and modern design patterns
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+// pages/Home.js - Updated with 3 random + 3 static featured products
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getProducts, getReviews, addReview } from '../api';
 import './Home.css';
 
 const Home = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [, setCurrentSlide] = useState(0);
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -18,6 +18,72 @@ const Home = () => {
     rating: 5,
     comment: ''
   });
+
+  // Add these with your other useState declarations
+  const [welcomeCarouselIndex, setWelcomeCarouselIndex] = useState(0);
+
+  // Static Featured Products (Always Shown) - Wrapped in useMemo to prevent recreation on every render
+  const staticFeaturedProducts = useMemo(() => [
+    {
+      id: 'static-1',
+      name: "DMC KIT KAT ",
+      price: 4850,
+      description: "KIT KAT 63 AMP (DMC)",
+      images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348519/WhatsApp_Image_2026-05-21_at_12.47.05_3_cwfj0g.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.06_j0erls.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.05_4_pqucau.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.06_1_vgp5fu.jpg"],
+      category: "DMC KIT KAT",
+      featured: true
+    },
+    {
+      id: 'static-2',
+      name: "DMC KIT KAT",
+      price: 1850,
+      description: "KIT KAT 132 AMP (DMC)",
+      images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348523/WhatsApp_Image_2026-05-21_at_12.47.05-removebg-preview_1_vgeliy.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348522/WhatsApp_Image_2026-05-21_at_12.47.05__1_-removebg-preview_coooiy.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.05__2_-removebg-preview_s2o2g0.png"],
+      category: "DMC KIT KAT",
+      featured: true
+    },
+    {
+      id: 'static-3',
+      name: "DMC KIT KAT",
+      price: 6250,
+      description: "KIT KAT 100 AMP (DMC)",
+      images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2703-removebg-preview_qnuubh.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2705-removebg-preview_gtwdhn.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2704-removebg-preview_qcndje.png"],
+      category: "DMC KIT KAT",
+      featured: true
+    }
+  ], []); // Empty dependency array since this data never changes
+
+  // Welcome Carousel Images - Also wrapped in useMemo for consistency
+  const welcomeCarouselImages = useMemo(() => [
+    {
+      url: "https://i.postimg.cc/jdx5BHqZ/SP4-3.jpg",
+      alt: "Submersible Control Panel",
+      caption: "Control Panels"
+    },
+    {
+      url: "https://i.postimg.cc/7YwGwv9f/MCB23-2.jpg",
+      alt: "Circuit Breakers",
+      caption: "Circuit Breakers"
+    },
+    {
+      url: "https://i.postimg.cc/Jz8QfdDY/DD23-3.jpg",
+      alt: "MCB Boxes",
+      caption: "MCB Distribution Boxes"
+    },
+    {
+      url: "https://i.postimg.cc/Vvcw98vZ/705-2.jpg",
+      alt: "Busbar Chambers",
+      caption: "Busbar Chambers"
+    }
+  ], []);
+
+  // Auto-slide for welcome carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWelcomeCarouselIndex((prev) => (prev + 1) % welcomeCarouselImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [welcomeCarouselImages.length]);
 
   // Refs for lazy loading animations
   const lazyElementsRef = useRef([]);
@@ -38,7 +104,7 @@ const Home = () => {
   const justdialLink = "https://www.justdial.com/Mansa/Royal-Industries-Mansa-Kot-Lallu/9999P1652-1652-171230152122-Z2M7_BZDET";
 
   // Updated Carousel for Electrical Switchgear Industry
-  const carouselImages = [
+  const carouselImages = useMemo(() => [
     {
       url: "https://i.postimg.cc/hj9pHW40/close-up-circuit-breakers-wire-control-panel.jpg",
       title: "Heavy Duty Switchgears",
@@ -59,10 +125,10 @@ const Home = () => {
       title: "Trusted Since Decades",
       subtitle: "ISI Marked & Premium Quality Components"
     }
-  ];
+  ], []);
 
   // --- New Images Array for Testimonials Section ---
-  const testimonialImages = [
+  const testimonialImages = useMemo(() => [
     { url: "https://i.postimg.cc/QdNXnhmD/702-8.jpg", name: "702" },
     { url: "https://i.postimg.cc/MpZWrqD9/614-4.jpg", name: "614" },
     { url: "https://i.postimg.cc/yxwVbZfq/601-1.png", name: "601" },
@@ -71,7 +137,7 @@ const Home = () => {
     { url: "https://i.postimg.cc/3Rk6kbBH/KVR-1.jpg", name: "KVR" },
     { url: "https://i.postimg.cc/SQ7RZT4W/SD3-1.jpg", name: "SD3" },
     { url: "https://i.postimg.cc/ZncqCRHQ/SP1-2.jpg", name: "SP1" }
-  ];
+  ], []);
 
   // Helper Functions
   const getCategoryDisplayName = useCallback((categoryValue) => {
@@ -85,7 +151,9 @@ const Home = () => {
       'protective': 'Immersion Rods & Anti-Mosquito',
       'wiring': 'Plugs, Sockets & Power Strips',
       'capacitors': 'Power Capacitors',
-      'mccb': 'MCCB & Moulded Case Breakers'
+      'mccb': 'MCCB & Moulded Case Breakers',
+      'submersible': 'Submersible Control Panels',
+      'main-switch': 'Main Switches'
     };
     return displayNames[categoryValue] || categoryValue?.replace(/-/g, ' ').toUpperCase();
   }, []);
@@ -101,7 +169,9 @@ const Home = () => {
       'protective': '🛡️',
       'wiring': '🔌',
       'capacitors': '⚛️',
-      'mccb': '🔒'
+      'mccb': '🔒',
+      'submersible': '💧',
+      'main-switch': '🔘'
     };
     return icons[category] || '🔌';
   }, []);
@@ -124,54 +194,28 @@ const Home = () => {
   };
 
   // Gallery Items (Switchgear Themed)
-  const galleryItems = [
-    { id: 1, image: "https://i.postimg.cc/4x9t8vxv/voltage-distributor-with-automatic-switches-electrical-background.jpg", title: "M C C B", fullTitle: "MCCB", description: "Moulded Case Circuit Breakers" },
-    { id: 2, image: "https://thumbs.dreamstime.com/b/switchgear-switch-disconnector-fuse-unit-triple-pole-neutral-metalclad-manual-changeover-box-hand-switches-electric-knife-250766405.jpg", title: "C H A N G E O V E R", fullTitle: "CHANGEOVER", description: "Rotary & Auto Changeovers" },
-    { id: 3, image: "https://m.media-amazon.com/images/I/61oL5bdQ7uL._AC_UF1000,1000_QL80_.jpg", title: "B U S B A R", fullTitle: "BUS BAR", description: "High Conductivity Chambers" },
+  const galleryItems = useMemo(() => [
+    { id: 1, image: "https://i.postimg.cc/HkLr8Qfy/MCCB1-1.jpg", title: "M C C B", fullTitle: "MCCB", description: "Moulded Case Circuit Breakers" },
+    { id: 2, image: "https://i.postimg.cc/YSsqWZQz/609-3.jpg", title: "C H A N G E O V E R", fullTitle: "CHANGEOVER", description: "Rotary & Auto Changeovers" },
+    { id: 3, image: "https://i.postimg.cc/Vvcw98vZ/705-2.jpg", title: "B U S B A R", fullTitle: "BUS BAR", description: "High Conductivity Chambers" },
     { id: 4, image: "https://images.thdstatic.com/productImages/356d4bac-8d66-4c13-9824-2bd05c716a2b/svn/power-strips-ylpt-90-64_1000.jpg", title: "P O W E R  S T R I P S", fullTitle: "POWER STRIPS", description: "To Power Up Your Devices" }
-  ];
+  ], []);
 
-
-  // Updated to get 6 featured products
-  const getFeaturedProducts = (allProducts) => {
+  // Get random products from the list
+  const getRandomProducts = (allProducts, count = 3) => {
     if (!allProducts || allProducts.length === 0) return [];
     
-    const totalProducts = allProducts.length;
-    
-    if (totalProducts < 6) return allProducts;
-    
-    // Divide into 6 segments for better variety
-    const segmentSize = Math.floor(totalProducts / 6);
-    
-    const segments = [
-      allProducts.slice(0, segmentSize),
-      allProducts.slice(segmentSize, 2 * segmentSize),
-      allProducts.slice(2 * segmentSize, 3 * segmentSize),
-      allProducts.slice(3 * segmentSize, 4 * segmentSize),
-      allProducts.slice(4 * segmentSize, 5 * segmentSize),
-      allProducts.slice(5 * segmentSize, totalProducts)
-    ];
-    
-    const selectedProducts = [];
-    
-    // Pick random product from each segment
-    segments.forEach(segment => {
-      if (segment.length > 0) {
-        const idx = Math.floor(Math.random() * segment.length);
-        selectedProducts.push(segment[idx]);
-      }
-    });
-    
-    // Shuffle the selected products for varied order
-    for (let i = selectedProducts.length - 1; i > 0; i--) {
+    // Shuffle array and take first 'count' items
+    const shuffled = [...allProducts];
+    for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [selectedProducts[i], selectedProducts[j]] = [selectedProducts[j], selectedProducts[i]];
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     
-    return selectedProducts;
+    return shuffled.slice(0, count);
   };
 
-  // Load Products with 6 featured products
+  // Load Products with 3 random + 3 static products
   const loadProducts = useCallback(async () => {
     try {
       const data = await getProducts();
@@ -181,32 +225,28 @@ const Home = () => {
       
       console.log(`Total products available: ${totalCount}`);
       
-      let productsToShow = [];
-      
-      if (validProducts.length >= 6) {
-        productsToShow = getFeaturedProducts(validProducts);
-      } else {
-        productsToShow = validProducts;
+      // Get 3 random products from the backend
+      let randomProducts = [];
+      if (validProducts.length > 0) {
+        randomProducts = getRandomProducts(validProducts, 3);
+        console.log("Selected 3 random products:", randomProducts.map(p => ({ id: p.id, name: p.name })));
       }
       
-      setFeaturedProducts(productsToShow);
+      // Combine static products (always shown) with random products (dynamically selected)
+      const combinedFeaturedProducts = [
+        ...staticFeaturedProducts,
+        ...randomProducts
+      ];
       
-      console.log("Selected 6 featured products:", productsToShow.map(p => ({ id: p.id, name: p.name })));
+      setFeaturedProducts(combinedFeaturedProducts);
+      console.log("Total featured products:", combinedFeaturedProducts.length);
       
     } catch (error) {
       console.error('Error loading products:', error);
-      // Fallback products - 6 items
-      const fallbackProducts = [
-        { id: 1, name: "Auto Changeover Switch (63A/100A)", price: 3850, description: "Automatic transfer switch for generators & mains. Suitable for submersible pumps and home automation.", images: ["https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format"], category: "changeover", featured: true },
-        { id: 67, name: "Double Door MCB Box (24 Way)", price: 2850, description: "Industrial grade distribution box with heavy duty build.", images: ["https://images.unsplash.com/photo-1562408590-e32931084e23?w=600&auto=format"], category: "mcb", featured: true },
-        { id: 189, name: "Reverse Forward Control Panel (15 HP)", price: 12500, description: "Complete motor starter with overload protection.", images: ["https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format"], category: "panel", featured: true },
-        { id: 45, name: "Busbar Chamber (200A)", price: 4850, description: "Copper busbar chamber for efficient power distribution.", images: ["https://images.unsplash.com/photo-1581092335391-9c2e7f1b8c3d?w=600&auto=format"], category: "busbar", featured: true },
-        { id: 78, name: "MCCB (100A-800A)", price: 3250, description: "Moulded Case Circuit Breaker with thermal-magnetic protection.", images: ["https://images.unsplash.com/photo-1581092335871-4b4e4b8c5e1a?w=600&auto=format"], category: "mccb", featured: true },
-        { id: 92, name: "Power Capacitor (25kVAR)", price: 2150, description: "Power factor correction capacitor for industrial use.", images: ["https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&auto=format"], category: "capacitors", featured: true }
-      ];
-      setFeaturedProducts(fallbackProducts);
+      // Fallback - use only static products if API fails
+      setFeaturedProducts(staticFeaturedProducts);
     }
-  }, []);
+  }, [staticFeaturedProducts]); // Now staticFeaturedProducts is stable due to useMemo
 
   const loadReviews = useCallback(async () => {
     try {
@@ -321,9 +361,6 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [carouselImages.length]);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
-
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     if (!reviewFormData.name || !reviewFormData.comment) {
@@ -350,96 +387,108 @@ const Home = () => {
       {/* Scroll Progress Indicator */}
       <div className="scroll-progress"></div>
 
-      {/* Hero Carousel Section */}
-      <section className="carousel-section">
-        <div className="carousel-container">
-          <div className="carousel-slide" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-            {carouselImages.map((image, index) => (
-              <div key={index} className="carousel-item">
-                <div className="carousel-image-wrapper">
-                  <img src={image.url} alt={image.title} className="carousel-image" loading={index === 0 ? "eager" : "lazy"} />
-                  <div className="carousel-overlay">
-                    <div className="carousel-content">
-                      <span className="carousel-badge lazy-fade-in" ref={el => addToLazyRefs(el)}>RiM - Royal Industries Mansa</span>
-                      <h2 className="lazy-fade-in" ref={el => addToLazyRefs(el)}>{image.title}</h2>
-                      <p className="lazy-fade-in" ref={el => addToLazyRefs(el)}>{image.subtitle}</p>
-                      <Link to="/products" className="btn-primary lazy-fade-in" ref={el => addToLazyRefs(el)}>Explore Switchgear →</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <button className="carousel-btn prev" onClick={prevSlide} aria-label="Previous slide">❮</button>
-          <button className="carousel-btn next" onClick={nextSlide} aria-label="Next slide">❯</button>
-          <div className="carousel-dots">
-            {carouselImages.map((_, index) => (
-              <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => setCurrentSlide(index)} aria-label={`Go to slide ${index + 1}`} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Welcome Section */}
+      {/* Welcome Section with Image Carousel */}
       <section className="welcome-section">
         <div className="container">
           <div className="welcome-grid">
-            <div className="welcome-image lazy-slide-left" ref={el => addToLazyRefs(el, 'lazy-slide-left')}>
-              <img 
-                src="https://i.postimg.cc/28XF98dG/electrical-panel-electric-meter-circuit-breakers-electric-frequency-converter-motor-speed-controller.jpg" 
-                alt="RiM Electrical Switchgear Manufacturing" 
-                className="welcome-img"
-              />
-              <div className="welcome-image-badge">
-                <span>⚡</span>
+            <div className="welcome-image-carousel lazy-slide-left" ref={el => addToLazyRefs(el, 'lazy-slide-left')}>
+              <div className="carousel-container-small">
+                <div className="carousel-track-small" style={{ transform: `translateX(-${welcomeCarouselIndex * 100}%)` }}>
+                  {welcomeCarouselImages.map((image, index) => (
+                    <div key={index} className="carousel-item-small">
+                      <img 
+                        src={image.url} 
+                        alt={image.alt}
+                        className="welcome-img"
+                      />
+                      <div className="carousel-caption-small">
+                        <span>{image.caption}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button className="carousel-nav-small prev" onClick={() => {
+                  setWelcomeCarouselIndex((prev) => (prev - 1 + welcomeCarouselImages.length) % welcomeCarouselImages.length);
+                }}>❮</button>
+                <button className="carousel-nav-small next" onClick={() => {
+                  setWelcomeCarouselIndex((prev) => (prev + 1) % welcomeCarouselImages.length);
+                }}>❯</button>
+                <div className="carousel-dots-small">
+                  {welcomeCarouselImages.map((_, index) => (
+                    <button 
+                      key={index} 
+                      className={`dot-small ${welcomeCarouselIndex === index ? 'active' : ''}`}
+                      onClick={() => setWelcomeCarouselIndex(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+              {/* Buttons below the carousel */}
+              <div className="welcome-buttons-carousel">
+                <Link to="/products" className="btn-primary">Browse Products</Link>
               </div>
             </div>
             <div className="welcome-content lazy-slide-right" ref={el => addToLazyRefs(el, 'lazy-slide-right')}>
-              <div className="welcome-badge">Powering Industries & Homes Since Decades</div>
-              <h1>Welcome to <span>RiM</span> <span style={{ fontSize: '1.8rem', display: 'block' }}>Royal Industries Mansa</span></h1>
-              <p>Your trusted partner for high-quality electrical switchgear solutions. We manufacture a complete range of Changeovers, Main Switches, Busbar Chambers, Control Panels, MCB Boxes, and Industrial Safety Components that meet stringent BIS standards.</p>
-              <div className="welcome-buttons">
-                <Link to="/products" className="btn-primary">Browse Products</Link>
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-secondary">WhatsApp Inquiry</a>
-              </div>
+              <h1>Welcome To <span style={{ fontSize: '2rem', display: 'block' , fontFamily:'arial-black', color:'red'}}>Royal Industries Mansa (RiM)</span></h1>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Products Section - 6 Products */}
+      {/* Featured Products Section - 3 Static + 3 Random = 6 Products */}
       <section className="featured-products">
         <div className="container">
           <div className="section-header lazy-fade-in" ref={el => addToLazyRefs(el)}>
-            <div className="section-badge">Best Sellers</div>
-            <h2>Featured <span>Electrical Products</span></h2>
+            <h2>Featured <span>Products</span></h2>
             <p className="section-subtitle">Premium Quality Switchgear for Every Need</p>
           </div>
           <div className="products-grid products-grid-6">
             {featuredProducts.length > 0 ? (
-              featuredProducts.map((product, idx) => (
-                <div key={product.id} className="product-card" onClick={() => setSelectedProduct(product)} ref={el => addToProductCards(el)} style={{ transitionDelay: `${idx * 0.05}s` }}>
-                  <div className="product-image-container">
-                    {product.images && product.images[0] ? 
-                      <img src={product.images[0]} alt={product.name} className="product-image" loading="lazy" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=400&auto=format'; }} />
-                      : <div className="image-placeholder"><span>⚡</span></div>
-                    }
-                    {product.featured && <div className="product-badge">Bestseller</div>}
+              featuredProducts.map((product, idx) => {
+                // Check if this is a static product (has 'static-' in id)
+                const isStaticProduct = product.id && product.id.toString().startsWith('static-');
+                
+                return (
+                  <div key={product.id} className={`product-card ${isStaticProduct ? 'static-product' : 'random-product'}`} onClick={() => setSelectedProduct(product)} ref={el => addToProductCards(el)} style={{ transitionDelay: `${idx * 0.05}s` }}>
+                    <div className="product-image-container">
+                      {product.images && product.images[0] ? 
+                        <img src={product.images[0]} alt={product.name} className="product-image" loading="lazy" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=400&auto=format'; }} />
+                        : <div className="image-placeholder"><span>⚡</span></div>
+                      }
+                    </div>
+                    <div className="product-info">
+                      <span className="product-category">{getCategoryIcon(product.category)} {getCategoryDisplayName(product.category)}</span>
+                      <h3 className="product-title" style={{
+  fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
+  fontSize: '1.3rem',
+  fontWeight: '600',
+  lineHeight: '1.4',
+  color: '#1a1a1a',
+  marginBottom: '0.5rem'
+}}>
+  {product.description?.substring(0, 70)}
+</h3>
+                      <p className="product-description">Code - {product.name}</p>
+
+                      <div className="product-footer">
+                        <button className="view-details-btn">View Details →</button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="product-info">
-                    <span className="product-category">{getCategoryIcon(product.category)} {getCategoryDisplayName(product.category)}</span>
-                    <h3 className="product-title">{product.name}</h3>
-                    <div className="product-price">₹{product.price?.toLocaleString() || '0'}</div>
-                    <p className="product-description">{product.description?.substring(0, 70)}...</p>
-                    <div className="product-footer"><button className="view-details-btn">View Details →</button></div>
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
-              <div className="no-products"><div className="loading-container"><div className="spinner"></div><p>Loading industrial products...</p></div></div>
+              <div className="no-products">
+                <div className="loading-container">
+                  <div className="spinner"></div>
+                  <p>Loading industrial products...</p>
+                </div>
+              </div>
             )}
           </div>
-          <div className="view-all-container"><Link to="/products" className="btn-view-all">View Complete Range →</Link></div>
+          <div className="view-all-container">
+            <Link to="/products" className="btn-view-all">View Complete Range →</Link>
+          </div>
         </div>
       </section>
 
@@ -456,7 +505,7 @@ const Home = () => {
               <div className="parallax-feature"><span>✓</span><p>Reverse/Forward & LT Panels</p></div>
               <div className="parallax-feature"><span>✓</span><p>DMC Connectors & Thimbles</p></div>
             </div>
-            <Link to="/products" className="btn-parallax">Get Catalog →</Link>
+            <Link to="/catalog" className="btn-parallax">Get Catalog →</Link>
           </div>
         </div>
       </section>
@@ -473,26 +522,26 @@ const Home = () => {
         ))}
       </div>
 
-{/* --- Image Strip Section with Hover Product Names --- */}
-<section className="image-strip-section">
-  <div className="container">
-    <div className="section-header lazy-fade-in" ref={el => addToLazyRefs(el)}>
-      <div className="section-badge">Our Works</div>
-      <h2>Project <span>Showcase</span></h2>
-      <p className="section-subtitle">Glimpses of our installations and products</p>
-    </div>
-    <div className="image-strip-grid">
-      {testimonialImages.map((item, idx) => (
-        <div key={idx} className="strip-item lazy-scale-up" ref={el => addToLazyRefs(el, 'lazy-scale-up')} style={{ transitionDelay: `${idx * 0.05}s` }}>
-          <img src={item.url} alt={item.name} loading="lazy" />
-          <div className="strip-overlay">
-            <span className="product-name">{item.name}</span>
+      {/* --- Image Strip Section with Hover Product Names --- */}
+      <section className="image-strip-section">
+        <div className="container">
+          <div className="section-header lazy-fade-in" ref={el => addToLazyRefs(el)}>
+            <div className="section-badge">Our Works</div>
+            <h2>Project <span>Showcase</span></h2>
+            <p className="section-subtitle">Glimpses of our installations and products</p>
+          </div>
+          <div className="image-strip-grid">
+            {testimonialImages.map((item, idx) => (
+              <div key={idx} className="strip-item lazy-scale-up" ref={el => addToLazyRefs(el, 'lazy-scale-up')} style={{ transitionDelay: `${idx * 0.05}s` }}>
+                <img src={item.url} alt={item.name} loading="lazy" />
+                <div className="strip-overlay">
+                  <span className="product-name">{item.name}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Reviews Section */}
       <section className="reviews-section">
@@ -533,10 +582,10 @@ const Home = () => {
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-wa">💬 Chat on WhatsApp</a>
             </div>
             <div className="cta-features">
-              <span>✓ GST Invoice</span>
-              <span>✓ Pan India Shipping</span>
-              <span>✓ Technical Support</span>
-            </div>
+  <span style={{ color: '#ffffff' }}>✓ GST Invoice</span>
+  <span style={{ color: '#ffffff' }}>✓ Pan India Shipping</span>
+  <span style={{ color: '#ffffff' }}>✓ Technical Support</span>
+</div>
           </div>
         </div>
       </section>
@@ -629,9 +678,19 @@ const Home = () => {
             </div>
             <div className="product-detail-info">
               <span className="product-category-tag">{getCategoryIcon(selectedProduct.category)} {getCategoryDisplayName(selectedProduct.category)}</span>
-              <h2>{selectedProduct.name}</h2>
-              <div className="price-tag">₹{selectedProduct.price?.toLocaleString() || '0'}</div>
-              <p className="full-description">{selectedProduct.description || 'Heavy-duty electrical switchgear designed for safety and long life. Comes with ISI marking and industry-leading quality.'}</p>
+              <h2 style={{ 
+  fontFamily: 'Arial, sans-serif',
+  fontSize: '1.5rem',
+  fontWeight: '600',
+  color: '#333'
+}}>
+  {selectedProduct.description}
+</h2>
+              <p className="full-description">
+                {selectedProduct.name
+                  ? `Code - ${selectedProduct.name} `
+                  : 'Heavy-duty electrical switchgear designed for safety and long life. Comes with ISI marking and industry-leading quality.'}
+              </p>
               <div className="contact-actions">
                 <a href={`tel:${phoneNumber1}`} className="call-now-btn">📞 Call for Best Price</a>
                 <button onClick={() => openWhatsApp(selectedProduct.name)} className="wa-consult-btn">💬 Chat on WhatsApp</button>

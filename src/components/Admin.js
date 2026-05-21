@@ -13,31 +13,28 @@ function Admin() {
   const [loginError, setLoginError] = useState('');
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [uploadingImages, setUploadingImages] = useState(false);
   const [uploadProgress, setUploadProgress] = useState({});
-  const [categories, setCategories] = useState([
-    'changeover',
-    'mcb',
-    'panel',
-    'motor-starters',
-    'busbar',
-    'connectors',
-    'protective',
-    'wiring',
-    'capacitors',
-    'mccb'
-  ]);
+  
+  // Filter states for products
+  const [category, setCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortBy, setSortBy] = useState('default');
+  
+  const [categories, setCategories] = useState([]); // Will be populated from backend
   const [newCategory, setNewCategory] = useState('');
   const [showCategoryInput, setShowCategoryInput] = useState(false);
+  const [sortedCategories, setSortedCategories] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     price: '',
-    category: 'changeover',
+    category: '',
     featured: false,
     images: []
   });
@@ -54,12 +51,101 @@ function Admin() {
     password: 'RIM@2025'
   };
 
+  // Helper function to safely get string value
+  const safeToString = (value) => {
+    if (value === null || value === undefined) return '';
+    return String(value);
+  };
+
+  const getCategoryDisplayName = useCallback((categoryValue) => {
+    const displayNames = {
+      'changeover': 'Changeover Switches',
+      'mcb': 'MCB & Distribution Boxes',
+      'panel': 'Control Panels',
+      'motor-starters': 'Reverse/Forward & LT Control',
+      'busbar': 'Busbar Chambers',
+      'connectors': 'DMC Connectors & Thimbles',
+      'protective': 'Immersion Rods & Anti-Mosquito',
+      'wiring': 'Plugs, Sockets & Power Strips',
+      'capacitors': 'Power Capacitors',
+      'mccb': 'MCCB & Moulded Case Breakers',
+      'main-switch': 'Main Switches',
+      'submersible': 'Submersible Control Panels',
+      'multiplug': 'Multiplugs & Power Strips',
+      'kitkat': 'Kit-Kat Series (Copper/Brass)',
+      'kvr': 'KVR Heavy Duty Boxes',
+      'exhaust': 'Fan Exhaust Louvers',
+      'holder': 'Holders & Sockets'
+    };
+    return displayNames[categoryValue] || categoryValue?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }, []);
+
+  const getCategoryIcon = useCallback((category) => {
+    const icons = {
+      'changeover': '🔄',
+      'mcb': '⚡',
+      'panel': '📟',
+      'motor-starters': '⏪⏩',
+      'busbar': '〰️',
+      'connectors': '🔗',
+      'protective': '🛡️',
+      'wiring': '🔌',
+      'capacitors': '⚛️',
+      'mccb': '🔒',
+      'main-switch': '🔘',
+      'submersible': '💧',
+      'multiplug': '🔌',
+      'kitkat': '🥈',
+      'kvr': '📦',
+      'exhaust': '🌀',
+      'holder': '💡'
+    };
+    return icons[category] || '⚡';
+  }, []);
+
+  // Extract unique categories from products
+  const extractCategoriesFromProducts = useCallback((productsData) => {
+    const uniqueCategories = [...new Set(productsData.map(product => product.category).filter(Boolean))];
+    return uniqueCategories;
+  }, []);
+
+  // Sort categories alphabetically by display name
+  const sortCategoriesAlphabetically = useCallback((categoriesList) => {
+    return [...categoriesList].sort((a, b) => {
+      const displayNameA = getCategoryDisplayName(a);
+      const displayNameB = getCategoryDisplayName(b);
+      return displayNameA.localeCompare(displayNameB);
+    });
+  }, [getCategoryDisplayName]);
+
+  // Update sorted categories whenever categories change
+  useEffect(() => {
+    const sorted = sortCategoriesAlphabetically(categories);
+    setSortedCategories(sorted);
+    
+    // Set default category if none selected and categories exist
+    if (formData.category === '' && sorted.length > 0) {
+      setFormData(prev => ({ ...prev, category: sorted[0] }));
+    }
+  }, [categories, sortCategoriesAlphabetically, formData.category]);
+
   // Define loadData with useCallback to prevent unnecessary re-renders
   const loadData = useCallback(async () => {
     try {
       if (activeTab === 'products') {
         const data = await getProducts();
-        setProducts(data);
+        // Sanitize products to ensure name and description are strings
+        const sanitizedProducts = data.map(product => ({
+          ...product,
+          name: safeToString(product.name),
+          description: safeToString(product.description),
+          price: product.price || 0
+        }));
+        setProducts(sanitizedProducts);
+        
+        // Extract categories from the products data
+        const extractedCategories = extractCategoriesFromProducts(sanitizedProducts);
+        setCategories(extractedCategories);
       } else if (activeTab === 'appointments') {
         const data = await getAppointments();
         setAppointments(data);
@@ -73,7 +159,53 @@ function Admin() {
         handleLogout();
       }
     }
-  }, [activeTab]);
+  }, [activeTab, extractCategoriesFromProducts]);
+
+  // Filter and sort products with safe string conversion
+  const filterAndSortProducts = useCallback(() => {
+    let filtered = products.filter(product => {
+      const matchesCategory = category === 'all' || product.category === category;
+      const productName = safeToString(product.name).toLowerCase();
+      const productDescription = safeToString(product.description).toLowerCase();
+      const searchTermLower = safeToString(searchTerm).toLowerCase();
+      const matchesSearch = productName.includes(searchTermLower) ||
+                           productDescription.includes(searchTermLower);
+      return matchesCategory && matchesSearch;
+    });
+
+    switch(sortBy) {
+      case 'price-low':
+        filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+        break;
+      case 'price-high':
+        filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+        break;
+      case 'name-asc':
+        filtered.sort((a, b) => safeToString(a.name).localeCompare(safeToString(b.name)));
+        break;
+      case 'name-desc':
+        filtered.sort((a, b) => safeToString(b.name).localeCompare(safeToString(a.name)));
+        break;
+      case 'category-asc':
+        filtered.sort((a, b) => {
+          const categoryA = getCategoryDisplayName(a.category) || '';
+          const categoryB = getCategoryDisplayName(b.category) || '';
+          return categoryA.localeCompare(categoryB);
+        });
+        break;
+      case 'category-desc':
+        filtered.sort((a, b) => {
+          const categoryA = getCategoryDisplayName(a.category) || '';
+          const categoryB = getCategoryDisplayName(b.category) || '';
+          return categoryB.localeCompare(categoryA);
+        });
+        break;
+      default:
+        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    }
+
+    setFilteredProducts(filtered);
+  }, [products, category, searchTerm, sortBy, getCategoryDisplayName]);
 
   // Check for existing auth on component mount
   useEffect(() => {
@@ -105,6 +237,15 @@ function Admin() {
     }
   }, [activeTab, isAuthenticated, loadData]);
 
+  // Apply filters when products, category, searchTerm, or sortBy changes
+  useEffect(() => {
+    if (products.length > 0) {
+      filterAndSortProducts();
+    } else {
+      setFilteredProducts([]);
+    }
+  }, [products, category, searchTerm, sortBy, filterAndSortProducts]);
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (loginData.username === ADMIN_CREDENTIALS.username && 
@@ -128,10 +269,15 @@ function Admin() {
     setIsAuthenticated(false);
     setActiveTab('products');
     setProducts([]);
+    setFilteredProducts([]);
     setAppointments([]);
     setReviews([]);
     setShowModal(false);
     setEditingItem(null);
+    setCategory('all');
+    setSearchTerm('');
+    setSortBy('default');
+    setCategories([]);
     
     window.location.reload();
   };
@@ -214,62 +360,26 @@ function Admin() {
     return uploadedUrls;
   };
 
-  const addNewCategory = () => {
-    if (newCategory && newCategory.trim() && !categories.includes(newCategory.trim().toLowerCase().replace(/\s+/g, '-'))) {
+  const addNewCategory = async () => {
+    if (newCategory && newCategory.trim()) {
       const categoryValue = newCategory.trim().toLowerCase().replace(/\s+/g, '-');
-      setCategories([...categories, categoryValue]);
+      
+      // Check if category already exists
+      if (categories.includes(categoryValue)) {
+        alert('Category already exists!');
+        return;
+      }
+      
+      // Add the new category to the list
+      const updatedCategories = [...categories, categoryValue];
+      setCategories(updatedCategories);
       setFormData({ ...formData, category: categoryValue });
       setNewCategory('');
       setShowCategoryInput(false);
-    } else if (categories.includes(newCategory.trim().toLowerCase().replace(/\s+/g, '-'))) {
-      alert('Category already exists!');
+      
+      // Note: The category will be permanently saved when a product with this category is added
+      alert('New category added! It will be available when you save a product with this category.');
     }
-  };
-
-  const getCategoryDisplayName = (categoryValue) => {
-    const displayNames = {
-      'changeover': 'Changeover Switches',
-      'mcb': 'MCB & Distribution Boxes',
-      'panel': 'Control Panels',
-      'motor-starters': 'Reverse/Forward & LT Control',
-      'busbar': 'Busbar Chambers',
-      'connectors': 'DMC Connectors & Thimbles',
-      'protective': 'Immersion Rods & Anti-Mosquito',
-      'wiring': 'Plugs, Sockets & Power Strips',
-      'capacitors': 'Power Capacitors',
-      'mccb': 'MCCB & Moulded Case Breakers',
-      'main-switch': 'Main Switches',
-      'submersible': 'Submersible Control Panels',
-      'multiplug': 'Multiplugs & Power Strips',
-      'kitkat': 'Kit-Kat Series (Copper/Brass)',
-      'kvr': 'KVR Heavy Duty Boxes',
-      'exhaust': 'Fan Exhaust Louvers',
-      'holder': 'Holders & Sockets'
-    };
-    return displayNames[categoryValue] || categoryValue.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  };
-
-  const getCategoryIcon = (category) => {
-    const icons = {
-      'changeover': '🔄',
-      'mcb': '⚡',
-      'panel': '📟',
-      'motor-starters': '⏪⏩',
-      'busbar': '〰️',
-      'connectors': '🔗',
-      'protective': '🛡️',
-      'wiring': '🔌',
-      'capacitors': '⚛️',
-      'mccb': '🔒',
-      'main-switch': '🔘',
-      'submersible': '💧',
-      'multiplug': '🔌',
-      'kitkat': '🥈',
-      'kvr': '📦',
-      'exhaust': '🌀',
-      'holder': '💡'
-    };
-    return icons[category] || '⚡';
   };
 
   const handleSubmit = async (e) => {
@@ -295,6 +405,8 @@ function Admin() {
 
     const productData = {
       ...formData,
+      name: safeToString(formData.name),
+      description: safeToString(formData.description),
       price: parseFloat(formData.price),
       images: allImages
     };
@@ -309,7 +421,7 @@ function Admin() {
       }
       setShowModal(false);
       resetForm();
-      loadData();
+      loadData(); // Reload data to refresh categories
     } catch (error) {
       console.error('Error saving product:', error);
       alert('Error saving product. Please try again.');
@@ -322,7 +434,7 @@ function Admin() {
         if (type === 'product') {
           await deleteProduct({ id: item.id });
           alert('Product deleted successfully!');
-          loadData();
+          loadData(); // Reload to refresh categories
         } else if (type === 'appointment') {
           await deleteAppointment({ id: item.id });
           alert('Appointment deleted successfully!');
@@ -369,7 +481,7 @@ function Admin() {
       name: '',
       description: '',
       price: '',
-      category: 'changeover',
+      category: sortedCategories.length > 0 ? sortedCategories[0] : '',
       featured: false,
       images: []
     });
@@ -382,8 +494,8 @@ function Admin() {
   const openEditModal = (product) => {
     setEditingItem(product);
     setFormData({
-      name: product.name,
-      description: product.description,
+      name: safeToString(product.name),
+      description: safeToString(product.description),
       price: product.price,
       category: product.category,
       featured: product.featured,
@@ -398,6 +510,12 @@ function Admin() {
   const removeExistingImage = (indexToRemove) => {
     const newImages = formData.images.filter((_, index) => index !== indexToRemove);
     setFormData({ ...formData, images: newImages });
+  };
+
+  const resetFilters = () => {
+    setCategory('all');
+    setSearchTerm('');
+    setSortBy('default');
   };
 
   if (isLoading) {
@@ -452,7 +570,7 @@ function Admin() {
           </form>
           <div className="login-footer">
             <p>📍 Quality Switchgear Solutions Since 2005</p>
-            <p>📞 Sales: 98150-97851 | 79862-95488</p>
+            <p>📞 Sales: 79734-17773 | 79862-95488</p>
           </div>
         </div>
       </div>
@@ -469,7 +587,7 @@ function Admin() {
             <span className="admin-badge">Royal Industries Mansa</span>
           </div>
           <div className="admin-contact-info">
-            <span>📞 98150-97851 | 79862-95488</span>
+            <span>📞 79734-17773 | 79862-95488</span>
             <button onClick={handleLogout} className="logout-btn">
               Logout
             </button>
@@ -508,62 +626,152 @@ function Admin() {
               + Add New Product
             </button>
           </div>
+
+          {/* Filters Section */}
+          <div className="filters-section">
+            <div className="filters-grid">
+              <div className="filter-group">
+                <label>Category:</label>
+                <select 
+                  value={category} 
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="filter-select"
+                  disabled={sortedCategories.length === 0}
+                >
+                  <option value="all">⚡ All Categories</option>
+                  {sortedCategories.map(cat => (
+                    <option key={cat} value={cat}>
+                      {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
+                    </option>
+                  ))}
+                </select>
+                {sortedCategories.length === 0 && (
+                  <span className="no-categories-msg">No categories available</span>
+                )}
+              </div>
+
+              <div className="filter-group search-group">
+                <label>🔍 Search:</label>
+                <input
+                  type="text"
+                  placeholder="Search by name or description..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
+              </div>
+
+              <div className="filter-group">
+                <label>📊 Sort By:</label>
+                <select 
+                  value={sortBy} 
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="filter-select"
+                >
+                  <option value="default">⭐ Featured First</option>
+                  <option value="price-low">💰 Price: Low to High</option>
+                  <option value="price-high">💰 Price: High to Low</option>
+                  <option value="name-asc">🔤 Name: A to Z</option>
+                  <option value="name-desc">🔤 Name: Z to A</option>
+                  <option value="category-asc">📂 Category: A to Z</option>
+                  <option value="category-desc">📂 Category: Z to A</option>
+                </select>
+              </div>
+
+              {(category !== 'all' || searchTerm || sortBy !== 'default') && (
+                <div className="filter-group filter-actions">
+                  <button onClick={resetFilters} className="btn-clear-filters">
+                    🗑️ Clear Filters
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="filter-summary">
+              <span>
+                Showing {filteredProducts.length} of {products.length} products
+                {searchTerm && <span> | Search: "{searchTerm}"</span>}
+                {category !== 'all' && <span> | Category: {getCategoryDisplayName(category)}</span>}
+                {sortBy !== 'default' && (
+                  <span> | Sorted by: {
+                    sortBy === 'price-low' ? 'Price (Low to High)' : 
+                    sortBy === 'price-high' ? 'Price (High to Low)' : 
+                    sortBy === 'name-asc' ? 'Name (A-Z)' :
+                    sortBy === 'name-desc' ? 'Name (Z-A)' :
+                    sortBy === 'category-asc' ? 'Category (A-Z)' :
+                    sortBy === 'category-desc' ? 'Category (Z-A)' : 'Featured First'
+                  }</span>
+                )}
+              </span>
+            </div>
+          </div>
           
           <div className="table-container">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Images</th>
-                  <th>Product Name</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Featured</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map(product => (
-                  <tr key={product.id}>
-                    <td className="image-cell">
-                      <div className="mini-gallery">
-                        {product.images && product.images.slice(0, 2).map((img, idx) => (
-                          <img 
-                            key={idx} 
-                            src={img} 
-                            alt={`${product.name} ${idx + 1}`} 
-                            className="mini-image"
-                            onError={(e) => {
-                              e.target.src = 'https://via.placeholder.com/50x50?text=No+Image';
-                            }}
-                          />
-                        ))}
-                        {product.images && product.images.length > 2 && (
-                          <span className="more-indicator">+{product.images.length - 2}</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="product-name-cell">{product.name}</td>
-                    <td className="price-cell">₹{product.price.toLocaleString()}</td>
-                    <td>
-                      <span className="category-badge">
-                        {getCategoryIcon(product.category)} {getCategoryDisplayName(product.category)}
-                      </span>
-                    </td>
-                    <td>
-                      <span className={`featured-badge ${product.featured ? 'yes' : 'no'}`}>
-                        {product.featured ? '★ Featured' : '☆ Not Featured'}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="action-buttons">
-                        <button className="btn-edit" onClick={() => openEditModal(product)}>Edit</button>
-                        <button className="btn-delete" onClick={() => handleDelete(product, 'product')}>Delete</button>
-                      </div>
-                    </td>
+            {filteredProducts.length === 0 ? (
+              <div className="no-results">
+                <div className="no-results-icon">🔍</div>
+                <h3>No products found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+                <button onClick={resetFilters} className="btn-reset-filters">
+                  Clear All Filters
+                </button>
+              </div>
+            ) : (
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Images</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Featured</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredProducts.map(product => (
+                    <tr key={product.id}>
+                      <td className="image-cell">
+                        <div className="mini-gallery">
+                          {product.images && product.images.slice(0, 2).map((img, idx) => (
+                            <img 
+                              key={idx} 
+                              src={img} 
+                              alt={safeToString(product.name)} 
+                              className="mini-image"
+                              onError={(e) => {
+                                e.target.src = 'https://via.placeholder.com/50x50?text=No+Image';
+                              }}
+                            />
+                          ))}
+                          {product.images && product.images.length > 2 && (
+                            <span className="more-indicator">+{product.images.length - 2}</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="product-name-cell">{safeToString(product.name)}</td>
+                      <td className="price-cell">₹{(product.price || 0).toLocaleString()}</td>
+                      <td>
+                        <span className="category-badge">
+                          {getCategoryIcon(product.category)} {getCategoryDisplayName(product.category)}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`featured-badge ${product.featured ? 'yes' : 'no'}`}>
+                          {product.featured ? '★ Featured' : '☆ Not Featured'}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="action-buttons">
+                          <button className="btn-edit" onClick={() => openEditModal(product)}>Edit</button>
+                          <button className="btn-delete" onClick={() => handleDelete(product, 'product')}>Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       )}
@@ -588,11 +796,11 @@ function Admin() {
                 {appointments.map(appointment => (
                   <tr key={appointment.id}>
                     <td>{new Date(appointment.date).toLocaleDateString()}</td>
-                    <td>{appointment.name}</td>
-                    <td>{appointment.phone}</td>
-                    <td>{appointment.email || '-'}</td>
-                    <td>{appointment.productType || '-'}</td>
-                    <td className="message-cell">{appointment.message || '-'}</td>
+                    <td>{safeToString(appointment.name)}</td>
+                    <td>{safeToString(appointment.phone)}</td>
+                    <td>{safeToString(appointment.email) || '-'}</td>
+                    <td>{safeToString(appointment.productType) || '-'}</td>
+                    <td className="message-cell">{safeToString(appointment.message) || '-'}</td>
                     <td>
                       <select 
                         value={appointment.status} 
@@ -634,13 +842,13 @@ function Admin() {
                 {reviews.map(review => (
                   <tr key={review.id}>
                     <td>{new Date(review.date).toLocaleDateString()}</td>
-                    <td>{review.name}</td>
+                    <td>{safeToString(review.name)}</td>
                     <td>
                       <div className="rating-stars">
                         {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
                       </div>
                     </td>
-                    <td className="comment-cell">{review.comment}</td>
+                    <td className="comment-cell">{safeToString(review.comment)}</td>
                     <td>
                       <button 
                         className={`featured-btn ${review.featured ? 'active' : ''}`}
@@ -710,12 +918,18 @@ function Admin() {
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                      required
+                      disabled={sortedCategories.length === 0}
                     >
-                      {categories.map(cat => (
-                        <option key={cat} value={cat}>
-                          {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
-                        </option>
-                      ))}
+                      {sortedCategories.length === 0 ? (
+                        <option value="">No categories available</option>
+                      ) : (
+                        sortedCategories.map(cat => (
+                          <option key={cat} value={cat}>
+                            {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
+                          </option>
+                        ))
+                      )}
                     </select>
                     <button 
                       type="button" 
@@ -863,7 +1077,7 @@ function Admin() {
                 <button 
                   type="submit" 
                   className="btn-submit-product"
-                  disabled={uploadingImages}
+                  disabled={uploadingImages || sortedCategories.length === 0}
                 >
                   {uploadingImages ? 'Uploading Images...' : (editingItem ? 'Update Product' : 'Add Product')}
                 </button>
