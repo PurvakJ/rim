@@ -26,10 +26,9 @@ function Admin() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('default');
   
-  const [categories, setCategories] = useState([]); // Will be populated from backend
+  const [categories, setCategories] = useState([]); // Will be populated from backend in order
   const [newCategory, setNewCategory] = useState('');
   const [showCategoryInput, setShowCategoryInput] = useState(false);
-  const [sortedCategories, setSortedCategories] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -103,31 +102,34 @@ function Admin() {
     return icons[category] || '⚡';
   }, []);
 
-  // Extract unique categories from products
+  // Extract unique categories from products in the order they appear
   const extractCategoriesFromProducts = useCallback((productsData) => {
-    const uniqueCategories = [...new Set(productsData.map(product => product.category).filter(Boolean))];
+    const seenCategories = new Set();
+    const uniqueCategories = [];
+    
+    // Preserve the original order from the database
+    for (const product of productsData) {
+      if (product.category && !seenCategories.has(product.category)) {
+        seenCategories.add(product.category);
+        uniqueCategories.push(product.category);
+      }
+    }
+    
     return uniqueCategories;
   }, []);
 
-  // Sort categories alphabetically by display name
-  const sortCategoriesAlphabetically = useCallback((categoriesList) => {
-    return [...categoriesList].sort((a, b) => {
-      const displayNameA = getCategoryDisplayName(a);
-      const displayNameB = getCategoryDisplayName(b);
-      return displayNameA.localeCompare(displayNameB);
-    });
-  }, [getCategoryDisplayName]);
-
-  // Update sorted categories whenever categories change
+  // Update categories whenever products change - no sorting
   useEffect(() => {
-    const sorted = sortCategoriesAlphabetically(categories);
-    setSortedCategories(sorted);
-    
-    // Set default category if none selected and categories exist
-    if (formData.category === '' && sorted.length > 0) {
-      setFormData(prev => ({ ...prev, category: sorted[0] }));
+    if (products.length > 0) {
+      const extractedCategories = extractCategoriesFromProducts(products);
+      setCategories(extractedCategories);
+      
+      // Set default category if none selected and categories exist
+      if (formData.category === '' && extractedCategories.length > 0) {
+        setFormData(prev => ({ ...prev, category: extractedCategories[0] }));
+      }
     }
-  }, [categories, sortCategoriesAlphabetically, formData.category]);
+  }, [products, extractCategoriesFromProducts, formData.category]);
 
   // Define loadData with useCallback to prevent unnecessary re-renders
   const loadData = useCallback(async () => {
@@ -142,10 +144,6 @@ function Admin() {
           price: product.price || 0
         }));
         setProducts(sanitizedProducts);
-        
-        // Extract categories from the products data
-        const extractedCategories = extractCategoriesFromProducts(sanitizedProducts);
-        setCategories(extractedCategories);
       } else if (activeTab === 'appointments') {
         const data = await getAppointments();
         setAppointments(data);
@@ -159,7 +157,7 @@ function Admin() {
         handleLogout();
       }
     }
-  }, [activeTab, extractCategoriesFromProducts]);
+  }, [activeTab]);
 
   // Filter and sort products with safe string conversion
   const filterAndSortProducts = useCallback(() => {
@@ -201,7 +199,9 @@ function Admin() {
         });
         break;
       default:
-        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+        // Keep original database order for default sorting
+        // No sorting applied - maintain order from API
+        break;
     }
 
     setFilteredProducts(filtered);
@@ -370,7 +370,7 @@ function Admin() {
         return;
       }
       
-      // Add the new category to the list
+      // Add the new category to the list (preserve order - add at the end)
       const updatedCategories = [...categories, categoryValue];
       setCategories(updatedCategories);
       setFormData({ ...formData, category: categoryValue });
@@ -481,7 +481,7 @@ function Admin() {
       name: '',
       description: '',
       price: '',
-      category: sortedCategories.length > 0 ? sortedCategories[0] : '',
+      category: categories.length > 0 ? categories[0] : '',
       featured: false,
       images: []
     });
@@ -636,16 +636,16 @@ function Admin() {
                   value={category} 
                   onChange={(e) => setCategory(e.target.value)}
                   className="filter-select"
-                  disabled={sortedCategories.length === 0}
+                  disabled={categories.length === 0}
                 >
                   <option value="all">⚡ All Categories</option>
-                  {sortedCategories.map(cat => (
+                  {categories.map(cat => (
                     <option key={cat} value={cat}>
                       {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
                     </option>
                   ))}
                 </select>
-                {sortedCategories.length === 0 && (
+                {categories.length === 0 && (
                   <span className="no-categories-msg">No categories available</span>
                 )}
               </div>
@@ -668,7 +668,7 @@ function Admin() {
                   onChange={(e) => setSortBy(e.target.value)}
                   className="filter-select"
                 >
-                  <option value="default">⭐ Featured First</option>
+                  <option value="default">⭐ Database Order (Default)</option>
                   <option value="price-low">💰 Price: Low to High</option>
                   <option value="price-high">💰 Price: High to Low</option>
                   <option value="name-asc">🔤 Name: A to Z</option>
@@ -699,7 +699,7 @@ function Admin() {
                     sortBy === 'name-asc' ? 'Name (A-Z)' :
                     sortBy === 'name-desc' ? 'Name (Z-A)' :
                     sortBy === 'category-asc' ? 'Category (A-Z)' :
-                    sortBy === 'category-desc' ? 'Category (Z-A)' : 'Featured First'
+                    sortBy === 'category-desc' ? 'Category (Z-A)' : 'Database Order'
                   }</span>
                 )}
               </span>
@@ -748,7 +748,7 @@ function Admin() {
                             <span className="more-indicator">+{product.images.length - 2}</span>
                           )}
                         </div>
-                      </td>
+                       </td>
                       <td className="product-name-cell">{safeToString(product.name)}</td>
                       <td className="price-cell">₹{(product.price || 0).toLocaleString()}</td>
                       <td>
@@ -919,12 +919,12 @@ function Admin() {
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                       required
-                      disabled={sortedCategories.length === 0}
+                      disabled={categories.length === 0}
                     >
-                      {sortedCategories.length === 0 ? (
+                      {categories.length === 0 ? (
                         <option value="">No categories available</option>
                       ) : (
-                        sortedCategories.map(cat => (
+                        categories.map(cat => (
                           <option key={cat} value={cat}>
                             {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
                           </option>
@@ -1077,7 +1077,7 @@ function Admin() {
                 <button 
                   type="submit" 
                   className="btn-submit-product"
-                  disabled={uploadingImages || sortedCategories.length === 0}
+                  disabled={uploadingImages || categories.length === 0}
                 >
                   {uploadingImages ? 'Uploading Images...' : (editingItem ? 'Update Product' : 'Add Product')}
                 </button>

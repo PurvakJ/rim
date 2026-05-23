@@ -21,49 +21,60 @@ const Home = () => {
 
   // Add these with your other useState declarations
   const [welcomeCarouselIndex, setWelcomeCarouselIndex] = useState(0);
+  
+  // Track current image index for each featured product
+  const [productImageIndices, setProductImageIndices] = useState({});
 
   // Static Featured Products (Always Shown) - Wrapped in useMemo to prevent recreation on every render
   const staticFeaturedProducts = useMemo(() => [
     {
       id: 'static-1',
-      name: "DMC KIT KAT ",
+      name: "KIT KAT 63 AMP",
       price: 4850,
-      description: "KIT KAT 63 AMP (DMC)",
+      description: "DMC KIT KAT 63 AMP",
       images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348519/WhatsApp_Image_2026-05-21_at_12.47.05_3_cwfj0g.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.06_j0erls.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.05_4_pqucau.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.06_1_vgp5fu.jpg"],
       category: "DMC KIT KAT",
-      featured: true
+      featured: true,
+      displayName: "KIT KAT 63 AMP"
     },
     {
       id: 'static-2',
-      name: "DMC KIT KAT",
+      name: "KIT KAT 132 AMP",
       price: 1850,
-      description: "KIT KAT 132 AMP (DMC)",
+      description: "DMC KIT KAT 132 AMP",
       images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348523/WhatsApp_Image_2026-05-21_at_12.47.05-removebg-preview_1_vgeliy.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348522/WhatsApp_Image_2026-05-21_at_12.47.05__1_-removebg-preview_coooiy.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.05__2_-removebg-preview_s2o2g0.png"],
       category: "DMC KIT KAT",
-      featured: true
+      featured: true,
+      displayName: "KIT KAT 132 AMP"
     },
     {
       id: 'static-3',
-      name: "DMC KIT KAT",
+      name: "KIT KAT 100 AMP",
       price: 6250,
-      description: "KIT KAT 100 AMP (DMC)",
+      description: "DMC KIT KAT 100 AMP",
       images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2703-removebg-preview_qnuubh.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2705-removebg-preview_gtwdhn.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2704-removebg-preview_qcndje.png"],
       category: "DMC KIT KAT",
-      featured: true
+      featured: true,
+      displayName: "KIT KAT 100 AMP"
     }
   ], []); // Empty dependency array since this data never changes
 
   // Welcome Carousel Images - Also wrapped in useMemo for consistency
   const welcomeCarouselImages = useMemo(() => [
     {
+      url: "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348519/WhatsApp_Image_2026-05-21_at_12.47.05_3_cwfj0g.jpg",
+      alt: "Submersible Control Panel",
+      caption: "Control Panels"
+    }, 
+    {
+      url: "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348523/WhatsApp_Image_2026-05-21_at_12.47.05-removebg-preview_1_vgeliy.png",
+      alt: "Submersible Control Panel",
+      caption: "Control Panels"
+    },    
+    {
       url: "https://i.postimg.cc/jdx5BHqZ/SP4-3.jpg",
       alt: "Submersible Control Panel",
       caption: "Control Panels"
-    },
-    {
-      url: "https://i.postimg.cc/7YwGwv9f/MCB23-2.jpg",
-      alt: "Circuit Breakers",
-      caption: "Circuit Breakers"
     },
     {
       url: "https://i.postimg.cc/Jz8QfdDY/DD23-3.jpg",
@@ -85,6 +96,23 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [welcomeCarouselImages.length]);
 
+  // Function to navigate product images without opening modal
+  const nextProductImage = (e, productId, totalImages) => {
+    e.stopPropagation(); // Prevent opening modal
+    setProductImageIndices(prev => ({
+      ...prev,
+      [productId]: ((prev[productId] || 0) + 1) % totalImages
+    }));
+  };
+
+  const prevProductImage = (e, productId, totalImages) => {
+    e.stopPropagation(); // Prevent opening modal
+    setProductImageIndices(prev => ({
+      ...prev,
+      [productId]: ((prev[productId] || 0) - 1 + totalImages) % totalImages
+    }));
+  };
+
   // Refs for lazy loading animations
   const lazyElementsRef = useRef([]);
   const sectionHeadersRef = useRef([]);
@@ -93,9 +121,9 @@ const Home = () => {
   const galleryItemsRef = useRef([]);
 
   // Updated Contact Numbers & Social Links
-  const phoneNumber1 = '9815097851';
-  const phoneNumber2 = '7986295488';
-  const whatsappNumber = '919815097851';
+  const phoneNumber1 = '7973417773';
+  const phoneNumber2 = '9815097851';
+  const whatsappNumber = '917973417773';
   const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I need industrial-grade solutions for changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   
@@ -401,9 +429,7 @@ const Home = () => {
                         alt={image.alt}
                         className="welcome-img"
                       />
-                      <div className="carousel-caption-small">
-                        <span>{image.caption}</span>
-                      </div>
+
                     </div>
                   ))}
                 </div>
@@ -423,14 +449,12 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-              {/* Buttons below the carousel */}
-              <div className="welcome-buttons-carousel">
-                <Link to="/products" className="btn-primary">Browse Products</Link>
-              </div>
+
             </div>
             <div className="welcome-content lazy-slide-right" ref={el => addToLazyRefs(el, 'lazy-slide-right')}>
-              <h1>Welcome To <span style={{ fontSize: '2rem', display: 'block' , fontFamily:'arial-black', color:'red'}}>Royal Industries Mansa (RiM)</span></h1>
-            </div>
+  <h1>Welcome To <span style={{ fontSize: '2rem', display: 'block' , fontFamily:'arial-black', color:'red'}}>Royal Industries Mansa (RiM)</span></h1>
+  <Link to="/products" className="browse-products-btn">Browse Products</Link>
+</div>
           </div>
         </div>
       </section>
@@ -447,28 +471,83 @@ const Home = () => {
               featuredProducts.map((product, idx) => {
                 // Check if this is a static product (has 'static-' in id)
                 const isStaticProduct = product.id && product.id.toString().startsWith('static-');
+                // Get the display name (for static products, use displayName or name, for dynamic use name)
+                const displayProductName = isStaticProduct ? (product.displayName || product.name) : product.name;
+                // Get current image index for this product
+                const currentImgIndex = productImageIndices[product.id] || 0;
+                const hasMultipleImages = product.images && product.images.length > 1;
                 
                 return (
-                  <div key={product.id} className={`product-card ${isStaticProduct ? 'static-product' : 'random-product'}`} onClick={() => setSelectedProduct(product)} ref={el => addToProductCards(el)} style={{ transitionDelay: `${idx * 0.05}s` }}>
-                    <div className="product-image-container">
-                      {product.images && product.images[0] ? 
-                        <img src={product.images[0]} alt={product.name} className="product-image" loading="lazy" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=400&auto=format'; }} />
-                        : <div className="image-placeholder"><span>⚡</span></div>
-                      }
-                    </div>
+                  <div 
+                    key={product.id} 
+                    className={`product-card ${isStaticProduct ? 'static-product' : 'random-product'}`} 
+                    onClick={() => setSelectedProduct(product)} 
+                    ref={el => addToProductCards(el)} 
+                    style={{ transitionDelay: `${idx * 0.05}s` }}
+                  >
+<div className="product-image-container">
+  {product.images && product.images[0] ? 
+    <>
+      <img 
+        src={product.images[currentImgIndex]} 
+        alt={displayProductName} 
+        className="product-image" 
+        loading="lazy"
+        style={{
+          objectFit: 'contain',
+          width: '100%',
+          height: '100%',
+          padding: '20px'
+        }}
+        onError={(e) => { 
+          e.target.onerror = null;
+          e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
+          e.target.style.objectFit = 'cover';
+        }} 
+      />
+      {hasMultipleImages && (
+        <>
+          <button 
+            className="product-image-nav prev-nav" 
+            onClick={(e) => prevProductImage(e, product.id, product.images.length)}
+            aria-label="Previous image"
+          >
+            ❮
+          </button>
+          <button 
+            className="product-image-nav next-nav" 
+            onClick={(e) => nextProductImage(e, product.id, product.images.length)}
+            aria-label="Next image"
+          >
+            ❯
+          </button>
+          <div className="image-counter">
+            {currentImgIndex + 1} / {product.images.length}
+          </div>
+        </>
+      )}
+    </>
+    : <div className="image-placeholder">
+        <span>⚡</span>
+        <p style={{fontSize: '14px', marginTop: '10px'}}>No Image</p>
+      </div>
+  }
+</div>
                     <div className="product-info">
                       <span className="product-category">{getCategoryIcon(product.category)} {getCategoryDisplayName(product.category)}</span>
                       <h3 className="product-title" style={{
-  fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
-  fontSize: '1.3rem',
-  fontWeight: '600',
-  lineHeight: '1.4',
-  color: '#1a1a1a',
-  marginBottom: '0.5rem'
-}}>
-  {product.description?.substring(0, 70)}
-</h3>
-                      <p className="product-description">Code - {product.name}</p>
+                        fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
+                        fontSize: '1.3rem',
+                        fontWeight: '600',
+                        lineHeight: '1.4',
+                        color: '#1a1a1a',
+                        marginBottom: '0.5rem'
+                      }}>
+                        {isStaticProduct ? displayProductName : (product.description?.substring(0, 70) || product.name)}
+                      </h3>
+                      <p className="product-description">
+                        {isStaticProduct ? `Model: ${product.name}` : `Code - ${product.name}`}
+                      </p>
 
                       <div className="product-footer">
                         <button className="view-details-btn">View Details →</button>
@@ -679,13 +758,13 @@ const Home = () => {
             <div className="product-detail-info">
               <span className="product-category-tag">{getCategoryIcon(selectedProduct.category)} {getCategoryDisplayName(selectedProduct.category)}</span>
               <h2 style={{ 
-  fontFamily: 'Arial, sans-serif',
-  fontSize: '1.5rem',
-  fontWeight: '600',
-  color: '#333'
-}}>
-  {selectedProduct.description}
-</h2>
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: '#333'
+              }}>
+                {selectedProduct.description || selectedProduct.name}
+              </h2>
               <p className="full-description">
                 {selectedProduct.name
                   ? `Code - ${selectedProduct.name} `

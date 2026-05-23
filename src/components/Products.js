@@ -9,13 +9,13 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState('default');
   const [categories, setCategories] = useState([{ value: 'all', label: 'All Products', icon: '⚡' }]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [productImageIndices, setProductImageIndices] = useState({});
 
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '9815097851';
-  const whatsappNumber = '919815097851';
+  const phoneNumber1 = '7973417773';
+  const whatsappNumber = '917973417773';
 
   // Helper function to safely get product name as string
   const getProductName = (product) => {
@@ -31,6 +31,23 @@ function Products() {
       return String(product.description);
     }
     return '';
+  };
+
+  // Function to navigate product images without opening modal
+  const nextProductImage = (e, productId, totalImages) => {
+    e.stopPropagation(); // Prevent opening modal
+    setProductImageIndices(prev => ({
+      ...prev,
+      [productId]: ((prev[productId] || 0) + 1) % totalImages
+    }));
+  };
+
+  const prevProductImage = (e, productId, totalImages) => {
+    e.stopPropagation(); // Prevent opening modal
+    setProductImageIndices(prev => ({
+      ...prev,
+      [productId]: ((prev[productId] || 0) - 1 + totalImages) % totalImages
+    }));
   };
 
   const getCategoryDisplayName = useCallback((categoryValue) => {
@@ -96,16 +113,24 @@ function Products() {
       
       setProducts(sanitizedProducts);
       
-      const uniqueCategories = [...new Set(sanitizedProducts.map(product => product.category).filter(Boolean))];
+      // Get unique categories in the order they appear in the database
+      const seenCategories = new Set();
+      const uniqueCategories = [];
       
-      // Sort categories alphabetically by their display name
-      const dynamicCategories = uniqueCategories
-        .map(cat => ({
-          value: cat,
-          label: getCategoryDisplayName(cat),
-          icon: getCategoryIcon(cat)
-        }))
-        .sort((a, b) => a.label.localeCompare(b.label)); // Sort A to Z by label
+      // Preserve the original order from the database
+      for (const product of sanitizedProducts) {
+        if (product.category && !seenCategories.has(product.category)) {
+          seenCategories.add(product.category);
+          uniqueCategories.push(product.category);
+        }
+      }
+      
+      // Create category objects WITHOUT sorting - keep database order
+      const dynamicCategories = uniqueCategories.map(cat => ({
+        value: cat,
+        label: getCategoryDisplayName(cat),
+        icon: getCategoryIcon(cat)
+      }));
       
       setCategories([
         { value: 'all', label: 'All Products', icon: '⚡' },
@@ -124,16 +149,21 @@ function Products() {
       ];
       setProducts(fallbackProducts);
       
-      const uniqueCategories = [...new Set(fallbackProducts.map(product => product.category))];
+      // Get unique categories in order from fallback products
+      const seenCategories = new Set();
+      const uniqueCategories = [];
+      for (const product of fallbackProducts) {
+        if (product.category && !seenCategories.has(product.category)) {
+          seenCategories.add(product.category);
+          uniqueCategories.push(product.category);
+        }
+      }
       
-      // Sort categories alphabetically by their display name
-      const dynamicCategories = uniqueCategories
-        .map(cat => ({
-          value: cat,
-          label: getCategoryDisplayName(cat),
-          icon: getCategoryIcon(cat)
-        }))
-        .sort((a, b) => a.label.localeCompare(b.label)); // Sort A to Z by label
+      const dynamicCategories = uniqueCategories.map(cat => ({
+        value: cat,
+        label: getCategoryDisplayName(cat),
+        icon: getCategoryIcon(cat)
+      }));
       
       setCategories([
         { value: 'all', label: 'All Products', icon: '⚡' },
@@ -144,7 +174,7 @@ function Products() {
     }
   }, [getCategoryDisplayName, getCategoryIcon]);
 
-  const filterAndSortProducts = useCallback(() => {
+  const filterProducts = useCallback(() => {
     let filtered = products.filter(product => {
       const matchesCategory = category === 'all' || product.category === category;
       const productName = getProductName(product);
@@ -154,47 +184,16 @@ function Products() {
       return matchesCategory && matchesSearch;
     });
 
-    switch(sortBy) {
-      case 'price-low':
-        filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
-        break;
-      case 'price-high':
-        filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
-        break;
-      case 'name-asc':
-        filtered.sort((a, b) => getProductName(a).localeCompare(getProductName(b)));
-        break;
-      case 'name-desc':
-        filtered.sort((a, b) => getProductName(b).localeCompare(getProductName(a)));
-        break;
-      case 'category-asc':
-        filtered.sort((a, b) => {
-          const categoryA = getCategoryDisplayName(a.category) || '';
-          const categoryB = getCategoryDisplayName(b.category) || '';
-          return categoryA.localeCompare(categoryB);
-        });
-        break;
-      case 'category-desc':
-        filtered.sort((a, b) => {
-          const categoryA = getCategoryDisplayName(a.category) || '';
-          const categoryB = getCategoryDisplayName(b.category) || '';
-          return categoryB.localeCompare(categoryA);
-        });
-        break;
-      default:
-        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-    }
-
     setFilteredProducts(filtered);
-  }, [products, category, searchTerm, sortBy, getCategoryDisplayName]);
+  }, [products, category, searchTerm]);
 
   useEffect(() => {
     loadProducts();
   }, [loadProducts]);
 
   useEffect(() => {
-    filterAndSortProducts();
-  }, [filterAndSortProducts]);
+    filterProducts();
+  }, [filterProducts]);
 
   useEffect(() => {
     setCurrentImageIndex(0);
@@ -241,9 +240,9 @@ function Products() {
     <div className="products-page">
       <section className="products-hero">
         <div className="container">
-        <div className="hero-badge" style={{ color: 'white' }}>RiM - Royal Industries Mansa</div>
+          <div className="hero-badge" style={{ color: 'white' }}>RiM - Royal Industries Mansa</div>
           <div className="hero-icon">⚡</div>
-          <h1>Our <span>Switchgear Collection</span></h1>
+          <h1>Our <span>Switchgear Range</span></h1>
           <p>Discover premium quality electrical products for industrial and residential needs. ISI marked with 5+ year warranty.</p>
         </div>
       </section>
@@ -265,7 +264,6 @@ function Products() {
             </select>
           </div>
         
-          
           <div className="filter-group search-group">
             <label>Search:</label>
             <input
@@ -299,7 +297,6 @@ function Products() {
                   onClick={() => {
                     setCategory('all');
                     setSearchTerm('');
-                    setSortBy('default');
                   }}
                 >
                   Reset Filters
@@ -307,54 +304,77 @@ function Products() {
               </div>
             ) : (
               <div className="products-grid">
-                {filteredProducts.map(product => (
-                  <div key={product.id} className="product-card" onClick={() => setSelectedProduct(product)}>
-                    <div className="product-image-container">
-                      {product.images && product.images[0] ? (
-                        <img 
-                          src={product.images[0]} 
-                          alt={renderProductName(product)} 
-                          className="product-image"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.target.src = 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format';
-                          }}
-                        />
-                      ) : (
-                        <div className="image-placeholder">
-                          <span>⚡</span>
+                {filteredProducts.map(product => {
+                  const currentImgIndex = productImageIndices[product.id] || 0;
+                  const hasMultipleImages = product.images && product.images.length > 1;
+                  
+                  return (
+                    <div key={product.id} className="product-card" onClick={() => setSelectedProduct(product)}>
+                      <div className="product-image-container">
+                        {product.images && product.images[0] ? (
+                          <>
+                            <img 
+                              src={product.images[currentImgIndex]} 
+                              alt={renderProductName(product)} 
+                              className="product-image"
+                              loading="lazy"
+                              onError={(e) => {
+                                e.target.src = 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format';
+                              }}
+                            />
+                            {hasMultipleImages && (
+                              <>
+                                <button 
+                                  className="product-image-nav prev-nav" 
+                                  onClick={(e) => prevProductImage(e, product.id, product.images.length)}
+                                  aria-label="Previous image"
+                                >
+                                  ❮
+                                </button>
+                                <button 
+                                  className="product-image-nav next-nav" 
+                                  onClick={(e) => nextProductImage(e, product.id, product.images.length)}
+                                  aria-label="Next image"
+                                >
+                                  ❯
+                                </button>
+                                <div className="image-counter">
+                                  {currentImgIndex + 1} / {product.images.length}
+                                </div>
+                              </>
+                            )}
+                          </>
+                        ) : (
+                          <div className="image-placeholder">
+                            <span>⚡</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="product-info">
+                        <span className="product-category">
+                          {getCategoryIcon(product.category)} {getCategoryName(product.category)}
+                        </span>
+                        <h3 className="product-title" style={{
+                          fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
+                          fontSize: 'clamp(0.9rem, 2vw, 1.3rem)',
+                          fontWeight: '600',
+                          lineHeight: '1.4',
+                          color: '#1f2937',
+                          marginBottom: '0.5rem',
+                          letterSpacing: '-0.01em'
+                        }}>
+                          {renderProductDescription(product)}
+                        </h3>
+                        <p className="product-description">
+                          Code - {renderProductName(product)} 
+                        </p>
+                        <div className="product-footer">
+                          <button className="view-details-btn">View Details →</button>
                         </div>
-                      )}
-                      {product.images && product.images.length > 1 && (
-                        <div className="image-count-badge">
-                          +{product.images.length - 1}
-                        </div>
-                      )}
-                    </div>
-                    <div className="product-info">
-                      <span className="product-category">
-                        {getCategoryIcon(product.category)} {getCategoryName(product.category)}
-                      </span>
-                      <h3 className="product-title" style={{
-  fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
-  fontSize: 'clamp(0.9rem, 2vw, 1.3rem)',
-  fontWeight: '600',
-  lineHeight: '1.4',
-  color: '#1f2937',
-  marginBottom: '0.5rem',
-  letterSpacing: '-0.01em'
-}}>
-  {renderProductDescription(product)}
-</h3>
-                      <p className="product-description">
-                        Code - {renderProductName(product, 70)} 
-                      </p>
-                      <div className="product-footer">
-                        <button className="view-details-btn">View Details →</button>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </>
@@ -421,18 +441,18 @@ function Products() {
                 {getCategoryIcon(selectedProduct.category)} {getCategoryName(selectedProduct.category)}
               </span>
               <h2 style={{
-  fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
-  fontSize: 'clamp(1.2rem, 4vw, 1.8rem)',
-  fontWeight: '600',
-  lineHeight: '1.3',
-  color: '#1e293b',
-  marginBottom: '1rem',
-  letterSpacing: '-0.02em'
-}}>
-  {renderProductDescription(selectedProduct)}
-</h2>
+                fontFamily: "'Poppins', 'Montserrat', 'Segoe UI', sans-serif",
+                fontSize: 'clamp(1.2rem, 4vw, 1.8rem)',
+                fontWeight: '600',
+                lineHeight: '1.3',
+                color: '#1e293b',
+                marginBottom: '1rem',
+                letterSpacing: '-0.02em'
+              }}>
+                {renderProductDescription(selectedProduct)}
+              </h2>
               <p className="full-description">
-                Code - {renderProductName(selectedProduct, 500)} 
+                Code - {renderProductName(selectedProduct)} 
               </p>
               <div className="contact-actions">
                 <a href={`tel:${phoneNumber1}`} className="call-now-btn">📞 Call for Best Price</a>
