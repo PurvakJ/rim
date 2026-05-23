@@ -70,11 +70,21 @@ const Home = () => {
       url: "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348523/WhatsApp_Image_2026-05-21_at_12.47.05-removebg-preview_1_vgeliy.png",
       alt: "Submersible Control Panel",
       caption: "Control Panels"
+    }, 
+    {
+      url: "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779536707/WhatsApp_Image_2026-05-23_at_17.10.03_g2hsfd.jpg",
+      alt: "Submersible Control Panel",
+      caption: "Control Panels"
     },    
     {
       url: "https://i.postimg.cc/jdx5BHqZ/SP4-3.jpg",
       alt: "Submersible Control Panel",
       caption: "Control Panels"
+    },
+    {
+      url: "https://i.postimg.cc/CLshNzjd/611.jpg",
+      alt: "MCB Boxes",
+      caption: "MCB Distribution Boxes"
     },
     {
       url: "https://i.postimg.cc/Jz8QfdDY/DD23-3.jpg",
