@@ -4114,3 +4114,19 @@
 .browse-products-btn:hover::after {
     transform: translateX(5px);
 }
+.welcome-section {
+    margin-top: 80px;
+    background-image: url("https://i.pinimg.com/1200x/36/a7/88/36a788b09b0775de5596b89f04ff75a3.jpg");
+    
+    /* Prevent repeating */
+    background-repeat: no-repeat;
+  
+    /* Make it cover full section */
+    background-size: cover;
+  
+    /* Center the image */
+    background-position: center;
+  
+    /* Optional */
+    min-height: 40vh;
+  }
