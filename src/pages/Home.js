@@ -463,6 +463,7 @@ const Home = () => {
             </div>
             <div className="welcome-content lazy-slide-right" ref={el => addToLazyRefs(el, 'lazy-slide-right')}>
   <h1>Welcome To <span style={{ fontSize: '2rem', display: 'block' , fontFamily:'arial-black', color:'red'}}>Royal Industries Mansa (RiM)</span></h1>
+  <h3>AN ISO 9001:2015 CERTIFIED COMPANY</h3>
   <Link to="/products" className="browse-products-btn">Browse Products</Link>
 </div>
           </div>
