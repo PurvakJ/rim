@@ -587,7 +587,7 @@ function Admin() {
             <span className="admin-badge">Royal Industries Mansa</span>
           </div>
           <div className="admin-contact-info">
-            <span>📞 79734-17773 | 79862-95488</span>
+            <span>📞 7973417773 | 9876243773</span>
             <button onClick={handleLogout} className="logout-btn">
               Logout
             </button>

@@ -17,9 +17,9 @@ function BookAppointment() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '9815097851';
-  const phoneNumber2 = '7986295488';
-  const whatsappNumber = '919815097851';
+  const phoneNumber1 = '9876243773';
+  const phoneNumber2 = '7973417773';
+  const whatsappNumber = '919876243773';
   const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in visiting your factory to discuss electrical switchgear requirements. Please share more details.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 

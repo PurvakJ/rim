@@ -29,33 +29,33 @@ const Home = () => {
   const staticFeaturedProducts = useMemo(() => [
     {
       id: 'static-1',
-      name: "KIT KAT 63 AMP",
+      name: "MRP 440",
       price: 4850,
-      description: "DMC KIT KAT 63 AMP",
+      description: "DMC KIT KAT 63 AMP (DMC)",
       images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348519/WhatsApp_Image_2026-05-21_at_12.47.05_3_cwfj0g.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.06_j0erls.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.05_4_pqucau.jpg", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.06_1_vgp5fu.jpg"],
       category: "DMC KIT KAT",
       featured: true,
-      displayName: "KIT KAT 63 AMP"
+      displayName: "KIT KAT 63 AMP (DMC)"
     },
     {
       id: 'static-2',
-      name: "KIT KAT 132 AMP",
+      name: "MRP 1200",
       price: 1850,
       description: "DMC KIT KAT 132 AMP",
       images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348523/WhatsApp_Image_2026-05-21_at_12.47.05-removebg-preview_1_vgeliy.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348522/WhatsApp_Image_2026-05-21_at_12.47.05__1_-removebg-preview_coooiy.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779348521/WhatsApp_Image_2026-05-21_at_12.47.05__2_-removebg-preview_s2o2g0.png"],
       category: "DMC KIT KAT",
       featured: true,
-      displayName: "KIT KAT 132 AMP"
+      displayName: "KIT KAT 132 AMP (DMC)"
     },
     {
       id: 'static-3',
-      name: "KIT KAT 100 AMP",
+      name: "MRP 880",
       price: 6250,
       description: "DMC KIT KAT 100 AMP",
       images: ["https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2703-removebg-preview_qnuubh.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2705-removebg-preview_gtwdhn.png", "https://res.cloudinary.com/dm9gg8yss/image/upload/v1779349598/IMG_2704-removebg-preview_qcndje.png"],
       category: "DMC KIT KAT",
       featured: true,
-      displayName: "KIT KAT 100 AMP"
+      displayName: "KIT KAT 100 AMP (DMC)"
     }
   ], []); // Empty dependency array since this data never changes
 
@@ -131,9 +131,9 @@ const Home = () => {
   const galleryItemsRef = useRef([]);
 
   // Updated Contact Numbers & Social Links
-  const phoneNumber1 = '7973417773';
-  const phoneNumber2 = '9815097851';
-  const whatsappNumber = '917973417773';
+  const phoneNumber1 = '9876243773';
+  const phoneNumber2 = '7973417773';
+  const whatsappNumber = '919876243773';
   const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I need industrial-grade solutions for changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   
@@ -557,7 +557,7 @@ const Home = () => {
                         {isStaticProduct ? displayProductName : (product.description?.substring(0, 70) || product.name)}
                       </h3>
                       <p className="product-description">
-                        {isStaticProduct ? `Model: ${product.name}` : `Code - ${product.name}`}
+                        {isStaticProduct ? `${product.name}` : `Code - ${product.name}`}
                       </p>
 
                       <div className="product-footer">

@@ -7,9 +7,9 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '7973417773';
-  const phoneNumber2 = '7986295488';
-  const whatsappNumber = '917973417773';
+  const phoneNumber1 = '9876243773';
+  const phoneNumber2 = '7973417773';
+  const whatsappNumber = '919876243773';
   const whatsappMessage = encodeURIComponent("Hello RiM, I'm interested in your electrical switchgear products. I'd like to know more about your changeovers, MCB boxes, and control panels.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 

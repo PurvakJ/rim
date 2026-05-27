@@ -15,9 +15,9 @@ function Reviews() {
   });
 
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '9815097851';
-  const phoneNumber2 = '7986295488';
-  const whatsappNumber = '919815097851';
+  const phoneNumber1 = '9876243773';
+  const phoneNumber2 = '9876243773';
+  const whatsappNumber = '919876243773';
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello RiM, I'd like to share my experience with your electrical switchgear products. Here's my review:")}`;
 
   useEffect(() => {

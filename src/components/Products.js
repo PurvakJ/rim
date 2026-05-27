@@ -14,8 +14,8 @@ function Products() {
   const [productImageIndices, setProductImageIndices] = useState({});
 
   // Updated Contact Numbers for RiM
-  const phoneNumber1 = '7973417773';
-  const whatsappNumber = '917973417773';
+  const phoneNumber1 = '9876243773';
+  const whatsappNumber = '919876243773';
 
   // Helper function to safely get product name as string
   const getProductName = (product) => {
